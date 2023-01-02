@@ -3,7 +3,37 @@ console.log("fromurl", dynamicId);
 const ALoggedInUser = JSON.parse(localStorage.getItem("userloggedin"));
 const allUsers = JSON.parse(localStorage.getItem("users"));
 
-let allBlogs = [];
+// let blogDetails = {};
+// const fecthBlogs = async () => {
+// const thisBlog = await fetch(
+//   `https://mybrand-production.up.railway.app/blogs/${dynamicId}`,
+//   {
+//     method: "GET",
+//   }
+// );
+// const thisBlogJson = await thisBlog.json();
+// blogDetails = thisBlogJson.data;
+// console.log(blogDetails);
+// };
+
+// fecthBlogs();
+
+const fetchLikes = async () => {
+  const allLikesOnBlog = await fetch(
+    `https://mybrand-production.up.railway.app/blogs/${dynamicId}/likes`,
+    {
+      method: "GET",
+    }
+  );
+
+  const allLikesOnBlogJSON = await allLikesOnBlog.json();
+  // console.log(commentsOnBlog.data);
+  const allBLogLikes = allLikesOnBlogJSON.data;
+  console.log(allBLogLikes);
+
+  const likesNumber = document.getElementById("likes-nbr");
+  likesNumber.innerHTML = `${allBLogLikes.length} Likes`;
+};
 
 const retrieving = async () => {
   const thisBlog = await fetch(
@@ -19,7 +49,7 @@ const retrieving = async () => {
   // like functionality
   let likeBtn = document
     .getElementById("like-btn")
-    .addEventListener("click", (e) => {
+    .addEventListener("click", async (e) => {
       if (!ALoggedInUser) {
         let popUp = document.getElementById("pop-up-container");
         popUp.classList.add("show-pop-up");
@@ -28,109 +58,52 @@ const retrieving = async () => {
           popUp.classList.remove("show-pop-up");
         }, 5000);
       } else {
-        // console.log(thisUser[0].likedBlogs);
-        if (parseJwt(ALoggedInUser.token).role === "user") {
-          let thisUser = allUsers.filter(
-            (user) => user.id === ALoggedInUser.id
-          );
-          if (thisUser[0].likedBlogs.includes(blogDetails.id)) {
-            document.getElementById("like-btn").style.color = "#fff";
-            for (let i = 0; i < allBlogs.length; i++) {
-              if (allBlogs[i].id === dynamicId) {
-                // allBlogs[i].id = blogDetails.id;
-                // allBlogs[i].datePublished= blogDetails.datePublished;
-                allBlogs[i].likes -= 1;
-                localStorage.setItem("blogs", JSON.stringify(allBlogs));
-                // console.log(allBlogs[i]);
-              }
-            }
-            for (let i = 0; i < allUsers.length; i++) {
-              if (allUsers[i].id === ALoggedInUser.id) {
-                // allBlogs[i].id = blogDetails.id;
-                // allBlogs[i].datePublished= blogDetails.datePublished;
-
-                allUsers[i].likedBlogs.splice(
-                  allUsers[i].likedBlogs.indexOf(blogDetails.id),
-                  1
-                );
-                localStorage.setItem("users", JSON.stringify(allUsers));
-                // console.log("after slice", allUsers[i].likedBlogs);
-                // console.log(allUsers[i]);
-              }
-            }
-
-            const likesNumber = document.getElementById("likes-nbr");
-            likesNumber.innerHTML = `${blogDetails.likes} Likes`;
-          } else {
-            document.getElementById("like-btn").style.color = "#b1361e";
-
-            for (let i = 0; i < allBlogs.length; i++) {
-              if (allBlogs[i].id === dynamicId) {
-                // allBlogs[i].id = blogDetails.id;
-                // allBlogs[i].datePublished= blogDetails.datePublished;
-                allBlogs[i].likes += 1;
-                localStorage.setItem("blogs", JSON.stringify(allBlogs));
-                // console.log(allBlogs[i]);
-              }
-            }
-            for (let i = 0; i < allUsers.length; i++) {
-              if (allUsers[i].id === ALoggedInUser.id) {
-                // allBlogs[i].id = blogDetails.id;
-                // allBlogs[i].datePublished= blogDetails.datePublished;
-                allUsers[i].likedBlogs.push(blogDetails.id);
-                localStorage.setItem("users", JSON.stringify(allUsers));
-                // console.log(allUsers[i]);
-              }
-            }
-            const likesNumber = document.getElementById("likes-nbr");
-            likesNumber.innerHTML = `${blogDetails.likes} Likes`;
+        const userLike = await fetch(
+          `https://mybrand-production.up.railway.app/blogs/${dynamicId}/like`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${ALoggedInUser.token}`,
+            },
           }
-        } else if (parseJwt(ALoggedInUser.token).role === "admin") {
-          const admin = JSON.parse(localStorage.getItem("admin"));
-          if (admin.likedBlogs.includes(blogDetails.id)) {
+        );
+
+        const userLikeJSON = await userLike.json();
+        // console.log(commentsOnBlog.data);
+        const userLikeOnBlog = userLikeJSON.data;
+        console.log(userLikeOnBlog);
+        if (
+          blogDetails.likes.includes(parseJwt(ALoggedInUser.token).id) &&
+          userLikeOnBlog.length != 0
+        ) {
+          const unlike = await fetch(
+            `https://mybrand-production.up.railway.app/blogs/${dynamicId}/likes`,
+            {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${ALoggedInUser.token}`,
+              },
+            }
+          ).then(() => { 
             document.getElementById("like-btn").style.color = "#fff";
-            for (let i = 0; i < allBlogs.length; i++) {
-              if (allBlogs[i].id === dynamicId) {
-                // allBlogs[i].id = blogDetails.id;
-                // allBlogs[i].datePublished= blogDetails.datePublished;
-                allBlogs[i].likes -= 1;
-                localStorage.setItem("blogs", JSON.stringify(allBlogs));
-                // console.log(allBlogs[i]);
-              }
+          }).then(() => {
+            fetchLikes();
+          });
+        } else {
+          const like = await fetch(
+            `https://mybrand-production.up.railway.app/blogs/${dynamicId}/likes`,
+            {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${ALoggedInUser.token}`,
+              },
             }
-            admin.likedBlogs.splice(
-              admin.likedBlogs.indexOf(blogDetails.id),
-              1
-            );
-
-            console.log(admin);
-            localStorage.setItem("admin", JSON.stringify(admin));
-
-            const likesNumber = document.getElementById("likes-nbr");
-            likesNumber.innerHTML = `${blogDetails.likes} Likes`;
-          } else {
+          ).then(() => {
             document.getElementById("like-btn").style.color = "#b1361e";
-
-            for (let i = 0; i < allBlogs.length; i++) {
-              if (allBlogs[i].id === dynamicId) {
-                // allBlogs[i].id = blogDetails.id;
-                // allBlogs[i].datePublished= blogDetails.datePublished;
-                allBlogs[i].likes += 1;
-                localStorage.setItem("blogs", JSON.stringify(allBlogs));
-                // console.log(allBlogs[i]);
-              }
-            }
-            admin.likedBlogs.push(blogDetails.id);
-            localStorage.setItem("admin", JSON.stringify(admin));
-            // console.log(admin);
-            localStorage.setItem("admin", JSON.stringify(admin));
-
-            const likesNumber = document.getElementById("likes-nbr");
-            likesNumber.innerHTML = `${blogDetails.likes} Likes`;
-          }
+          }).then(() => {
+            fetchLikes();
+          });
         }
-
-        // console.log(blogDetails);
       }
     });
 
@@ -138,7 +111,6 @@ const retrieving = async () => {
   coverImg = blogDetails.coverImage;
   console.log(coverImg);
   let date = new Date(blogDetails.datePublished);
-  // console.log(date);
 
   const datePublished = `${date.getFullYear()}-${
     date.getMonth() + 1
@@ -170,24 +142,33 @@ const retrieving = async () => {
 
   // retrieving one like
   if (ALoggedInUser) {
-    if (parseJwt(ALoggedInUser.token).role === "user") {
-      let thisUser = allUsers.filter((user) => user.id === ALoggedInUser.id);
-      if (thisUser[0].likedBlogs.includes(blogDetails.id)) {
-        document.getElementById("like-btn").style.color = "#b1361e";
+    const userLike = await fetch(
+      `https://mybrand-production.up.railway.app/blogs/${dynamicId}/like`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${ALoggedInUser.token}`,
+        },
       }
-    }
-    if (parseJwt(ALoggedInUser.token).role === "admin") {
-      const admin = JSON.parse(localStorage.getItem("admin"));
-      if (admin.likedBlogs.includes(blogDetails.id)) {
-        document.getElementById("like-btn").style.color = "#b1361e";
-      }
+    );
+
+    const userLikeJSON = await userLike.json();
+    // console.log(commentsOnBlog.data);
+    const userLikeOnBlog = userLikeJSON.data;
+    console.log(userLikeOnBlog);
+
+    if (
+      blogDetails.likes.includes(parseJwt(ALoggedInUser.token).id) &&
+      userLikeOnBlog.length != 0
+    ) {
+      document.getElementById("like-btn").style.color = "#b1361e";
     }
   }
 
   // displaying likes and comments
 
   const likesNumber = document.getElementById("likes-nbr");
-  likesNumber.innerHTML = `${blogDetails.likes} Likes`;
+  likesNumber.innerHTML = `${blogDetails.likes.length} Likes`;
 
   const commentsNumber = document.getElementById("comments-nbr");
   commentsNumber.innerHTML = `${blogDetails.comments.length} Comments`;
@@ -211,10 +192,24 @@ const retrieving = async () => {
  `;
   });
 
+  displayComment();
+};
+
+const displayComment = async () => {
   // displaying comments
+  const blogComments = await fetch(
+    `https://mybrand-production.up.railway.app/blogs/${dynamicId}/comments`,
+    {
+      method: "GET",
+    }
+  );
+
+  const commentsOnBlogJSON = await blogComments.json();
+  // console.log(commentsOnBlog.data);
+  const commentsOnBlog = commentsOnBlogJSON.comments;
 
   const commentsContainer = document.getElementById("all-comments");
-  if (blogDetails.comments.length != 0) {
+  if (commentsOnBlog.length != 0) {
     const commentTitleContainer = document.getElementById(
       "comments-title-container"
     );
@@ -223,12 +218,26 @@ const retrieving = async () => {
       <div><img src="assets/Line 3.png" alt=""/></div>
     `;
   }
-  blogDetails.comments.reverse().map((comment) => {
+  commentsOnBlog.reverse().map(async (comment) => {
+    let date = new Date(comment.dateAdded);
+
+    const dateAdded = `${date.getFullYear()}-${
+      date.getMonth() + 1
+    }-${date.getDate()}`;
+    const userID = comment.userId;
+    const userDet = await fetch(
+      `https://mybrand-production.up.railway.app/users/${userID}`,
+      { method: "GET" }
+    );
+
+    const userDetJSON = await userDet.json();
+    const userInfo = userDetJSON.data;
+
     commentsContainer.innerHTML += ` 
       <div class="comment-content">
         <!-- <h4>User name</h4> -->
-        <h4>${comment.user}</h4>
-        <p>${comment.dateAdded}</p>
+        <h4>${userInfo.fullName}</h4>
+        <p>${dateAdded}</p>
         <p class="short-description">${comment.comment}</p>
       </div>
  `;
@@ -265,32 +274,41 @@ var form = document
           '<div id="errors" style="width: 100%; height: 50px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); padding: 5px 15px; display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
           '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The comment should not be just spaces. </p> </div>';
       } else {
-        const userID = parseJwt(ALoggedInUser.token).id
-        const userDet = fetch(`https://mybrand-production.up.railway.app/users/${userID}`, {method: "GET"})
         var newComment = {
-          user: ALoggedInUser.fullName,
           comment: comment,
         };
 
-        let allBlogs = [];
-        allBlogs = JSON.parse(localStorage.getItem("blogs"));
-        // console.log(allBlogs);
-
-        for (let i = 0; i < allBlogs.length; i++) {
-          if (allBlogs[i].id === dynamicId) {
-            allBlogs[i].comments.push(newComment);
-            // console.log(allBlogs[i]);
+        const commentAdded = await fetch(
+          `https://mybrand-production.up.railway.app/blogs/${dynamicId}/comments`,
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${ALoggedInUser.token}`,
+            },
+            body: JSON.stringify(newComment),
           }
-        }
+        );
 
-        localStorage.setItem("blogs", JSON.stringify(allBlogs));
+        const commentJSON = commentAdded.json();
+        console.log(commentJSON);
+
         submitMessage.innerHTML =
           '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(130, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #1eb136;; >' +
           '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Comment Added! </p> </div>';
 
         // console.log(JSON.parse(localStorage.getItem("blogs")));
         // retrieving();
-        window.location = "blog-page.html";
+        // window.location = "blog-page.html";
+        const commentsContainer = document.getElementById("all-comments");
+        const commentTitleContainer = document.getElementById(
+          "comments-title-container"
+        );
+        commentTitleContainer.innerHTML = "";
+        commentsContainer.innerHTML = "";
+
+        displayComment();
         clearForm();
       }
     }
@@ -312,7 +330,7 @@ function parseJwt(token) {
   return JSON.parse(jsonPayload);
 }
 
-console.log(parseJwt(ALoggedInUser.token));
+// console.log(parseJwt(ALoggedInUser.token));
 
 // a function to clear the form
 function clearForm() {

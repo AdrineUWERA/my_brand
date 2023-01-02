@@ -1,5 +1,5 @@
-let user = JSON.parse(localStorage.getItem("loggedInUser"));
-console.log(user);
+// let user = JSON.parse(localStorage.getItem("loggedInUser"));
+// console.log(user);
 
 var form = document
   .getElementById("contact-form")

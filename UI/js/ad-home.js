@@ -20,7 +20,7 @@ const calculateStats = async () => {
 
   if (allBlogs) {
     for (let i = 0; i < allBlogs.length; i++) {
-      totalLikes += allBlogs[i].likes;
+      totalLikes += allBlogs[i].likes.length;
       totalComments += allBlogs[i].comments.length;
     }
     nbOfBlogs = allBlogs.length;
