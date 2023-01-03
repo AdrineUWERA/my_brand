@@ -1,5 +1,5 @@
 const dynamicId = JSON.parse(localStorage.getItem("selectedBlog"));
-console.log("fromurl", dynamicId);
+// console.log("fromurl", dynamicId);
 const ALoggedInUser = JSON.parse(localStorage.getItem("userloggedin"));
 const allUsers = JSON.parse(localStorage.getItem("users"));
 
@@ -29,7 +29,7 @@ const fetchLikes = async () => {
   const allLikesOnBlogJSON = await allLikesOnBlog.json();
   // console.log(commentsOnBlog.data);
   const allBLogLikes = allLikesOnBlogJSON.data;
-  console.log(allBLogLikes);
+  // console.log(allBLogLikes);
 
   const likesNumber = document.getElementById("likes-nbr");
   likesNumber.innerHTML = `${allBLogLikes.length} Likes`;
@@ -44,7 +44,7 @@ const retrieving = async () => {
   );
   const thisBlogJson = await thisBlog.json();
   const blogDetails = thisBlogJson.data;
-  console.log(blogDetails);
+  // console.log(blogDetails);
 
   // like functionality
   let likeBtn = document
@@ -71,7 +71,7 @@ const retrieving = async () => {
         const userLikeJSON = await userLike.json();
         // console.log(commentsOnBlog.data);
         const userLikeOnBlog = userLikeJSON.data;
-        console.log(userLikeOnBlog);
+        // console.log(userLikeOnBlog);
         if (
           blogDetails.likes.includes(parseJwt(ALoggedInUser.token).id) &&
           userLikeOnBlog.length != 0
@@ -84,8 +84,10 @@ const retrieving = async () => {
                 Authorization: `Bearer ${ALoggedInUser.token}`,
               },
             }
-          ).then(() => { 
+          ).then(() => {
+            console.log("hi1") 
             document.getElementById("like-btn").style.color = "#fff";
+            console.log("hi2") 
           }).then(() => {
             fetchLikes();
           });
@@ -109,7 +111,7 @@ const retrieving = async () => {
 
   // diplating blog details
   coverImg = blogDetails.coverImage;
-  console.log(coverImg);
+  // console.log(coverImg);
   let date = new Date(blogDetails.datePublished);
 
   const datePublished = `${date.getFullYear()}-${
@@ -155,7 +157,7 @@ const retrieving = async () => {
     const userLikeJSON = await userLike.json();
     // console.log(commentsOnBlog.data);
     const userLikeOnBlog = userLikeJSON.data;
-    console.log(userLikeOnBlog);
+    // console.log(userLikeOnBlog);
 
     if (
       blogDetails.likes.includes(parseJwt(ALoggedInUser.token).id) &&
@@ -205,7 +207,7 @@ const displayComment = async () => {
   );
 
   const commentsOnBlogJSON = await blogComments.json();
-  // console.log(commentsOnBlog.data);
+  console.log(commentsOnBlog.data);
   const commentsOnBlog = commentsOnBlogJSON.comments;
 
   const commentsContainer = document.getElementById("all-comments");
@@ -232,6 +234,7 @@ const displayComment = async () => {
 
     const userDetJSON = await userDet.json();
     const userInfo = userDetJSON.data;
+    console.log("comment user", userInfo)
 
     commentsContainer.innerHTML += ` 
       <div class="comment-content">
@@ -330,16 +333,12 @@ function parseJwt(token) {
   return JSON.parse(jsonPayload);
 }
 
-// console.log(parseJwt(ALoggedInUser.token));
+console.log(parseJwt(ALoggedInUser.token));
 
 // a function to clear the form
 function clearForm() {
   //resets the form fields
-  document.getElementById("title").value = "";
-  document.getElementById("category").value = "";
-  document.getElementById("cover-image").value = "";
-  document.getElementById("content").value = "";
-  document.getElementById("references").value = "";
+  document.getElementById("comment-message").value = ""; 
 }
 
 window.onload = () => {

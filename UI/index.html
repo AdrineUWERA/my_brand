@@ -12,6 +12,7 @@
       referrerpolicy="no-referrer"
     />
     <link rel="icon" href="assets/Logo.png" type="image/png" />
+    <link rel="stylesheet" href="css/admin-dashboard.css" />
     <link rel="stylesheet" href="css/styles.css" />
     <link
       href="node_modules/froala-editor/css/froala_editor.pkgd.min.css"
@@ -74,17 +75,25 @@
             <li class="nav-btn" id="logout-btn">
               <a class="log-btn" href="index.html">Logout</a>
             </li>
+            
           </ol>
+          <div class="nav-btn" id="admin-dropdown-btn">
+            <a class="admin-user-icon" href="index.html"
+              ><i class="fa-solid fa-circle-user"></i
+            ></a>
+          </div>
         </div>
-        <!-- <div class="mobile-menu">
-          <i class="fa-solid fa-bars"></i>
-        </div> -->
         <div class="navbar_toggle" id="mobile_menu">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
         </div>
+        <div class="admin-menu">
+          <a class="dashboard-link" href="admin-dashboard.html" style="color: hsla(0, 0%, 100%, 70%); text-decoration: none;">Dashboard</a>
+          <a class="log-btn" id="ad-logout-btn" href="index.html" style="color: hsl(0, 0%, 100%); text-decoration: none">Logout</a>
+        </div>
       </div>
+
       <div class="content-container">
         <div class="social-links">
           <i class="fa-brands fa-github"></i>
@@ -161,13 +170,13 @@
                   <div class="flip-card-container">
                     <div class="flip-card">
                       <div class="flip-front">
-                        <img src="assets/profile.png" alt="front image"> 
+                        <img src="assets/profile.png" alt="front image" />
                       </div>
                       <div class="flip-back">
-                        <img src="assets/Adrine5.PNG" alt="back image"> 
+                        <img src="assets/Adrine5.PNG" alt="back image" />
                       </div>
                     </div>
-                  </div>                  
+                  </div>
                 </div>
               </div>
             </section>
