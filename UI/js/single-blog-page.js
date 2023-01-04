@@ -207,8 +207,12 @@ const displayComment = async () => {
   );
 
   const commentsOnBlogJSON = await blogComments.json();
-  console.log(commentsOnBlog.data);
+
   const commentsOnBlog = commentsOnBlogJSON.comments;
+  console.log(commentsOnBlog.data);
+
+  const commentsNumber = document.getElementById("comments-nbr");
+  commentsNumber.innerHTML = `${commentsOnBlog.length} Comments`;
 
   const commentsContainer = document.getElementById("all-comments");
   if (commentsOnBlog.length != 0) {
@@ -333,7 +337,7 @@ function parseJwt(token) {
   return JSON.parse(jsonPayload);
 }
 
-console.log(parseJwt(ALoggedInUser.token));
+// console.log(parseJwt(ALoggedInUser.token));
 
 // a function to clear the form
 function clearForm() {

@@ -3,7 +3,7 @@ function closePopup() {
   popUp.style.visibility = "hidden";
 }
 
-const LoggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+const LoggedInUser = JSON.parse(localStorage.getItem("userloggedin"));
 console.log(LoggedInUser);
 if (LoggedInUser) {
   window.history.go(-1);
