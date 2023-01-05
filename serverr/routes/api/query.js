@@ -1,6 +1,7 @@
 import {
   GetAllQueries,
   CreateQuery,
+  deleteQuery
 } from "../../controllers/QueryController.js";
 
 import express from "express";
@@ -82,6 +83,7 @@ import queryValidator from "../../validations/queryValidation/queryValidator.js"
 const queryRouter = express.Router();
 
 queryRouter.post("/",queryValidator, CreateQuery);
+queryRouter.delete("/:id", deleteQuery);
 queryRouter.get("/", isAdminLoggedIn, GetAllQueries);
 
 export default queryRouter;

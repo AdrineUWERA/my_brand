@@ -1,4 +1,5 @@
 import QueryService from "../services/query.service.js";
+import Query from '../models/Query.js'
 
 const GetAllQueries = async (req, res) => {
   const queries = await QueryService.findAll();
@@ -35,4 +36,11 @@ const CreateQuery = async (req, res) => {
   }
 };
 
-export { GetAllQueries, CreateQuery };
+const deleteQuery = (req, res) => {
+  const deletedQuery =  Query.deleteOne({_id: req.params.id});
+  return res.status(200).json({
+    message: "Query deleted!"
+  })
+}
+
+export { GetAllQueries, CreateQuery, deleteQuery };
