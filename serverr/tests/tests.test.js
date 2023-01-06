@@ -753,6 +753,7 @@ describe("blogs API", () => {
         .post("/queries")
         .send(query)
         .end((err, response) => {
+          const newquery = response.body.data;
           response.should.have.status(201);
           response.body.should.be.a("object");
           response.body.should.have
@@ -768,11 +769,20 @@ describe("blogs API", () => {
           response.body.should.have
             .property("data")
             .have.nested.property("message");
-          done();
+          chai
+            .request(app)
+            .delete("/queries/" + newquery._id) 
+            .end((err, response) => {
+              response.should.have.status(200);
+              response.body.should.have
+              .property("message")
+              .eql("Query deleted!");
+              done();
+            });
         });
     });
 
-    it("It should NOT POST a new query", (done) => {
+    it("It should NOT POST a new query without sender's name", (done) => {
       const query = {
         email: "eve@gmail.com",
         message:
