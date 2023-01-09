@@ -23,10 +23,12 @@ const userLoginSchema = joi.object({
   email: joi.string().email().required().messages({
     "string.empty": "Email is required.",
     "any.required": "Email is required",
+    "any.invalid": "Email is invalid",
   }),
   password: joi.string().min(6).required().messages({
-    "string.empty": "password is required.",
-    "any.required": "password is required",
+    "string.empty": "Password is required.",
+    "any.required": "Password is required",
+    "string.min": "Password should be at least 6 characters",
   }),
 });
 

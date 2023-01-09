@@ -8,6 +8,7 @@ const querySchema = joi.object({
   email: joi.string().email().required().messages({
     "string.empty": "Email is required.",
     "any.required": "Email is required",
+    "any.invalid": "Email is invalid",
   }),
   message: joi.string().required().messages({
     "string.empty": "Message is required.",
