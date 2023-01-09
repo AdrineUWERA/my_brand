@@ -32,8 +32,8 @@ body {
 }
 
 /* .nav-links {
-      flex-grow: 1;
-    } */
+          flex-grow: 1;
+        } */
 .nav-links ol {
   list-style-type: none;
   display: flex;
@@ -162,16 +162,18 @@ body {
 }
 
 .section-title {
+  width: 100%;
   display: flex;
-  justify-content: center;
-  font-size: 30px;
-  padding-bottom: 50px;
+  justify-content: start;
+  align-self: start;
+  font-size: 20px;
+  padding-bottom: 25px;
 }
 .section-title .title {
   padding-right: 15px;
-  padding-left: 20px;
   color: #fff;
 }
+
 .section-title div {
   display: flex;
   justify-content: center;
@@ -188,15 +190,15 @@ body {
   align-items: center;
   width: 100%;
   gap: 80px;
-  padding-top: 20px; 
-  margin-left: 1fr;
-  max-height: 100vh;
+  margin-top: 20px;
+  margin-left: 1fr; 
 }
 
 .dashboard .sidebar {
   background-color: hsla(0, 11%, 25%, 42%);
   padding: 50px;
   min-height: 75vh;
+  height: 75vh;
   position: fixed;
   left: 150px;
   right: auto;
@@ -207,10 +209,10 @@ body {
 .sidebar li {
   list-style-type: none;
   padding-bottom: 25px;
-  text-decoration: none; 
+  text-decoration: none;
 }
-.sidebar a{
-    color:hsla(0, 0%, 100%, 0.49)
+.sidebar a {
+  color: hsla(0, 0%, 100%, 0.49);
 }
 
 .active a {
@@ -225,57 +227,83 @@ body {
   flex-direction: column;
   width: 100%;
   justify-content: flex-start;
-  align-items: center; 
-  padding-left: 100px;
+  align-items: center;
+  padding-left: 300px;
 }
 
-.statistics {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
+.all-blogs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
 }
 
-.statistics .card {
+.all-blogs .card {
   background-color: hsla(0, 11%, 25%, 42%);
   padding: 30px;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
-  gap: 20px;
+  /* gap: 20px; */
   border-radius: 5px;
 }
 
-.statistics .card i {
-  font-size: 50px;
-  padding: 20px;
-  color: #b1361e;
+.all-blogs .card img {
+  width: 100%;
 }
 
-.statistics .card i {
-  font-size: 60px;
-  padding: 20px;
-  color: #b1361e;
+.card p {
+  padding: 20px 0;
 }
-.card-stats{
-    width: 50%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    flex-direction: column;
-    gap: 5px;
 
+.card-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
 }
-.statistics .card .number{
-    font-size: 45px;
-    color: white;
-}
-.statistics .card .stat-subject {
-    /* color: white; */
-    font-size: 16px;
+
+.card a {
+  text-decoration: underline;
+  color: hsla(10, 71%, 41%, 1);
+  font-size: 12px;
 }
 
 #footer {
   margin: 0px 15%;
   margin-bottom: 20px;
   margin-top: 88px;
+}
+
+.message-content {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 50px;
+  background-color: hsla(0, 11%, 25%, 0.42);
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.message-content h4 {
+  font-size: 20px;
+  color: #b1361e;
+  padding-bottom: 5px;
+  letter-spacing: 0.3px;
+}
+
+.message-content p {
+  letter-spacing: 0.3px;
+  font-size: 12px;
+  padding-top: 5px;
+  color: rgba(255, 255, 255, 0.42);
+  line-height: 20px;
+}
+
+.message-content .short-description {
+  letter-spacing: 0.3px;
+  font-size: 16px;
+  padding-top: 20px;
+  color: hsla(0, 0%, 100%, 0.7);
+  line-height: 20px;
 }

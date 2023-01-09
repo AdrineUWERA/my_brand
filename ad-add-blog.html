@@ -12,7 +12,7 @@
       referrerpolicy="no-referrer"
     />
     <link rel="icon" href="assets/Logo.png" type="image/png" />
-    <link rel="stylesheet" href="css/admin-dashboard.css" />
+    <link rel="stylesheet" href="css/ad-add-blog.css" />
     <title>Adrine UWERA</title>
   </head>
   <body>
@@ -82,42 +82,54 @@
             <div class="dashboard">
               <div class="sidebar">
                 <ul>
-                  <li class="active"><a href="admin-dashboard.html">Home</a></li>
-                  <li><a href="ad-view-blogs.html">View all blogs</a></li>
-                  <li><a href="ad-add-blog.html">Add a blog</a></li>
+                  <li><a href="admin-dashboard.html">Home</a></li>
+                  <li>
+                    <a href="ad-view-blogs.html">View all blogs</a>
+                  </li>
+                  <li class="active">
+                    <a href="ad-add-blog.html">Add a blog</a>
+                  </li>
                   <li><a href="ad-messages.html">Messages</a></li>
                 </ul>
               </div>
               <div class="dashboard-content">
-                <div class="statistics">
-                  <div class="card">
-                    <div>
-                        <i class="fa-solid fa-newspaper"></i>
-                    </div>
-                    <div class="card-stats">
-                      <p class="number">1</p>
-                      <p class="stat-subject">Blogs published</p>
-                    </div>
-                  </div>
-                  <div class="card">
-                    <div>
-                      <i class="fa-solid fa-thumbs-up"></i>
-                    </div>
-                    <div class="card-stats">
-                      <p class="number">12</p>
-                      <p class="stat-subject">Total Likes</p>
-                    </div>
-                  </div>
-                  <div class="card">
-                    <div>
-                        <i class="fa-solid fa-comments"></i>
-                    </div>
-                    <div class="card-stats">
-                      <p class="number">2</p>
-                      <p class="stat-subject">Total Comments</p>
-                    </div>
-                  </div> 
+                <div class="section-title">
+                  <span class="title">Add a blog</span>
+                  <div><img src="/assets/Line 3.png" alt="" /></div>
                 </div>
+                <form action="" class="contact-form">
+                  <div class="field">
+                    <label for="name">Title:</label>
+                    <input placeholder="Enter the blog title" type="text" />
+                  </div>
+                  <div class="field">
+                    <label for="category">Category:</label>
+                    <input placeholder="Enter the blog category" type="text" />
+                  </div>
+                  <div class="field">
+                    <label for="category">Cover image:</label>
+                    <input
+                      class="blog-cover"
+                      placeholder="Enter the blog category"
+                      type="file"
+                    />
+                  </div>
+                  <div class="field">
+                    <label for="content">Content:</label>
+                    <textarea
+                      placeholder="Add blog content ..."
+                      type="text"
+                    ></textarea>
+                  </div>
+                  <div class="field">
+                    <label for="content">Links:</label>
+                    <textarea
+                      placeholder="Add references ..."
+                      type="text"
+                    ></textarea>
+                  </div>
+                  <button class="submit-btn">Add Blog</button>
+                </form>
               </div>
             </div>
             <section id="footer">
