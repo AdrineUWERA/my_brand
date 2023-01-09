@@ -19,36 +19,38 @@
     <div class="container">
       <div class="navbar-container">
         <div class="logo-container">
-          <img src="/assets/Logo.png" alt="logo" />
+          <a href="/">
+            <img src="/assets/Logo.png" alt="logo" />
+          </a>
         </div>
         <div class="nav-links">
           <ol>
             <li>
-              <a href="#" class="active"
+              <a href="#about" class="active nav-link"
                 ><span class="numbering">01. </span
                 ><span class="link-label">About</span></a
               >
             </li>
             <li>
-              <a href="#" class="active"
+              <a href="#skills" class="active nav-link"
                 ><span class="numbering">02. </span
                 ><span class="link-label">Skills</span></a
               >
             </li>
             <li>
-              <a href="#" class="active"
+              <a href="#work" class="active nav-link"
                 ><span class="numbering">03. </span>
                 <span class="link-label">Work</span></a
               >
             </li>
             <li>
-              <a href="#" class="active"
+              <a href="#blogs" class="active nav-link"
                 ><span class="numbering">04. </span
                 ><span class="link-label">Blogs</span></a
               >
             </li>
             <li>
-              <a href="#" class="active"
+              <a href="#contact" class="active nav-link"
                 ><span class="numbering">05. </span
                 ><span class="link-label">Contact</span></a
               >
@@ -57,10 +59,11 @@
               <a
                 class="resume-link link-label"
                 href="https://adrineuwera.github.io/Andela-Entry-Project/"
+                target="_blank"
                 >Resume</a
               >
             </li>
-            <li><a class="login-btn link-label" href="login.html">Login</a></li>
+            <li><a class="login-btn" href="login.html">Login</a></li>
           </ol>
         </div>
       </div>
@@ -84,9 +87,9 @@
                 I’m a software engineer specializing in building (and
                 occasionally designing) appealing and functional softwares.
                 Currently, I’m focused on upskilling my software development
-                with <a href="">Andela</a>.
+                with <a href="https://andela.com/" target="_blank">Andela</a>.
               </p>
-              <a class="checkout-my-work" href="">Checkout my work</a>
+              <a class="checkout-my-work" href="#work">Checkout my work</a>
             </section>
             <section id="about">
               <div class="section-title">
@@ -110,7 +113,9 @@
                     enim ad minim veniam, quis nostrud exercitation ullamco
                     laboris nisi ut aliquip ex ea commodo consequat.
                   </p>
-                  <p>Offline, when I am not coding I enjoy:</p>
+                  <p id="hobbies-title">
+                    Offline, when I am not coding I enjoy:
+                  </p>
                   <div class="hobbies">
                     <ul class="hobbies-list">
                       <li><span>▹</span> Drawing</li>
@@ -135,19 +140,19 @@
                 ><span class="title"> Skills</span>
                 <div><img src="/assets/Line 3.png" alt="" /></div>
               </div>
+              <div class="left-content">
+                <p id="learning-journey">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.<br /><br />
+                  Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                  qui officia deserunt mollit anim id est laborum.Lorem ipsum
+                  dolor sit amet. consectetur adipiscing elit, sed do eiusmod
+                  tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+              </div>
               <div class="section-content">
-                <div class="left-content">
-                  <p id="learning-journey">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.<br /><br />
-                    Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.Lorem
-                    ipsum dolor sit amet. consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </p>
-                </div>
                 <div class="center-content">
                   <div class="skill_bar">
                     <div class="info">
@@ -202,7 +207,7 @@
                       <p>50%</p>
                     </div>
                     <div class="bar">
-                      <span class="node"></span>
+                      <span class="java"></span>
                     </div>
                   </div>
                   <div class="skill_bar">
@@ -211,7 +216,7 @@
                       <p>60%</p>
                     </div>
                     <div class="bar">
-                      <span class="express"></span>
+                      <span class="react"></span>
                     </div>
                   </div>
                   <div class="skill_bar">
@@ -220,16 +225,16 @@
                       <p>60%</p>
                     </div>
                     <div class="bar">
-                      <span class="node"></span>
+                      <span class="next"></span>
                     </div>
                   </div>
                   <div class="skill_bar">
                     <div class="info">
                       <p>GraphQL</p>
-                      <p>80%</p>
+                      <p>75%</p>
                     </div>
                     <div class="bar">
-                      <span class="express"></span>
+                      <span class="graphql"></span>
                     </div>
                   </div>
                   <div class="skill_bar">
@@ -355,7 +360,7 @@
               <div class="section-content">
                 <div class="blogs-list">
                   <div class="blog-summary">
-                    <h4><a href="#">E-commerce</a></h4>
+                    <h4><a href="blog-page.html">E-commerce</a></h4>
                     <p>YYYY-MM-DD | GraphQL API</p>
                     <p class="short-description">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -370,7 +375,7 @@
                     </p>
                   </div>
                   <div class="blog-summary">
-                    <h4><a href="#">E-commerce</a></h4>
+                    <h4><a href="blog-page.html">E-commerce</a></h4>
                     <p>YYYY-MM-DD | GraphQL API</p>
                     <p class="short-description">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -385,7 +390,7 @@
                     </p>
                   </div>
                   <div class="blog-summary">
-                    <h4><a href="#">E-commerce</a></h4>
+                    <h4><a href="blog-page.html">E-commerce</a></h4>
                     <p>YYYY-MM-DD | GraphQL API</p>
                     <p class="short-description">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -410,23 +415,30 @@
               </div>
               <p>Do you want to connect or have any question?</p>
               <div class="section-content">
-                <div class="contact-form">
-                  <form action="">
-                    <div class="field">
-                      <label for="name">Full Name:</label>
-                      <input placeholder="enter your name" type="text" />
-                    </div>
-                    <div class="field">
-                      <label for="name">Email:</label>
-                      <input placeholder="enter your name" type="text" />
-                    </div>
-                    <div class="field">
-                      <label for="name">Message:</label>
-                      <textarea placeholder="enter your name" type="text"></textarea>
-                    </div>
-                  </form>
-                </div>
+                <!-- <div > -->
+                <form action="" class="contact-form">
+                  <div class="field">
+                    <label for="name">Full Name:</label>
+                    <input placeholder="Enter your name" type="text" />
+                  </div>
+                  <div class="field">
+                    <label for="name">Email:</label>
+                    <input placeholder="Enter your email" type="email" />
+                  </div>
+                  <div class="field">
+                    <label for="name">Message:</label>
+                    <textarea
+                      placeholder="Write a message ..."
+                      type="text"
+                    ></textarea>
+                  </div>
+                  <button class="submit-btn">Submit</button>
+                </form>
+                <!-- </div> -->
               </div>
+            </section>
+            <section id="footer">
+              <p>Built by Adrine UWERA</p>
             </section>
           </div>
         </div>
