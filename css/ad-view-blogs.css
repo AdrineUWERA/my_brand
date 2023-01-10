@@ -191,8 +191,8 @@ body {
   width: 100%;
   gap: 80px;
   margin-top: 20px;
-  margin-left: 1fr;
-  max-height: 100vh;
+  margin-left: 1fr; 
+  padding-bottom: 50px;
 }
 
 .dashboard .sidebar {

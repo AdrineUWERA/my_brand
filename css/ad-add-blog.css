@@ -168,7 +168,7 @@ body {
   align-self: start;
   font-size: 20px;
   padding-bottom: 25px;
-  padding-top: 40px;
+  padding-top: 25px;
 }
 .section-title .title {
   padding-right: 15px;
@@ -190,9 +190,9 @@ body {
   align-items: center;
   width: 100%;
   gap: 80px;
-  margin-top: 90px;
-  margin-left: 1fr;
-  max-height: 100vh;
+  /* margin-top: 90px; */
+  margin-left: 1fr; 
+  padding-bottom: 50px;
 }
 
 .dashboard .sidebar {

@@ -15,8 +15,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 50px;
-  padding-top: 10px;
+  padding: 10px 50px;
   width: 100%;
   height: 80px;
   top: 0;
@@ -26,16 +25,27 @@ body {
   /* padding-right: 50px; */
 }
 
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .logo-container img {
   box-sizing: inherit;
   height: 45px;
   width: auto;
 }
 
+#mobile_menu {
+  display: none;
+}
+
 /* .nav-links {
   flex-grow: 1;
 } */
-.nav-links ol {
+.nav-links{
   list-style-type: none;
   display: flex;
   flex-direction: row;
@@ -57,16 +67,11 @@ body {
   letter-spacing: 0.3px;
 }
 
-.nav-links .active {
-  text-decoration: none;
-  color: hsl(0, 0%, 100%);
-}
-
-.nav-link:hover, .link-label:hover {
+.nav-link:hover,
+.link-label:hover {
   color: #b1361e;
   transition: 0.3s;
 }
-
 
 .resume-link {
   padding: 10px 25px;
@@ -86,7 +91,7 @@ body {
   background-color: hsl(10, 71%, 41%);
 }
 
-.login-btn:hover{
+.login-btn:hover {
   background-color: hsla(10, 71%, 41%, 0.8);
   transition: 0.3s;
 }
@@ -278,7 +283,7 @@ body {
   align-items: center;
 }
 
-#hobbies-title{
+#hobbies-title {
   font-size: 18px;
   letter-spacing: 0.3px;
   line-height: 25px;
@@ -638,7 +643,7 @@ body {
   padding-top: 200px;
 }
 
-#contact .section-content { 
+#contact .section-content {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -651,14 +656,14 @@ body {
 }
 
 #contact form {
-  width: 80%; 
+  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: hsla(0, 11%, 25%, 0.42);
   padding: 3% 5%;
-  border-radius: 3px ;
+  border-radius: 3px;
 }
 
 #contact .field {
@@ -666,7 +671,7 @@ body {
   width: 90%;
   display: flex;
   flex-direction: column;
-  gap: 20px;   
+  gap: 20px;
 }
 
 #contact .field input {
@@ -682,7 +687,7 @@ body {
 
 #contact .field label {
   padding-top: 20px;
-  color: hsla(0, 0%, 100%, .7);
+  color: hsla(0, 0%, 100%, 0.7);
 }
 
 #contact .field textarea {
@@ -694,18 +699,735 @@ body {
   padding: 10px 20px;
 }
 
-.submit-btn{
+.submit-btn {
   width: 90%;
   margin: 30px 0px;
   padding: 10px 0px;
-  color: #fff; 
+  color: #b1361e;
   border: 1px solid #b1361e;
-  border-radius: 3px; 
+  border-radius: 3px;
   background-color: hsla(10, 71%, 41%, 0.15);
 }
 
-#footer{
+
+#footer {
   margin: 0px 5%;
   margin-top: 200px;
   margin-bottom: 20px;
+}
+
+@media (min-width: 1400px) {
+  #home {
+    padding: 0 10%;
+    padding-top: 200px;
+  }
+  #about {
+    padding: 0 10%;
+    padding-top: 200px;
+  }
+
+  #skills {
+    padding: 0 10%;
+    padding-top: 200px;
+  }
+  #work {
+    padding: 0 10%;
+    padding-top: 200px;
+  }
+  #blogs {
+    padding: 0 10%;
+    padding-top: 200px;
+  }
+  #contact {
+    padding: 0 10%;
+    padding-top: 200px;
+  }
+}
+
+@media (max-width: 1230px) and (min-width: 800px) {
+  #home {
+    padding: 0 5%;
+    width: 100%;
+    padding-top: 70px;
+  }
+  #about {
+    padding: 0 5%;
+    padding-top: 150px;
+  }
+  #skills {
+    padding: 0 5%;
+    padding-top: 150px;
+  }
+  #work {
+    padding: 0 5%;
+    padding-top: 150px;
+  }
+  #blogs {
+    padding: 0 5%;
+    padding-top: 150px;
+  }
+  #contact {
+    padding: 0 5%;
+    padding-top: 150px;
+  }
+
+  .nav-links li {
+    font-size: 12px;
+    padding-left: 20px;
+  }
+
+  .social-links i {
+    font-size: 20px;
+  }
+
+  .line1 {
+    height: 100px;
+    width: 3px;
+  }
+
+  .email-address p {
+    font-size: 14px;
+  }
+
+  #home #hi {
+    font-size: 18px;
+  }
+
+  #home #name {
+    font-size: 60px;
+  }
+
+  #home #whatIDo {
+    font-size: 50px;
+    padding-bottom: 15px;
+  }
+
+  #home #summary {
+    font-size: 14px;
+  }
+
+  .checkout-my-work {
+    padding: 15px 45px;
+    border: 1px solid #b1361e;
+    border-radius: 3px;
+    margin-top: 70px;
+    background-color: hsla(10, 71%, 41%, 0.15);
+  }
+
+  #about .left-content #summary {
+    font-size: 14px;
+    width: 90%;
+    padding-bottom: 40px;
+  }
+  #about .left-content {
+    width: 60%;
+  }
+  #about .right-content {
+    width: 40%;
+  }
+
+  #hobbies-title {
+    font-size: 14px;
+  }
+
+  .hobbies-list li {
+    font-size: 14px;
+  }
+
+  #learning-journey {
+    font-size: 14px;
+  }
+
+  .section-title {
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+  }
+
+  .skill_bar .info {
+    font-size: 14px;
+  }
+
+  #skills .learning {
+    padding-top: 80px;
+  }
+  #skills .learning p {
+    font-size: 20px;
+  }
+
+  #work .card-icons i {
+    font-size: 20px;
+    color: #b1361e;
+  }
+
+  #work .project-details h4 {
+    font-size: 16px;
+  }
+
+  #work .project-details p {
+    font-size: 14px;
+  }
+
+  #work .tech-used ul li {
+    font-size: 12px;
+  }
+
+  #blogs .blog-summary {
+    padding: 35px;
+  }
+
+  #blogs .blog-summary h4 {
+    font-size: 16px;
+  }
+
+  #blogs .blog-summary p {
+    font-size: 12px;
+    padding-top: 10px;
+  }
+
+  #blogs .blog-summary .short-description {
+    letter-spacing: 0.3px;
+    font-size: 14px;
+    padding-top: 20px;
+    color: hsla(0, 0%, 100%, 0.7);
+    line-height: 20px;
+  }
+
+  #contact p {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-size: 14px;
+  }
+
+  #contact form {
+    width: 90%;
+  }
+  #contact .field {
+    /* border: 1px solid green; */
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 14px;
+  }
+
+  #footer {
+    margin: 0px 5%;
+    margin-top: 150px;
+    margin-bottom: 20px;
+  }
+
+}
+
+@media (max-width: 800px) {
+  .nav-links {
+    /* display: none; */
+  }
+
+  /* .mobile-menu{
+    display: inline-block;
+  }
+  .mobile-menu i{
+    font-size: 25px;
+  } */
+  #mobile_menu {
+    display: inline;
+    position: relative;
+    transform: translate(5%, 20%);
+  }
+
+  #mobile_menu.is-active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  #mobile_menu.is-active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  #mobile_menu.is-active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .navigation{
+    width: 100%;
+    display: flex;
+    justify-content:flex-end;
+    align-items:center;
+  }
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    width: 100%;
+    position: relative;
+    top: -1000px;
+    opacity: 1;
+    transition: all 0.3s ease; 
+    z-index: -1;
+    background-color: #1b1616;
+    border: 1px solid red;
+  }
+
+  .nav-links.active { 
+    /* border: 1px solid yellow; */
+    width: 200px;
+    top: 80px;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 99;
+    height: 200px;
+    font-size: 20px;
+    margin-right: -20px;
+  }
+
+  .navbar_toggle .bar {
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+    display: block;
+    cursor: pointer;
+    background-color: #b1361e;
+  } 
+
+  .nav-links li {
+    padding-left: 0px;
+    font-size: 16px;
+    position: relative;
+  }
+  
+  .social-links {
+    display: none;
+  }
+
+  .email-address {
+    display: none;
+  }
+
+  #home {
+    padding: 0 5%;
+    width: 100%;
+    padding-top: 70px;
+  }
+  #about {
+    padding: 0 5%;
+    padding-top: 150px;
+  }
+
+  #skills {
+    padding: 0 5%;
+    padding-top: 150px;
+  }
+  #work {
+    padding: 0 5%;
+    padding-top: 150px;
+  }
+  #blogs {
+    padding: 0 5%;
+    padding-top: 150px;
+  }
+  #contact {
+    padding: 0 5%;
+    padding-top: 150px;
+  }
+
+  .nav-links li {
+    font-size: 12px;
+    padding-left: 20px;
+  }
+
+  .social-links i {
+    font-size: 20px;
+  }
+
+  .line1 {
+    height: 100px;
+    width: 3px;
+  }
+
+  .email-address p {
+    font-size: 14px;
+  }
+
+  #home #hi {
+    font-size: 18px;
+  }
+
+  #home #name {
+    font-size: 60px;
+  }
+
+  #home #whatIDo {
+    font-size: 50px;
+    padding-bottom: 15px;
+  }
+
+  #home #summary {
+    font-size: 14px;
+  }
+
+  .checkout-my-work {
+    padding: 15px 45px;
+    border: 1px solid #b1361e;
+    border-radius: 3px;
+    margin-top: 70px;
+    background-color: hsla(10, 71%, 41%, 0.15);
+  }
+
+  #about .section-content {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  #about .left-content {
+    width: 100%;
+  }
+  #about .right-content {
+    justify-content: center;
+    width: 100%;
+  }
+  #about .left-content #summary {
+    font-size: 14px;
+    width: 100%;
+    padding-bottom: 40px;
+    text-align: justify;
+  }
+
+  #about .right-content img {
+    width: 70%;
+  }
+
+  #hobbies-title {
+    font-size: 14px;
+  }
+
+  .hobbies-list li {
+    font-size: 14px;
+  }
+
+  #learning-journey {
+    font-size: 14px;
+  }
+
+  .section-title {
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+  }
+
+  .skill_bar .info {
+    font-size: 14px;
+  }
+
+  #skills .learning {
+    padding-top: 80px;
+  }
+  #skills .learning p {
+    font-size: 20px;
+  }
+
+  #work .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding-top: 50px;
+  }
+
+  #work .card-icons i {
+    font-size: 20px;
+    color: #b1361e;
+  }
+
+  #work .project-details h4 {
+    font-size: 16px;
+  }
+
+  #work .project-details p {
+    font-size: 14px;
+  }
+
+  #work .tech-used ul li {
+    font-size: 12px;
+  }
+
+  #blogs .blog-summary {
+    padding: 35px;
+  }
+
+  #blogs .blog-summary h4 {
+    font-size: 16px;
+  }
+
+  #blogs .blog-summary p {
+    font-size: 12px;
+    padding-top: 10px;
+  }
+
+  #blogs .blog-summary .short-description {
+    letter-spacing: 0.3px;
+    font-size: 14px;
+    padding-top: 20px;
+    color: hsla(0, 0%, 100%, 0.7);
+    line-height: 20px;
+  }
+
+  #contact p {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-size: 14px;
+  }
+
+  #contact form {
+    width: 90%;
+  }
+  #contact .field {
+    /* border: 1px solid green; */
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 14px;
+  }
+
+  #footer {
+    margin: 0px 5%;
+    margin-top: 150px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 620px) {
+  .nav-links {
+    display: none;
+  }
+
+  .social-links {
+    display: none;
+  }
+
+  .email-address {
+    display: none;
+  }
+
+  #home {
+    padding: 0 5%;
+    width: 100%;
+    padding-top: 70px;
+  }
+  #about {
+    padding: 0 5%;
+    padding-top: 150px;
+  }
+
+  #skills {
+    padding: 0 5%;
+    padding-top: 150px;
+  }
+  #work {
+    padding: 0 5%;
+    padding-top: 150px;
+  }
+  #blogs {
+    padding: 0 5%;
+    padding-top: 150px;
+  }
+  #contact {
+    padding: 0 5%;
+    padding-top: 150px;
+  }
+
+  .nav-links li {
+    font-size: 12px;
+    padding-left: 20px;
+  }
+
+  #home #hi {
+    font-size: 14px;
+  }
+
+  #home #name {
+    font-size: 40px;
+  }
+
+  #home #whatIDo {
+    font-size: 30px;
+    padding-bottom: 15px;
+  }
+
+  #home #summary {
+    font-size: 12px;
+  }
+
+  .checkout-my-work {
+    padding: 15px 35px;
+    border: 1px solid #b1361e;
+    border-radius: 3px;
+    margin-top: 70px;
+    font-size: 12px;
+    background-color: hsla(10, 71%, 41%, 0.15);
+  }
+
+  #about .section-content {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  #about .left-content {
+    width: 100%;
+  }
+  #about .right-content {
+    justify-content: center;
+    width: 100%;
+  }
+  #about .left-content #summary {
+    font-size: 12px;
+    width: 100%;
+    padding-bottom: 40px;
+    text-align: justify;
+  }
+
+  #about .right-content img {
+    width: 70%;
+  }
+
+  #hobbies-title {
+    font-size: 12px;
+  }
+
+  .hobbies-list li {
+    font-size: 12px;
+  }
+
+  #learning-journey {
+    font-size: 12px;
+  }
+
+  .section-title {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 16px;
+  }
+
+  .section-title img {
+    height: 3px;
+    width: 100%;
+  }
+
+  .section-title .title {
+    padding-right: 15px;
+    padding-left: 15px;
+    color: #fff;
+  }
+  .section-title div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+  }
+
+  .hobbies {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* gap: 10%;   */
+    padding-top: 15px;
+  }
+
+  .hobbies-list {
+    width: 100%;
+    list-style-type: none;
+    padding-top: 0px;
+  }
+
+  #skills .section-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0px;
+    padding-top: 30px;
+  }
+
+  .skill_bar .info {
+    font-size: 12px;
+  }
+
+  #skills .learning {
+    padding-top: 80px;
+  }
+  #skills .learning p {
+    font-size: 20px;
+  }
+
+  #work .cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-top: 50px;
+  }
+
+  #work .card-icons i {
+    font-size: 20px;
+    color: #b1361e;
+  }
+
+  #work .project-details h4 {
+    font-size: 14px;
+  }
+
+  #work .project-details p {
+    font-size: 12px;
+  }
+
+  #work .tech-used ul li {
+    font-size: 10px;
+  }
+
+  #blogs .blog-summary {
+    padding: 35px;
+  }
+
+  #blogs .blog-summary h4 {
+    font-size: 14px;
+  }
+
+  #blogs .blog-summary p {
+    font-size: 10px;
+    padding-top: 10px;
+  }
+
+  #blogs .blog-summary .short-description {
+    letter-spacing: 0.3px;
+    font-size: 12px;
+    padding-top: 20px;
+    color: hsla(0, 0%, 100%, 0.7);
+    line-height: 20px;
+  }
+
+  #contact p {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-size: 12px;
+  }
+
+  #contact form {
+    width: 100%;
+  }
+  #contact .field {
+    /* border: 1px solid green; */
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 12px;
+  }
+
+  #footer {
+    margin: 0px 5%;
+    margin-top: 150px;
+    margin-bottom: 20px;
+  }
 }

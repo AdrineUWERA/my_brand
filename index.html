@@ -23,8 +23,8 @@
             <img src="/assets/Logo.png" alt="logo" />
           </a>
         </div>
-        <div class="nav-links">
-          <ol>
+        <div class="navigation">
+          <ol class="nav-links">
             <li>
               <a href="#about" class="active nav-link"
                 ><span class="numbering">01. </span
@@ -66,6 +66,14 @@
             <li><a class="login-btn" href="login.html">Login</a></li>
           </ol>
         </div>
+        <!-- <div class="mobile-menu">
+          <i class="fa-solid fa-bars"></i>
+        </div> -->
+        <div class="navbar_toggle" id="mobile_menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+      </div>
       </div>
       <div class="content-container">
         <div class="social-links">
@@ -263,7 +271,7 @@
                   <div class="card-content">
                     <div class="card-icons">
                       <i class="fa-regular fa-folder"></i>
-                      <i class="fa-solid fa-up-right-from-square"></i>
+                      <a href="https://github.com/" target="_blank"> <i class="fa-solid fa-up-right-from-square"></i></a>
                     </div>
                     <div class="project-details">
                       <h4>E-commerce</h4>
@@ -450,5 +458,6 @@
         </div>
       </div>
     </div>
+    <script src="/app.js"></script>
   </body>
 </html>

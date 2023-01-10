@@ -140,6 +140,7 @@ body {
   align-items: center;
   /* border: 1px solid green; */
   width: 80%;
+  padding-bottom: 50px;
 }
 
 .email-address {
