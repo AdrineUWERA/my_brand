@@ -21,8 +21,7 @@ body {
   top: 0;
   position: sticky;
   background-color: #1b1616;
-  z-index: 1;
-  /* padding-right: 50px; */
+  z-index: 1; 
 }
 
 
@@ -42,9 +41,6 @@ body {
   display: none;
 }
 
-/* .nav-links {
-  flex-grow: 1;
-} */
 .nav-links{
   list-style-type: none;
   display: flex;
@@ -742,6 +738,10 @@ body {
     padding: 0 10%;
     padding-top: 200px;
   }
+
+  #contact .field input{
+    height: 50px;
+  }
 }
 
 @media (max-width: 1230px) and (min-width: 800px) {
@@ -915,6 +915,7 @@ body {
     margin: 0px 5%;
     margin-top: 150px;
     margin-bottom: 20px;
+    font-size: 14px;
   }
 
 }
@@ -979,9 +980,8 @@ body {
     margin-right: -20px;
   }
 
-  .nav-btn{
-    /* border: 1px solid yellow; */
-    height: 35px; 
+  .nav-btn{ 
+    padding-top: 20px ;
   }
 
   .navbar_toggle .bar {
@@ -995,10 +995,11 @@ body {
   } 
 
   .nav-links li {
-    padding-left: 0px;
-    font-size: 16px;
+    padding-left: 0px; 
     position: relative;
     width: 80%;
+    font-size: 12px;
+    padding-left: 20px;
     /* border-top: 1px solid red; */
   }
   
@@ -1037,10 +1038,6 @@ body {
     padding-top: 150px;
   }
 
-  .nav-links li {
-    font-size: 12px;
-    padding-left: 20px;
-  }
 
   .social-links i {
     font-size: 20px;
@@ -1200,6 +1197,7 @@ body {
     margin: 0px 5%;
     margin-top: 150px;
     margin-bottom: 20px;
+    font-size: 12px;
   }
 }
 
@@ -1433,5 +1431,6 @@ body {
     margin: 0px 5%;
     margin-top: 150px;
     margin-bottom: 20px;
+    font-size: 12px
   }
 }

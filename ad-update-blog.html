@@ -23,8 +23,8 @@
             <img src="/assets/Logo.png" alt="logo" />
           </a>
         </div>
-        <div class="nav-links">
-          <ol>
+        <div class="navigation">
+          <ol class="nav-links">
             <li>
               <a href="/#about" class="active nav-link"
                 ><span class="numbering">01. </span
@@ -55,7 +55,7 @@
                 ><span class="link-label">Contact</span></a
               >
             </li>
-            <li>
+            <li class="nav-btn">
               <a
                 class="resume-link link-label"
                 href="https://adrineuwera.github.io/Andela-Entry-Project/"
@@ -63,8 +63,18 @@
                 >Resume</a
               >
             </li>
-            <li><a class="login-btn" href="login.html">Login</a></li>
+            <li class="nav-btn">
+              <a class="login-btn" href="login.html">Login</a>
+            </li>
           </ol>
+        </div>
+        <!-- <div class="mobile-menu">
+          <i class="fa-solid fa-bars"></i>
+        </div> -->
+        <div class="navbar_toggle" id="mobile_menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
         </div>
       </div>
       <div class="content-container">
@@ -153,7 +163,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
                   <button class="submit-btn">Add Blog</button>
                 </form>
               </div>
-            </div> 
+            </div>
           </div>
         </div>
         <div class="email-address">
@@ -164,5 +174,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
         </div>
       </div>
     </div>
+    <script src="/app.js"></script>
   </body>
 </html>

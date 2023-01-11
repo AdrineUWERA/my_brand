@@ -23,39 +23,39 @@
             <img src="/assets/Logo.png" alt="logo" />
           </a>
         </div>
-        <div class="nav-links">
-          <ol>
+        <div class="navigation">
+          <ol class="nav-links">
             <li>
-              <a href="/#about" class="active nav-link"
+              <a href="#about" class="active nav-link"
                 ><span class="numbering">01. </span
                 ><span class="link-label">About</span></a
               >
             </li>
             <li>
-              <a href="/#skills" class="active nav-link"
+              <a href="#skills" class="active nav-link"
                 ><span class="numbering">02. </span
                 ><span class="link-label">Skills</span></a
               >
             </li>
             <li>
-              <a href="/#work" class="active nav-link"
+              <a href="#work" class="active nav-link"
                 ><span class="numbering">03. </span>
                 <span class="link-label">Work</span></a
               >
             </li>
             <li>
-              <a href="/#blogs" class="active nav-link"
+              <a href="#blogs" class="active nav-link"
                 ><span class="numbering">04. </span
                 ><span class="link-label">Blogs</span></a
               >
             </li>
-            <li>
-              <a href="/#contact" class="active nav-link"
+            <li >
+              <a href="#contact" class="active nav-link"
                 ><span class="numbering">05. </span
                 ><span class="link-label">Contact</span></a
               >
             </li>
-            <li>
+            <li class="nav-btn">
               <a
                 class="resume-link link-label"
                 href="https://adrineuwera.github.io/Andela-Entry-Project/"
@@ -63,8 +63,16 @@
                 >Resume</a
               >
             </li>
-            <li><a class="login-btn" href="login.html">Login</a></li>
+            <li class="nav-btn"><a class="login-btn" href="login.html">Login</a></li>
           </ol>
+        </div>
+        <!-- <div class="mobile-menu">
+          <i class="fa-solid fa-bars"></i>
+        </div> -->
+        <div class="navbar_toggle" id="mobile_menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
         </div>
       </div>
       <div class="content-container">
@@ -78,13 +86,13 @@
           <!-- <i class="fa-brands fa-linkedin"></i> -->
         </div>
         <div class="main-content">
-          <div class="scrollable-content">           
+          <div class="scrollable-content">
             <section id="form-container">
               <div class="section-title">
                 <span class="numbering">00. </span
                 ><span class="title">Login</span>
                 <div><img src="/assets/Line 3.png" alt="" /></div>
-              </div> 
+              </div>
               <div class="section-content">
                 <!-- <div > -->
                 <form action="">
@@ -97,9 +105,13 @@
                     <input placeholder="Enter your password" type="password" />
                   </div>
                   <button class="submit-btn">Login</button>
-                  <p>Don't have an account?<a id="signup-link"href="signup.html">Sign Up</a></p>
+                  <p>
+                    Don't have an account?<a id="signup-link" href="signup.html"
+                      >Sign Up</a
+                    >
+                  </p>
                 </form>
-                
+
                 <!-- </div> -->
               </div>
             </section>
@@ -116,5 +128,6 @@
         </div>
       </div>
     </div>
+    <script src="/app.js"></script>
   </body>
 </html>
