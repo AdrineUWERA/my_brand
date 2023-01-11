@@ -422,7 +422,7 @@ align-items: flex-start;
   }
 
   #form-container .field input {
-    font-size: 18px;
+    font-size: 16px;
     height: 50px;
     background-color: #1b1616;
     border-radius: 3px;
@@ -435,6 +435,7 @@ align-items: flex-start;
 
   #form-container .field label {
     padding-top: 20px;
+    font-size: 16px;
     color: hsla(0, 0%, 100%, 0.7);
   }
 

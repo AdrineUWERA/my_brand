@@ -10,7 +10,7 @@ const querySchema = joi.object({
     "any.required": "Email is required",
     "any.invalid": "Email is invalid",
     "string.invalid": "Email is invalid",
-  }),
+  }), 
   message: joi.string().required().messages({
     "string.empty": "Message is required.",
     "any.required": "Message is required",

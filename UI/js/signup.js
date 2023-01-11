@@ -23,6 +23,7 @@ var form = document
     var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     //   var regex = new RegExp(expression);
     var regexSpaceInputs = /^\S\S*/g;
+    var regPass = /\S/g;
 
     // let found = false;
     // var users = [];
@@ -36,27 +37,36 @@ var form = document
     // }
 
     // checks if all fields are filled. If not, it i will fire an alert to tell the user to fill all fields
-    if (!fullName || !email || !password || !confirmPassword) {
+    if (!fullName && !email && !password && !confirmPassword) {
       //   alert("Please fill all fields!");
       submitMessage.innerHTML =
         '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
         '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Fill all fields! </p> </div>';
-    } else if (!regexSpaceInputs.test(fullName)) {
+    } else if (!regPass.test(fullName)) {
       submitMessage.innerHTML =
         '<div id="errors" style="width: 100%; height: 50px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); padding: 5px 15px; display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
-        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The name should not have spaces at the beginning and end, and not be just spaces. </p> </div>';
+        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The name is required. </p> </div>';
     } else if (!email.match(regex)) {
       //   alert("Please provide a valid email!");
       submitMessage.innerHTML =
         '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
         '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Invalid email! </p> </div>';
-    } 
-    // else if (found) {
-    //   submitMessage.innerHTML =
-    //     '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
-    //     '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The user with this email already exists! </p> </div>';
-    // }     
-    else if (
+    } else if (!email) {
+      //   alert("Please provide a valid email!");
+      submitMessage.innerHTML =
+        '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Email is required</p> </div>';
+    } else if (!password) {
+      //   alert("Please provide a valid email!");
+      submitMessage.innerHTML =
+        '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Password is required</p> </div>';
+    } else if (!confirmPassword) {
+      //   alert("Please provide a valid email!");
+      submitMessage.innerHTML =
+        '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Please confirm you password</p> </div>';
+    } else if (
       !regexSpaceInputs.test(password) &&
       !regexSpaceInputs.test(confirmPassword)
     ) {
@@ -74,7 +84,6 @@ var form = document
         '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
         '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Passwords do not match! </p> </div>';
     } else {
-      // var uniqueId = Date.now().toString();
       var newUser = {
         // id: uniqueId,
         // role: "user",
@@ -98,11 +107,17 @@ var form = document
       const userJSON = await user.json();
       console.log(userJSON);
 
-      submitMessage.innerHTML =
-        '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(130, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #1eb136;; >' +
-        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> User created! </p> </div>';
+      if (user.status === 201) {
+        submitMessage.innerHTML =
+          '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(130, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #1eb136;; >' +
+          '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> User created! </p> </div>';
 
-      clearForm();
+        clearForm();
+      } else if (user.status === 400) {
+        submitMessage.innerHTML =
+          '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+          '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The user with this email already exists! </p> </div>';
+      } 
     }
     // }
   });

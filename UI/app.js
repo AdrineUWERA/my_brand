@@ -21,6 +21,7 @@ document.getElementById("logout-btn").addEventListener("click", (e) => {
   window.location.href = "index.html";
 });
 
+
 document.getElementById("ad-logout-btn").addEventListener("click", (e) => {
   JSON.parse(localStorage.removeItem("userloggedin"));
   document.getElementById("login-btn").style.display = "inline";

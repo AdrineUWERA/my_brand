@@ -39,11 +39,21 @@ var form = document
     //   var regex = new RegExp(expression);
 
     // checks if all fields are filled. If not, it i will fire an alert to tell the user to fill all fields
-    if (!email || !password) {
+    if (!email && !password) {
       //   alert("Please fill all fields!");
       submitMessage.innerHTML =
         '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
         '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Fill all fields! </p> </div>';
+    } else if (!email) {
+      //   alert("Please fill all fields!");
+      submitMessage.innerHTML =
+        '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Email is required! </p> </div>';
+    } else if (!password) {
+      //   alert("Please fill all fields!");
+      submitMessage.innerHTML =
+        '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Password is required! </p> </div>';
     }
     // checks if the email has a correct format i.e valid
     else if (!email.match(regex)) {
@@ -52,9 +62,6 @@ var form = document
         '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
         '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Invalid email! </p> </div>';
     } else {
-      // otherwise, user input for each field will be stored in an object
-      //generated a unique id using date.now() because it will always be unique
-      // var uniqueId = Date.now().toString();
       var loginCredentials = {
         email: email,
         password: password,
@@ -89,19 +96,38 @@ var form = document
           '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(130, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #1eb136; >' +
           '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> User logged in </p> </div>';
 
+        clearForm();
+
         if (userloggedInJSON.role === "admin") {
           window.location.href = "admin-dashboard.html";
-        } else { 
-            window.history.back(); 
+        } else {
+          if (
+            document.referrer != "http://127.0.0.1:5500/login.html" &&
+            document.referrer != "http://127.0.0.1:5500/signup.html"
+          ) {
+            window.history.back();
+          } else {
+            window.location.href = "index.html";
+          }
         }
+        // console.log(document.referrer)
       } else if (userloggedInJSON.error) {
         console.log(userloggedIn.error);
-      } else if (userloggedInJSON.message && !userloggedInJSON.token) {
+      }
+      //  else if (userloggedInJSON.message && !userloggedInJSON.token) {
+      //   submitMessage.innerHTML = `<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >
+      //     <p style="width: 100%; margin:0; padding: 0; text-align: center;"> ${userloggedInJSON.message} </p> </div>`;
+      // }
+
+      else if (userloggedIn.status === 400) {
         submitMessage.innerHTML = `<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >
-          <p style="width: 100%; margin:0; padding: 0; text-align: center;"> ${userloggedInJSON.message} </p> </div>`;
+          <p style="width: 100%; margin:0; padding: 0; text-align: center;">Invalid password</p> </div>`;
       }
 
-      clearForm();
+      else if (userloggedIn.status === 404) {
+        submitMessage.innerHTML = `<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >
+          <p style="width: 100%; margin:0; padding: 0; text-align: center;">User doesn't exist</p> </div>`;
+      }
     }
   });
 
