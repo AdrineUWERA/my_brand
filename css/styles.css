@@ -920,20 +920,11 @@ body {
 }
 
 @media (max-width: 800px) {
-  .nav-links {
-    /* display: none; */
-  }
-
-  /* .mobile-menu{
-    display: inline-block;
-  }
-  .mobile-menu i{
-    font-size: 25px;
-  } */
   #mobile_menu {
     display: inline;
     position: relative;
     transform: translate(5%, 20%);
+
   }
 
   #mobile_menu.is-active .bar:nth-child(1) {
@@ -959,27 +950,38 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 100px;
-    width: 100%;
+    margin-top: 100px; 
     position: relative;
     top: -1000px;
     opacity: 1;
-    transition: all 0.3s ease; 
+    /* transition: all 0.3s ease;  */
     z-index: -1;
     background-color: #1b1616;
-    border: 1px solid red;
+    border-radius: 3px;
+    border: 1px solid rgba(177, 54, 30, 0.5); 
+    box-shadow:0 1px 1px 1px rgba(177, 54, 30, 0.5);
   }
 
   .nav-links.active { 
     /* border: 1px solid yellow; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
     width: 200px;
-    top: 80px;
+    top: 140px;
     opacity: 1;
-    transition: all 0.5s ease;
+    /* transition: all 0.5s ease; */
     z-index: 99;
-    height: 200px;
+    height: 300px;
     font-size: 20px;
     margin-right: -20px;
+  }
+
+  .nav-btn{
+    /* border: 1px solid yellow; */
+    height: 35px; 
   }
 
   .navbar_toggle .bar {
@@ -996,6 +998,8 @@ body {
     padding-left: 0px;
     font-size: 16px;
     position: relative;
+    width: 80%;
+    /* border-top: 1px solid red; */
   }
   
   .social-links {
