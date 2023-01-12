@@ -172,10 +172,12 @@ body {
   padding-left: 20px;
   color: #fff;
 }
+
 .section-title div {
   display: flex;
   justify-content: center;
   align-items: center;
+  /* flex-grow: 1; */
 }
 .section-title img {
   height: 3px;
@@ -277,7 +279,6 @@ body {
   flex-direction: row;
 }
 
-
 @media (min-width: 1400px) {
   #form-container {
     padding: 0 10%;
@@ -371,6 +372,16 @@ body {
 }
 
 @media (max-width: 800px) {
+  .section-title div {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    width: 60%;
+  }
+  .section-title .title {  
+    font-size: 14px;
+  }
+
   #mobile_menu {
     display: inline;
     position: relative;
@@ -466,7 +477,6 @@ body {
     padding-bottom: 100px;
   }
 
-  
   #form-container form {
     width: 100%;
   }
@@ -475,18 +485,18 @@ body {
     font-size: 14px;
   }
 
-  #form-container p{
-    font-size:14px;
+  #form-container p {
+    font-size: 14px;
     padding: 30px;
   }
 
   #form-container .field input {
     font-size: 14px;
-    height: 40px; 
+    height: 40px;
   }
 
-  .section-title  {
-   font-size: 18px;
+  .section-title {
+    font-size: 18px;
   }
 
   #form-container .field {
@@ -514,7 +524,6 @@ body {
   #footer {
     font-size: 14px;
   }
-
 }
 
 @media (max-width: 620px) {
@@ -532,8 +541,8 @@ body {
     font-size: 12px;
   }
 
-  #form-container p{
-    font-size:12px;
+  #form-container p {
+    font-size: 12px;
     padding: 30px;
   }
 
@@ -549,8 +558,8 @@ body {
     font-weight: 500;
   }
 
-  .section-title  {
-   font-size: 18px;
+  .section-title {
+    font-size: 18px;
   }
 
   #form-container .field {

@@ -198,7 +198,7 @@ body {
 .dashboard .sidebar {
   background-color: hsla(0, 11%, 25%, 42%);
   padding: 50px;
-  padding-right: 40px;
+  padding-right: 45px;
   min-height: 75vh;
   height: 75vh;
   position: fixed;
@@ -287,6 +287,38 @@ body {
   flex-direction: row;
 }
 
+@media (max-width: 1230px) and (min-width: 1000px) {
+  .dashboard .sidebar {
+    position: fixed;
+    left: 120px;
+    font-size: 14px;
+  }
+
+  .dashboard .dashboard-content {
+    padding-left: 250px;
+  }
+}
+
+@media (max-width: 999px) {
+  .dashboard .sidebar {
+    position: fixed;
+    left: 120px;
+    font-size: 12px;
+    padding: 40px;
+  }
+
+  .dashboard .dashboard-content {
+    padding-left: 0px;
+  }
+
+  .all-blogs {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+}
+
 @media (max-width: 800px) {
   #mobile_menu {
     display: inline;
@@ -349,7 +381,7 @@ body {
   .nav-btn {
     padding-top: 20px;
   }
-  
+
   .navbar_toggle .bar {
     width: 25px;
     height: 3px;
@@ -375,5 +407,57 @@ body {
 
   .email-address {
     display: none;
+  }
+
+  .dashboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 30px; 
+  }
+
+  .dashboard .sidebar {
+    background-color: hsla(0, 11%, 25%, 42%);
+    padding: 0px;
+    margin-top: 10px;
+    min-height: 0px;
+    height: 50px;
+    position: relative;
+    left: 0px;
+    right: auto;
+    top: 0px;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .dashboard .dashboard-content {
+    /* background-color: hsla(0, 11%, 25%, 42%); */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 0;
+  }
+
+  .sidebar ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0px;
+    gap: 20px;
+  }
+
+  .sidebar li {
+    list-style-type: none;
+    padding-bottom: 0px;
+    text-decoration: none;
   }
 }
