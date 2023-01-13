@@ -204,11 +204,11 @@ body {
   color: hsla(0, 0%, 100%, 0.49);
 }
 
-.active a {
+/* .active a {
   color: #b1361e;
   text-decoration: underline;
   font-weight: 700;
-}
+} */
 
 .dashboard .dashboard-content {
   /* background-color: hsla(0, 11%, 25%, 42%); */
@@ -293,6 +293,11 @@ body {
 }
 
 @media (max-width: 999px) {
+  .resume-link {
+    padding: 10px 25px;
+    color: #b1361e;
+    text-decoration: none; 
+  }
   .dashboard .sidebar {
     position: fixed;
     left: 120px;
@@ -300,8 +305,21 @@ body {
     padding: 40px;
   }
 
+  .social-links i {
+    font-size: 20px;
+  }
+
+  .line1 {
+    height: 100px;
+    width: 3px;
+  }
+
+  .email-address p {
+    font-size: 14px;
+  }
+
   .dashboard .dashboard-content {
-    padding-left: 200px;
+    padding-left: 220px;
   }
 
   .statistics .card .stat-subject {
@@ -327,7 +345,7 @@ body {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 800px) {
   #mobile_menu {
     display: inline;
     position: relative;
@@ -464,10 +482,8 @@ body {
     gap: 20px;
   }
 
-  .sidebar li {
-    list-style-type: none;
-    padding-bottom: 0px;
-    text-decoration: none;
+  .sidebar li { 
+    padding-bottom: 0px; 
   }
 
   .statistics {
