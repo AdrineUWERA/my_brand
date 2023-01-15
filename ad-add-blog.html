@@ -105,18 +105,19 @@
                   <span class="title">Add a blog</span>
                   <div><img src="assets/Line 3.png" alt="" /></div>
                 </div>
-                <form action="" class="contact-form">
+                <form action="" class="contact-form" id="add-blog-form">
+                  <div id="errors-success" style="width: 90%; padding: 0;" ></div>
                   <div class="field">
-                    <label for="name">Title:</label>
-                    <input placeholder="Enter the blog title" type="text" />
+                    <label for="title">Title:</label>
+                    <input id="title" placeholder="Enter the blog title" type="text" />
                   </div>
                   <div class="field">
                     <label for="category">Category:</label>
-                    <input placeholder="Enter the blog category" type="text" />
+                    <input id="category" placeholder="Enter the blog category" type="text" />
                   </div>
                   <div class="field">
                     <label for="category">Cover image:</label>
-                    <input
+                    <input id="cover-image"
                       class="blog-cover"
                       placeholder="Enter the blog category"
                       type="file"
@@ -124,19 +125,20 @@
                   </div>
                   <div class="field">
                     <label for="content">Content:</label>
-                    <textarea
+                    <textarea  
                       placeholder="Add blog content ..."
                       type="text"
+                      id="content"
                     ></textarea>
                   </div>
                   <div class="field">
-                    <label for="content">Links:</label>
-                    <textarea
+                    <label for="references">Links:</label>
+                    <textarea id="references"
                       placeholder="Add references ..."
                       type="text"
                     ></textarea>
                   </div>
-                  <button class="submit-btn">Add Blog</button>
+                  <button type="submit" class="submit-btn">Add Blog</button>
                 </form>
               </div>
             </div>
@@ -151,5 +153,6 @@
       </div>
     </div>
     <script src="app.js"></script>
+    <script src="js/addBlog.js"></script>
   </body>
 </html>

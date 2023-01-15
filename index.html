@@ -428,23 +428,40 @@
               <p>Do you want to connect or have any question?</p>
               <div class="section-content">
                 <!-- <div > -->
-                <form action="" class="contact-form">
+                <form action="" class="contact-form" id="contact-form">
+                  <div id="errors-success" style="width: 90%; padding: 0;" ></div>
                   <div class="field">
                     <label for="name">Full Name:</label>
-                    <input placeholder="Enter your name" type="text" />
+                    <input
+                      id="full-name"
+                      placeholder="Enter your name"
+                      type="text"
+                    />
                   </div>
                   <div class="field">
-                    <label for="name">Email:</label>
-                    <input placeholder="Enter your email" type="email" />
+                    <label for="email">Email:</label>
+                    <input
+                      id="email"
+                      placeholder="Enter your email"
+                      type="email"
+                    />
                   </div>
                   <div class="field">
-                    <label for="name">Message:</label>
+                    <label for="message">Message:</label>
                     <textarea
+                      id="message"
                       placeholder="Write a message ..."
                       type="text"
+                      style="color: #fff"
                     ></textarea>
                   </div>
-                  <button class="submit-btn">Submit</button>
+                  <button
+                    type="submit"
+                    class="submit-btn"
+                    style="cursor: pointer"
+                  >
+                    Submit
+                  </button>
                 </form>
                 <!-- </div> -->
               </div>
@@ -463,5 +480,11 @@
       </div>
     </div>
     <script src="app.js"></script>
+    <script src="js/contact.js"></script>
   </body>
 </html>
+
+
+<!-- submitMessage.innerHTML =
+'<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+'<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Fill all fields! </p> </div>'; -->

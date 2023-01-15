@@ -95,16 +95,17 @@
               </div>
               <div class="section-content">
                 <!-- <div > -->
-                <form action="">
+                <form action="" id="login-form">
+                  <div id="errors-success" style="width: 90%; padding: 0; margin-top: 20px;" ></div>
                   <div class="field">
                     <label for="email">Email:</label>
-                    <input placeholder="Enter your name" type="email" />
+                    <input id="email" placeholder="Enter your name" type="email" />
                   </div>
                   <div class="field">
                     <label for="password">Password:</label>
-                    <input placeholder="Enter your password" type="password" />
+                    <input id="password" placeholder="Enter your password" type="password" />
                   </div>
-                  <button class="submit-btn"><a href="admin-dashboard.html" style="color: #b1361e">Login</a> </button>
+                  <button class="submit-btn">Login </button>
                   <p>
                     Don't have an account?<a id="signup-link" href="signup.html"
                       >Sign Up</a
@@ -129,5 +130,6 @@
       </div>
     </div>
     <script src="app.js"></script>
+    <script src="js/login.js"></script>
   </body>
 </html>

@@ -97,22 +97,23 @@
               </div>
               <div class="section-content">
                 <!-- <div > -->
-                <form action="">
+                <form action="" id="signup-form">
+                  <div id="errors-success" style="width: 90%; padding: 0; margin-top: 20px" ></div>
                   <div class="field">
                     <label for="name">Full Name:</label>
-                    <input placeholder="Enter your name" type="text" />
+                    <input id="full-name" placeholder="Enter your name" type="text" />
                   </div>
                   <div class="field">
-                    <label for="name">Email:</label>
-                    <input placeholder="Enter your email" type="email" />
+                    <label for="email">Email:</label>
+                    <input id="email" placeholder="Enter your email" type="email" />
                   </div>
                   <div class="field">
                     <label for="name">Password:</label>
-                    <input placeholder="Enter your password" type="password" />
+                    <input id="password" placeholder="Enter your password" type="password" />
                   </div>
                   <div class="field">
                     <label for="name">Confirm password:</label>
-                    <input
+                    <input id="confirm-password"
                       placeholder="Enter your password again"
                       type="password"
                     />
@@ -142,5 +143,6 @@
       </div>
     </div>
     <script src="app.js"></script>
+    <script src="js/signup.js"></script>
   </body>
 </html>

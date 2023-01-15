@@ -5,6 +5,10 @@
   text-decoration: none;
 }
 
+textarea{
+  color:hsl(0, 0%, 100%);
+}
+
 body {
   font-family: "Calibre", "Inter", "San Francisco", "SF Pro Text", sans-serif;
   background-color: #1b1616;
