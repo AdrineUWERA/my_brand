@@ -1,6 +1,16 @@
 const getUserloggedin = JSON.parse(localStorage.getItem("userloggedin"));
 // console.log(loggedin);
 
+if (!getUserloggedin) {
+  window.location.href = "login.html";
+} else {
+  console.log(parseJwt(getUserloggedin.token))
+  if (parseJwt(getUserloggedin.token).role !== "admin") { 
+    window.history.back();
+  }
+}
+
+
 function parseJwt (token) {
   var base64Url = token.split('.')[1];
   var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -11,13 +21,3 @@ function parseJwt (token) {
   return JSON.parse(jsonPayload);
 }
 
-console.log(parseJwt(getUserloggedin.token))
-
-if (!getUserloggedin) {
-  window.location.href = "login.html";
-} else {
-  if (parseJwt(getUserloggedin.token).role !== "admin") { 
-    window.history.back();
-  }
-}
- 
