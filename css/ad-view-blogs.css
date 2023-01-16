@@ -247,12 +247,16 @@ body {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  height: 280px;
   /* gap: 20px; */
   border-radius: 5px;
 }
 
 .all-blogs .card img {
   width: 100%;
+  height: 150px;
+  object-fit: contain;
+  overflow: hidden; 
 }
 
 .card p {

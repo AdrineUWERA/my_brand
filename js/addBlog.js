@@ -21,6 +21,8 @@ var form = document
     var content = document.getElementById("content").value;
     var references = document.getElementById("references").value;
     var submitMessage = document.getElementById("errors-success");
+    var likes = 0;
+    var comments = [];
     //   var regex = new RegExp(expression);
 
     // checks if all fields are filled. If not, it i will fire an alert to tell the user to fill all fields
@@ -42,6 +44,8 @@ var form = document
         coverImage: url,
         category: category,
         references: references,
+        likes: likes,
+        comments: comments
       };
 
       // checks if there are some messages stored previously in the local storage and retrieve them if any

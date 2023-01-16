@@ -232,7 +232,7 @@ body {
   padding-left: 300px;
 }
 
-.all-blogs {
+.all-messages {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -285,6 +285,7 @@ body {
   background-color: hsla(0, 11%, 25%, 0.42);
   border-radius: 5px;
   margin-bottom: 20px;
+  width: 100%;
 }
 .message-content h4 {
   font-size: 20px;
