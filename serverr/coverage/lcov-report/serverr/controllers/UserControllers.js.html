@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84.68% </span>
+                <span class="strong">81.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>94/111</span>
+                <span class='fraction'>98/120</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>3/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84.68% </span>
+                <span class="strong">81.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>94/111</span>
+                <span class='fraction'>98/120</span>
             </div>
         
             
@@ -174,7 +174,16 @@
 <a name='L109'></a><a href='#L109'>109</a>
 <a name='L110'></a><a href='#L110'>110</a>
 <a name='L111'></a><a href='#L111'>111</a>
-<a name='L112'></a><a href='#L112'>112</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -241,8 +250,14 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -271,12 +286,15 @@
 <span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -351,10 +369,16 @@ const getAllusers = async (req, res) =&gt; {
 <span class="cstat-no" title="statement not covered" >  }</span>
 };
 &nbsp;
-// const deleteUser = async (req, res) =&gt; {
-//   const user = await User.findOneAndDelete(req.params.id);
-//   return res.send({ message: "user deleted", user: user });
-// };
+const getOneUser = <span class="fstat-no" title="function not covered" >async (req, res) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const userId = req.params.id;</span>
+<span class="cstat-no" title="statement not covered" >  const user = await User.findById(userId);</span>
+<span class="cstat-no" title="statement not covered" >  return res.status(200).json({ message: "One User", data: user });</span>
+};
+&nbsp;
+const deleteUser = <span class="fstat-no" title="function not covered" >async (req, res) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const user = await User.findOneAndDelete(req.params.id);</span>
+<span class="cstat-no" title="statement not covered" >  return res.send({ message: "User deleted", user: user });</span>
+};
 &nbsp;
 // const updateUser = async (req, res) =&gt; {
 //   const user = await User.findOneAndUpdate(req.params.id, req.body);
@@ -367,7 +391,7 @@ const UserLogin = async (req, res) =&gt; {
     const { email, password } = req.body;
     const userExists = await UserService.userExist({ email: email });
     if (!userExists) {
-      return res.status(404).json({ message: "User doesn't exist"})
+      return res.status(404).json({ message: "User doesn't exist" });
     }
     const validPassword = comparePassword(password, userExists.password);
     if (!validPassword) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
@@ -381,6 +405,7 @@ const UserLogin = async (req, res) =&gt; {
     return res.status(200).header("authenticate", token).json({
       message: "User successfully logged in",
       token: token,
+      role: userExists.role,
     });
   } <span class="branch-0 cbranch-no" title="branch not covered" >catch (err) {</span>
 <span class="cstat-no" title="statement not covered" >    return res.status(500).json({</span>
@@ -394,7 +419,9 @@ export {
   SignUp,
   getAllusers,
   UserLogin,
-  // deleteUser, updateUser
+  getOneUser,
+  deleteUser 
+  // updateUser
 };
 &nbsp;</pre></td></tr></table></pre>
 
@@ -403,7 +430,7 @@ export {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-02-15T10:39:45.677Z
+                at 2023-02-24T11:25:46.398Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

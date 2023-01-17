@@ -38,9 +38,9 @@ const userEngagingLoggedIn = async (req, res, next) => {
   }
   const token = header.split(" ")[1];
   const userInfo = decodeToken(token);
-  console.log(userInfo);
+  // console.log(userInfo);
   const user = await User.findById(userInfo.id); 
-  console.log(user)
+  // console.log(user)
   req.body.userId = user._id.toString();
   return next();
 };
