@@ -21,11 +21,40 @@ const retrieving = async () => {
         <p>${displayTitle}</p>
       </div>
       <div class="card-links">
-        <a href="blog-page.html">view blog -></a>
-        <a href="ad-update-blog.html">update blog -></a>
+        <a class="blog-link" href="blog-page.html"><span>view blog -></span></a>
+        <a class="update-link" href="ad-update-blog.html">update blog -></a>
       </div>
     </div>`;
   });
+  const selectedBlog = document.querySelectorAll(".blog-link");
+  for (let i = 0; i < selectedBlog.length; i++) { 
+    selectedBlog[i].addEventListener("click", (e) => {
+      e.preventDefault(); 
+      for (let j = 0; j < allBlogs.length; j++) {
+        if (i == j) { 
+          let blogId = allBlogs[j].id;
+          console.log(blogId);
+          localStorage.setItem("selectedBlog", JSON.stringify(blogId));
+          window.location.href = "blog-page.html";
+        }
+      }
+    });
+  }
+
+  const selectedBlog1 = document.querySelectorAll(".update-link");
+  for (let i = 0; i < selectedBlog1.length; i++) { 
+    selectedBlog1[i].addEventListener("click", (e) => {
+      e.preventDefault(); 
+      for (let j = 0; j < allBlogs.length; j++) {
+        if (i == j) { 
+          let blogId = allBlogs[j].id;
+          console.log(blogId);
+          localStorage.setItem("selectedBlogtoEdit", JSON.stringify(blogId)); 
+          window.location.href = "ad-update-blog.html";
+        }
+      }
+    });
+  }
 };
 
 window.onload = () => {

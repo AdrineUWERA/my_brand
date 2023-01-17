@@ -4,7 +4,7 @@ imageInput.addEventListener("change", () => {
   let fileReader = new FileReader();
   fileReader.readAsDataURL(imageInput.files[0]);
   fileReader.addEventListener("load", () => {
-     url = fileReader.result;
+    url = fileReader.result;
     console.log(url);
   });
 });
@@ -34,18 +34,21 @@ var form = document
     } else {
       // otherwise, user input for each field will be stored in an object
       //generated a unique id using date.now() because it will always be unique
-      var uniqueId = Date.now().toString();
+      const uniqueId = Date.now().toString();
       //   let url="";
+      const date = new Date();
+      const formattedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
       var newBlog = {
         id: uniqueId,
+        datePublished: formattedDate,
         title: title,
         category: category,
         coverImage: url,
-        category: category,
+        content: content,
         references: references,
         likes: likes,
-        comments: comments
+        comments: comments,
       };
 
       // checks if there are some messages stored previously in the local storage and retrieve them if any
@@ -60,8 +63,7 @@ var form = document
 
         console.log(JSON.parse(localStorage.getItem("blogs")));
         clearForm();
-      } else {
-        // localStorage.removeItem("blogs");
+      } else { 
         // if there are some previously stored bookmarks, then they wil be retrieved, and the newly added
         // bookmark will be pushed to the bookmarks in the local storage
         var blogs = JSON.parse(localStorage.getItem("blogs"));
@@ -85,5 +87,5 @@ function clearForm() {
   document.getElementById("category").value = "";
   document.getElementById("cover-image").value = "";
   document.getElementById("content").value = "";
-  document.getElementById("references").value = ""; 
+  document.getElementById("references").value = "";
 }
