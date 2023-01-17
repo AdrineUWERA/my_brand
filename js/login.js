@@ -65,18 +65,22 @@ var form = document
           let isAuth = false;
           var users = JSON.parse(localStorage.getItem("users"));
           for (let i = 0; i < users.length; i++) {
-            if (
-              users[i].email === loginCredentials.email &&
-              users[i].password === loginCredentials.password
-            ) {
-              submitMessage.innerHTML =
-                '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(130, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #1eb136; >' +
-                '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> User logged in </p> </div>';
-              window.location.href = "index.html";
+            if (users[i].email === loginCredentials.email) {
               found = true;
-              isAuth = true;
+              if (users[i].password === loginCredentials.password) {
+                submitMessage.innerHTML =
+                  '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(130, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #1eb136; >' +
+                  '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> User logged in </p> </div>';
+                window.location.href = "index.html";
+                
+                isAuth = true;
 
-              clearForm();
+                clearForm();
+              }
+            } else {
+              submitMessage.innerHTML =
+                '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+                '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Invalid credentials! </p> </div>';
             }
           }
 
