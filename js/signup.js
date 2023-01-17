@@ -26,7 +26,13 @@ var form = document
       submitMessage.innerHTML =
         '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
         '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Invalid email! </p> </div>';
-    } else {
+    } else if (password !== confirmPassword){
+      submitMessage.innerHTML =
+      '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+      '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Passwords do not match! </p> </div>';
+    }
+    
+    else {
       // otherwise, user input for each field will be stored in an object
       //generated a unique id using date.now() because it will always be unique
       var uniqueId = Date.now().toString();
