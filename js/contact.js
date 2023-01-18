@@ -9,7 +9,8 @@ var form = document
     var message = document.getElementById("message").value;
     var submitMessage = document.getElementById("errors-success");
 
-    var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/   
+    var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/ ;
+    var regexSpaceInputs = /\S/g;
     //   var regex = new RegExp(expression);
 
     // checks if all fields are filled. If not, it i will fire an alert to tell the user to fill all fields
@@ -18,7 +19,16 @@ var form = document
       submitMessage.innerHTML =
         '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
         '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Fill all fields! </p> </div>';
+    } else if (!regexSpaceInputs.test(fullName)) {
+      submitMessage.innerHTML =
+        '<div id="errors" style="width: 100%; height: 50px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); padding: 5px 15px; display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The name should not be just spaces. </p> </div>';
+    }  else if (!regexSpaceInputs.test(message)) {
+      submitMessage.innerHTML =
+        '<div id="errors" style="width: 100%; height: 50px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); padding: 5px 15px; display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The message should not be just spaces. </p> </div>';
     }
+    
     // checks if the email has a correct format i.e valid
     else if (!email.match(regex)) {
     //   alert("Please provide a valid email!");
