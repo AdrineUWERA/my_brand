@@ -107,21 +107,22 @@
                   <div><img src="assets/Line 3.png" alt="" /></div>
                 </div>
                 <div class="form-container" style="width: 100%">
-                  <form action="" class="contact-form">
+                  <form action="" class="update-form" id="update-form">
+                    <div id="errors-success" style="width: 90%; padding: 0;" ></div>
                     <div class="field">
-                      <label for="name">Title:</label>
+                      <label for="title">Title:</label>
                       <input
                         placeholder="Enter the blog title"
                         type="text"
-                        value="Lorem Ipsum origin and meaning"
+                        id="title" 
                       />
                     </div>
                     <div class="field">
                       <label for="category">Category:</label>
                       <input
                         placeholder="Enter the blog category"
-                        type="text"
-                        value="General"
+                        id="category"
+                        type="text" 
                       />
                     </div>
                     <div class="field">
@@ -130,6 +131,7 @@
                         class="blog-cover"
                         placeholder="Enter the blog category"
                         type="file"
+                        id="cover-image" 
                       />
                     </div>
                     <div class="field">
@@ -138,30 +140,19 @@
                         placeholder="Add blog content ..."
                         style="color: #ffffff"
                         type="text"
-                      >
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et "
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et "
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et "
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et "
-                    </textarea
-                      >
+                        id="content"
+                      ></textarea>
                     </div>
                     <div class="field">
-                      <label for="content">Links:</label>
+                      <label for="links">Links:</label>
                       <textarea
                         placeholder="Add references ..."
                         type="text"
+                        id="links"
                         style="color: #ffffff"
-                      >
-1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-
-2. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex.</textarea
-                      >
+                      ></textarea>
                     </div>
-                    <button class="submit-btn">Update Blog</button>
+                    <button type="submit" class="submit-btn">Update Blog</button>
                   </form>
                 </div>
               </div>

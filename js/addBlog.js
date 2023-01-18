@@ -24,6 +24,7 @@ var form = document
     var likes = 0;
     var comments = [];
     //   var regex = new RegExp(expression);
+    var regexSpaceInputs =  /\S/g;
 
     // checks if all fields are filled. If not, it i will fire an alert to tell the user to fill all fields
     if (!title || !category || !coverImage || !content || !references) {
@@ -31,7 +32,23 @@ var form = document
       submitMessage.innerHTML =
         '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
         '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Fill all fields! </p> </div>';
-    } else {
+    } 
+    else if (!regexSpaceInputs.test(title)) {
+      submitMessage.innerHTML =
+        '<div id="errors" style="width: 100%; height: 50px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); padding: 5px 15px; display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The title should not be just spaces. </p> </div>';
+    }    
+    else if (!regexSpaceInputs.test(category)) {
+      submitMessage.innerHTML =
+        '<div id="errors" style="width: 100%; height: 50px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); padding: 5px 15px; display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The category should not be just spaces. </p> </div>';
+    }    
+    else if (!regexSpaceInputs.test(content)) {
+      submitMessage.innerHTML =
+        '<div id="errors" style="width: 100%; height: 50px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); padding: 5px 15px; display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The content should not be just spaces. </p> </div>';
+    }   
+    else {
       // otherwise, user input for each field will be stored in an object
       //generated a unique id using date.now() because it will always be unique
       const uniqueId = Date.now().toString();

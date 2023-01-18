@@ -10,29 +10,56 @@ var form = document
     var confirmPassword = document.getElementById("confirm-password").value;
     var submitMessage = document.getElementById("errors-success");
 
-    var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/   
+    var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     //   var regex = new RegExp(expression);
+    var regexSpaceInputs = /^\S\S*/g;
 
+    let found = false; 
+    var users = JSON.parse(localStorage.getItem("users"));
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].email === email) {
+        found = true;
+      }
+    }
     // checks if all fields are filled. If not, it i will fire an alert to tell the user to fill all fields
     if (!fullName || !email || !password || !confirmPassword) {
       //   alert("Please fill all fields!");
       submitMessage.innerHTML =
         '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
         '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Fill all fields! </p> </div>';
-    }
-    // checks if the email has a correct format i.e valid
-    else if (!email.match(regex)) {
-    //   alert("Please provide a valid email!");
+    } else if (!regexSpaceInputs.test(fullName)) {
+      submitMessage.innerHTML =
+        '<div id="errors" style="width: 100%; height: 50px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); padding: 5px 15px; display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The name should not have spaces at the beginning and end, and not be just spaces. </p> </div>';
+    } else if (!email.match(regex)) {
+      //   alert("Please provide a valid email!");
       submitMessage.innerHTML =
         '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
         '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Invalid email! </p> </div>';
-    } else if (password !== confirmPassword){
+    } else if (found) {
       submitMessage.innerHTML =
-      '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
-      '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Passwords do not match! </p> </div>';
-    }
+        '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The user with this email already exists! </p> </div>';
     
-    else {
+    } else if (
+      !regexSpaceInputs.test(password) &&
+      !regexSpaceInputs.test(confirmPassword)
+    ) {
+      submitMessage.innerHTML =
+        '<div id="errors" style="width: 100%; height: 50px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); padding: 5px 15px; display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The passwords should not have spaces at the beginning and end, and not be just spaces. </p> </div>';
+    } 
+    else if (password.length < 6) {
+      submitMessage.innerHTML =
+        '<div id="errors" style="width: 100%; height: 50px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); padding: 5px 15px; display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The password should be at least 6 characters. </p> </div>';
+    }
+    // checks if the email has a correct format i.e valid
+    else if (password !== confirmPassword) {
+      submitMessage.innerHTML =
+        '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Passwords do not match! </p> </div>';
+    } else {
       // otherwise, user input for each field will be stored in an object
       //generated a unique id using date.now() because it will always be unique
       var uniqueId = Date.now().toString();
@@ -79,5 +106,6 @@ function clearForm() {
   //resets the form fields
   document.getElementById("full-name").value = "";
   document.getElementById("email").value = "";
-  document.getElementById("message").value = "";
+  document.getElementById("password").value = "";
+  document.getElementById("confirm-password").value = "";
 }

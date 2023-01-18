@@ -49,7 +49,7 @@
                 ><span class="link-label">Blogs</span></a
               >
             </li>
-            <li >
+            <li>
               <a href="/my_brand/#contact" class="active nav-link"
                 ><span class="numbering">05. </span
                 ><span class="link-label">Contact</span></a
@@ -63,7 +63,9 @@
                 >Resume</a
               >
             </li>
-            <li class="nav-btn"><a class="login-btn" href="login.html">Login</a></li>
+            <li class="nav-btn">
+              <a class="login-btn" href="login.html">Login</a>
+            </li>
           </ol>
         </div>
         <!-- <div class="mobile-menu">
@@ -87,16 +89,12 @@
         </div>
         <div class="main-content">
           <div class="scrollable-content">
-            <section id="blogs">
-              <!-- <div class="section-title">
-                <p class="date">YYYY-MM-DD</p>
-                <p class="title">
-                  All about Lorem ipsum text. (Origin, meaning, and so on).
-                </p>
-              </div> -->
-              <!-- <div class="section-content">
-                <div class="blog-details" id="blog-details">
-                  <div class="blog-content">
+            <section id="blogs" style="width:100%">
+              <div class="section-title" id="section-title">
+              </div> 
+              <div class="section-content" style="width:100%">
+                <div class="blog-details">
+                  <div class="blog-content" id="blog-content">
                     <img
                       class="blog-cover"
                       src="assets/blog-cover.png"
@@ -120,67 +118,19 @@
                       tempor incididunt ut labore et dolore magna aliqua. Ut
                       enim ad minim veniam, quis nostrud exercitation ullamco
                       laboris nisi ut aliquip ex ea commodo consequat.
-                      <br /><br />Lorem ipsum dolor sit amet, consectetur
-                      adipiscing elit, sed do eiusmod tempor incididunt ut
-                      labore et dolore magna aliqua. Ut enim ad minim veniam,
-                      quis nostrud exercitation ullamco laboris nisi ut aliquip
-                      ex ea commodo consequat.Lorem ipsum dolor sit amet,
-                      consectetur adipiscing elit, sed do eiusmod tempor
-                      incididunt ut labore et dolore magna aliqua. Ut enim ad
-                      minim veniam, quis nostrud exercitation ullamco laboris
-                      nisi ut aliquip ex ea commodo consequat. <br /><br />
-
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo
-                      consequat.Lorem ipsum dolor sit amet, consectetur
-                      adipiscing elit, sed do eiusmod tempor incididunt ut
-                      labore et dolore magna aliqua. Ut enim ad minim veniam,
-                      quis nostrud exercitation ullamco laboris nisi ut aliquip
-                      ex ea commodo consequat. Lorem ipsum dolor sit amet,
-                      consectetur adipiscing elit, sed do eiusmod tempor
-                      incididunt ut labore et dolore magna aliqua. Ut enim ad
-                      minim veniam, quis nostrud exercitation ullamco laboris
-                      nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor
-                      sit amet, consectetur adipiscing elit, sed do eiusmod
-                      tempor incididunt ut labore et dolore magna aliqua. Ut
-                      enim ad minim veniam, quis nostrud exercitation ullamco
-                      laboris nisi ut aliquip ex ea commodo consequat.
-                      <br /><br />
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo
-                      consequat.Lorem ipsum dolor sit amet, consectetur
-                      adipiscing elit, sed do eiusmod tempor incididunt ut
-                      labore et dolore magna aliqua. Ut enim ad minim veniam,
-                      quis nostrud exercitation ullamco laboris nisi ut aliquip
-                      ex ea commodo consequat.<br /><br />
+                     
                     </p>
                   </div>
                   <div class="reference-links">
-                    <h3>Links:</h3>
-                    <ol>
-                      <li>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua.
-                      </li>
-                      <li>
-                        Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      </li>
-                      <li>
-                        Duis aute irure dolor in reprehenderit in voluptate
-                        velit esse cillum
-                      </li>
-                    </ol>
+                    <h3 id="reference-links-title"></h3>
+                    <ul style="list-style-type: none; padding-bottom: 20px;" id="links-list">
+                      
+                    </ul>
                   </div>
                   <div class="engagement">
                     <i class="fa-solid fa-heart"></i>
-                    <span class="nbr-likes">12 Likes</span>
-                    <i class="fa-solid fa-comments"></i> <span>2 Comments</span>
+                    <span class="nbr-likes" id="likes-nbr"></span>
+                    <i class="fa-solid fa-comments"></i> <span id="comments-nbr"></span>
                   </div>
                   <div class="add-comment">
                     <div class="section-title">
@@ -188,25 +138,27 @@
                       <div><img src="assets/Line 3.png" alt="" /></div>
                     </div>
                     <div class="comment-form">
-                      <form action="">
+                      <form action="" id="comment-form">
+                        <div id="errors-success" style="width: 90%; padding: 0;" ></div>
                         <div class="field">
                           <label for="email">Comment:</label>
                           <textarea
+                            id="comment-message"
                             placeholder="Add your comment"
                             type="email"
                           ></textarea>
                         </div>
-                        <button class="submit-btn">Submit</button>
+                        <button type="submit" class="submit-btn">Submit</button>
                       </form>
                     </div>
                   </div>
-                  <div class="comments">
-                    <div class="section-title">
-                      <span class="title">Comments</span>
-                      <div><img src="assets/Line 3.png" alt="" /></div>
+                  <div class="comments" >
+                    <div class="section-title" id="comments-title-container">
+                      <!-- <span class="title">Comments</span>
+                      <div><img src="assets/Line 3.png" alt="" /></div> -->
                     </div>
-                    <div class="all-comments">
-                      <div class="comment-content">
+                    <div class="all-comments" id="all-comments">
+                      <!-- <div class="comment-content">
                         <h4>User Name</h4>
                         <p>YYYY-MM-DD</p>
                         <p class="short-description">
@@ -238,11 +190,11 @@
                           nostrud exercitation ullamco laboris nisi ut aliquip
                           ex ea commodo consequat.
                         </p>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
-              </div> -->
+              </div>
             </section>
 
             <section id="footer">

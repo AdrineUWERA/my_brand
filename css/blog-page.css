@@ -137,8 +137,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  /* border: 1px solid green; */
+  align-items: center; 
   width: 80%;
 }
 
@@ -162,6 +161,7 @@ body {
 }
 
 .section-title {
+  width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -263,7 +263,7 @@ body {
   letter-spacing: 0.3px;
 }
 
-.reference-links ol {
+.reference-links ul {
   padding-left: 50px;
   padding-bottom: 50px;
 }
@@ -489,6 +489,9 @@ body {
   #blogs {
     padding: 0 5%;
     padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .date {
