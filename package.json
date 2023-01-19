@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "froala-editor": "^4.0.17",
+    "sweetalert": "^2.1.2"
+  }
+}
