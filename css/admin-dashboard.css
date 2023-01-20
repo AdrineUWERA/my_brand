@@ -67,7 +67,7 @@ body {
   background-color: hsla(10, 71%, 41%, 0.15);
 }
 
-.login-btn {
+.log-btn {
   padding: 10px 32px;
   color: hsla(0, 0%, 100%, 0.7);
   text-decoration: none;
@@ -76,9 +76,13 @@ body {
   background-color: hsl(10, 71%, 41%);
 }
 
-.login-btn:hover {
+.log-btn:hover {
   background-color: hsla(10, 71%, 41%, 0.8);
   transition: 0.3s;
+}
+
+#logout-btn{
+  display: none;
 }
 
 /* CONTENT */

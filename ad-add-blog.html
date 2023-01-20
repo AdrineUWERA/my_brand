@@ -26,31 +26,31 @@
         <div class="navigation">
           <ol class="nav-links">
             <li>
-              <a href="/my_brand/#about" class=" nav-link"
+              <a href="/my_brand/#about" class="nav-link"
                 ><span class="numbering">01. </span
                 ><span class="link-label">About</span></a
               >
             </li>
             <li>
-              <a href="/my_brand/#skills" class=" nav-link"
+              <a href="/my_brand/#skills" class="nav-link"
                 ><span class="numbering">02. </span
                 ><span class="link-label">Skills</span></a
               >
             </li>
             <li>
-              <a href="/my_brand/#work" class=" nav-link"
+              <a href="/my_brand/#work" class="nav-link"
                 ><span class="numbering">03. </span>
                 <span class="link-label">Work</span></a
               >
             </li>
             <li>
-              <a href="/my_brand/#blogs" class=" nav-link"
+              <a href="/my_brand/#blogs" class="nav-link"
                 ><span class="numbering">04. </span
                 ><span class="link-label">Blogs</span></a
               >
             </li>
-            <li >
-              <a href="/my_brand/#contact" class=" nav-link"
+            <li>
+              <a href="/my_brand/#contact" class="nav-link"
                 ><span class="numbering">05. </span
                 ><span class="link-label">Contact</span></a
               >
@@ -63,7 +63,12 @@
                 >Resume</a
               >
             </li>
-            <li class="nav-btn"><a class="login-btn" href="login.html">Login</a></li>
+            <li class="nav-btn" id="login-btn">
+              <a class="log-btn" href="login.html">Login</a>
+            </li>
+            <li class="nav-btn" id="logout-btn">
+              <a class="log-btn" href="index.html">Logout</a>
+            </li>
           </ol>
         </div>
         <!-- <div class="mobile-menu">
@@ -105,18 +110,27 @@
                   <div><img src="assets/Line 3.png" alt="" /></div>
                 </div>
                 <form action="" class="contact-form" id="add-blog-form">
-                  <div id="errors-success" style="width: 90%; padding: 0;" ></div>
+                  <div id="errors-success" style="width: 90%; padding: 0"></div>
                   <div class="field">
                     <label for="title">Title:</label>
-                    <input id="title" placeholder="Enter the blog title" type="text" />
+                    <input
+                      id="title"
+                      placeholder="Enter the blog title"
+                      type="text"
+                    />
                   </div>
                   <div class="field">
                     <label for="category">Category:</label>
-                    <input id="category" placeholder="Enter the blog category" type="text" />
+                    <input
+                      id="category"
+                      placeholder="Enter the blog category"
+                      type="text"
+                    />
                   </div>
                   <div class="field">
                     <label for="category">Cover image:</label>
-                    <input id="cover-image"
+                    <input
+                      id="cover-image"
                       class="blog-cover"
                       placeholder="Enter the blog category"
                       type="file"
@@ -124,7 +138,7 @@
                   </div>
                   <div class="field">
                     <label for="content">Content:</label>
-                    <textarea  
+                    <textarea
                       placeholder="Add blog content ..."
                       type="text"
                       id="content"
@@ -132,7 +146,8 @@
                   </div>
                   <div class="field">
                     <label for="references">Links:</label>
-                    <textarea id="references"
+                    <textarea
+                      id="references"
                       placeholder="Add references ..."
                       type="text"
                     ></textarea>

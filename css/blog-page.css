@@ -76,7 +76,7 @@ body {
   background-color: hsla(10, 71%, 41%, 0.15);
 }
 
-.login-btn {
+.log-btn {
   padding: 10px 32px;
   color: hsla(0, 0%, 100%, 0.7);
   text-decoration: none;
@@ -85,9 +85,13 @@ body {
   background-color: hsl(10, 71%, 41%);
 }
 
-.login-btn:hover {
+.log-btn:hover {
   background-color: hsla(10, 71%, 41%, 0.8);
   transition: 0.3s;
+}
+
+#logout-btn{
+  display: none;
 }
 
 /* CONTENT */
@@ -137,7 +141,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   width: 80%;
 }
 
@@ -302,6 +306,72 @@ body {
   gap: 15px;
 }
 
+.pop-up-container {
+  z-index: 2;
+  width: 72%;
+  /* display: none; ? */
+  position: absolute;
+  z-index: 2;
+  /* top: 1820px; */
+  /* background-color: #fff; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  transition: top 0.5s;
+}
+
+.show-pop-up {
+  visibility: visible;
+  /* top: 1820px; */
+}
+
+/* .pop-up-container::backdrop{ 
+  background-color: rgba(0, 0, 0, 0.5);
+} */
+
+#pop-up {
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #1b1616;
+  border-radius: 5px;
+  box-shadow: 0 2px 2px 2px rgba(177, 54, 30, 0.5);
+  color: #fff; 
+  /* transform: translate(-50%, -50%) scale(0.5); */
+  padding: 30px;
+  gap: 15px;
+  width: 300px;
+}
+
+#pop-up i {
+  font-size: 70px;
+  color: #b1361e;
+}
+
+#pop-up p {
+  text-align: center;
+  color: hsla(0, 0%, 100%, 60%);
+}
+
+#pop-up .title {
+  font-size: 30px;
+  color: #b1361e;
+}
+
+#pop-up button {
+  margin: 10px;
+  padding: 10px;
+  width: 100px;
+  background-color: hsla(10, 71%, 41%, 30%);
+  border: 1px solid #b1361e;
+  border-radius: 3px;
+  color: #b1361e;
+  cursor: pointer;
+}
+
 .comment-form {
   display: flex;
   flex-direction: column;
@@ -338,7 +408,7 @@ body {
   border: none;
   width: 100%;
   padding: 10px 20px;
-  color:hsla(0, 0%, 100%, .7);
+  color: hsla(0, 0%, 100%, 0.7);
   font-weight: 500;
   height: 100px;
 }
@@ -397,6 +467,27 @@ body {
 }
 
 @media (max-width: 800px) {
+  #pop-up {
+    width: 250px;
+    padding: 10px 15px;
+    gap: 5px;
+  }
+  
+  #pop-up i {
+    font-size: 50px;
+    color: #b1361e;
+  }
+  
+  #pop-up p {
+    text-align: center;
+    font-size: 14px;
+    color: hsla(0, 0%, 100%, 60%);
+  }
+  
+  #pop-up .title {
+    font-size: 20px;
+    color: #b1361e;
+  }
   #mobile_menu {
     display: inline;
     position: relative;
@@ -548,12 +639,12 @@ body {
   .section-title div {
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     flex-grow: 1;
   }
 
   .title {
-    font-size: 14px; 
+    font-size: 14px;
   }
 
   .comment-form {
@@ -561,7 +652,7 @@ body {
   }
 
   .comment-form .field textarea {
-    padding: 10px 20px; 
+    padding: 10px 20px;
     font-size: 12px;
   }
 
@@ -569,9 +660,9 @@ body {
     font-size: 12px;
   }
 
-  .submit-btn { 
-    margin: 20px 0; 
-    font-size: 12px;  
+  .submit-btn {
+    margin: 20px 0;
+    font-size: 12px;
   }
 
   .comment-content {
@@ -579,18 +670,18 @@ body {
     flex-direction: column;
     padding: 30px;
     background-color: hsla(0, 11%, 25%, 0.42);
-    border-radius: 5px; 
+    border-radius: 5px;
   }
 
   .comment-content h4 {
     font-size: 14px;
   }
-  
-  .comment-content p { 
-    font-size: 10px; 
+
+  .comment-content p {
+    font-size: 10px;
   }
 
-  .comment-content .short-description { 
+  .comment-content .short-description {
     font-size: 12px;
   }
 
@@ -718,6 +809,7 @@ body {
 } */
 
 @media (max-width: 1230px) and (min-width: 800px) {
+
   .nav-links li {
     font-size: 12px;
     padding-left: 20px;
@@ -795,12 +887,12 @@ body {
   .section-title div {
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     flex-grow: 1;
   }
 
   .title {
-    font-size: 20px; 
+    font-size: 20px;
   }
 
   .comment-form {
@@ -808,7 +900,7 @@ body {
   }
 
   .comment-form .field textarea {
-    padding: 10px 20px; 
+    padding: 10px 20px;
     font-size: 14px;
   }
 
@@ -816,9 +908,9 @@ body {
     font-size: 14px;
   }
 
-  .submit-btn { 
-    margin: 20px 0; 
-    font-size: 14px;  
+  .submit-btn {
+    margin: 20px 0;
+    font-size: 14px;
   }
 
   .comment-content {
@@ -826,18 +918,18 @@ body {
     flex-direction: column;
     padding: 30px;
     background-color: hsla(0, 11%, 25%, 0.42);
-    border-radius: 5px; 
+    border-radius: 5px;
   }
 
   .comment-content h4 {
     font-size: 18px;
   }
-  
-  .comment-content p { 
-    font-size: 12px; 
+
+  .comment-content p {
+    font-size: 12px;
   }
 
-  .comment-content .short-description { 
+  .comment-content .short-description {
     font-size: 14px;
   }
 
@@ -848,4 +940,3 @@ body {
     font-size: 14px;
   }
 }
-

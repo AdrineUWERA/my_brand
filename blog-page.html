@@ -63,8 +63,11 @@
                 >Resume</a
               >
             </li>
-            <li class="nav-btn">
-              <a class="login-btn" href="login.html">Login</a>
+            <li class="nav-btn" id="login-btn">
+              <a class="log-btn" href="login.html">Login</a>
+            </li>
+            <li class="nav-btn" id="logout-btn">
+              <a class="log-btn" href="index.html" >Logout</a>
             </li>
           </ol>
         </div>
@@ -89,36 +92,46 @@
         </div>
         <div class="main-content">
           <div class="scrollable-content">
-            <section id="blogs" style="width:100%">
-              <div class="section-title" id="section-title">
-              </div> 
-              <div class="section-content" style="width:100%">
+            <section id="blogs" style="width: 100%">
+              <div class="section-title" id="section-title"></div>
+              <div class="section-content" style="width: 100%">
                 <div class="blog-details">
-                  <div class="blog-content" id="blog-content">
-                    
-                  </div>
+                  <div class="blog-content" id="blog-content"></div>
                   <div class="reference-links">
                     <h3 id="reference-links-title"></h3>
-                    <ul style="list-style-type: none; padding-bottom: 20px;" id="links-list">
-                      
-                    </ul>
+                    <ul
+                      style="list-style-type: none; padding-bottom: 20px"
+                      id="links-list"
+                    ></ul>
+                  </div>
+                  <div class="pop-up-container" id="pop-up-container">
+                    <div id="pop-up">
+                      <i class="fa-regular fa-circle-xmark"></i>
+                      <p class="title">Not logged in</p>
+                      <p>
+                        You have to be logged in to like or comment on the
+                        blog
+                      </p>
+                      <button type="button" onClick="closePopup()">Ok</button>
+                    </div>
                   </div>
                   <div class="engagement">
                     <i class="fa-solid fa-heart"></i>
                     <span class="nbr-likes" id="likes-nbr"></span>
-                    <i class="fa-solid fa-comments"></i> <span id="comments-nbr"></span>
+                    <i class="fa-solid fa-comments"></i>
+                    <span id="comments-nbr"></span>
                   </div>
                   <div class="add-comment">
                     <div class="section-title">
                       <span class="title">Add a comment</span>
                       <div><img src="assets/Line 3.png" alt="" /></div>
                     </div>
-                    <div>
-                      
-                    </div>
                     <div class="comment-form">
                       <form action="" id="comment-form">
-                        <div id="errors-success" style="width: 90%; padding: 0;" ></div>
+                        <div
+                          id="errors-success"
+                          style="width: 90%; padding: 0"
+                        ></div>
                         <div class="field">
                           <label for="email">Comment:</label>
                           <textarea
@@ -127,11 +140,11 @@
                             type="email"
                           ></textarea>
                         </div>
-                        <button type="submit" class="submit-btn">Submit</button>
+                        <button type="submit" class="submit-btn" id="submit-btn">Submit</button>
                       </form>
                     </div>
                   </div>
-                  <div class="comments" >
+                  <div class="comments">
                     <div class="section-title" id="comments-title-container">
                       <!-- <span class="title">Comments</span>
                       <div><img src="assets/Line 3.png" alt="" /></div> -->

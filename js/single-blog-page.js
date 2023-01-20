@@ -1,5 +1,5 @@
 const getBlogId = JSON.parse(localStorage.getItem("selectedBlog"));
-const LoggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
 
 console.log("fromurl", getBlogId);
 let allBlogs = [];
@@ -86,18 +86,45 @@ const retrieving = async () => {
  `;
   });
 };
+var x;
+var y;
+// var z;
+// var w;
+// document.addEventListener("click", e=>{
+//   z = e.clientX;
+//   w = e.clientY;
+//   console.log("z: " + z + " w: " + w);
+// })
 
+document.getElementById("submit-btn").addEventListener("click", (e) => {
+  x = e.clientX;
+  y = e.clientY;
+  console.log("X: " + x + " Y: " + y);
+});
+console.log("X: " + x + " Y: " + y);
 var form = document
   .getElementById("comment-form")
   .addEventListener("submit", (e) => {
     e.preventDefault();
     if (!LoggedInUser) {
-      swal({
-        title: "Not logged in!",
-        text: "You have to be logged in to comment on the blog!",
-        icon: "error",
-        backgroundColor: "#b1361e;"
-      });
+      let popUp = document.getElementById("pop-up-container");
+      popUp.classList.add("show-pop-up");
+      if (y < 400) {
+        popUp.style.top = `${2350}px`;
+      }
+      if (y >= 400 && y<600) {
+        popUp.style.top = `${1800 + y}px`;
+      }
+      if ( y >= 500 && y<650) {
+        popUp.style.top = `${1500  + y}px`;
+      }
+      if (y >= 650) {
+        popUp.style.top = `${1250 + y}px`;
+      }
+
+      if (y >= 800) {
+        popUp.style.top = `${950 + y}px`;
+      }
     } else {
       //gets each user input
       var comment = document.getElementById("comment-message").value;
@@ -169,3 +196,8 @@ function clearForm() {
 window.onload = () => {
   retrieving();
 };
+
+function closePopup() {
+  let popUp = document.getElementById("pop-up-container");
+  popUp.classList.remove("show-pop-up");
+}

@@ -63,8 +63,11 @@
                 >Resume</a
               >
             </li>
-            <li class="nav-btn">
-              <a class="login-btn" href="login.html">Login</a>
+            <li class="nav-btn" id="login-btn">
+              <a class="log-btn" href="login.html">Login</a>
+            </li>
+            <li class="nav-btn" id="logout-btn">
+              <a class="log-btn" href="index.html" >Logout</a>
             </li>
           </ol>
         </div>
@@ -108,13 +111,16 @@
                 </div>
                 <div class="form-container" style="width: 100%">
                   <form action="" class="update-form" id="update-form">
-                    <div id="errors-success" style="width: 90%; padding: 0;" ></div>
+                    <div
+                      id="errors-success"
+                      style="width: 90%; padding: 0"
+                    ></div>
                     <div class="field">
                       <label for="title">Title:</label>
                       <input
                         placeholder="Enter the blog title"
                         type="text"
-                        id="title" 
+                        id="title"
                       />
                     </div>
                     <div class="field">
@@ -122,7 +128,7 @@
                       <input
                         placeholder="Enter the blog category"
                         id="category"
-                        type="text" 
+                        type="text"
                       />
                     </div>
                     <div class="field">
@@ -131,7 +137,7 @@
                         class="blog-cover"
                         placeholder="Enter the blog category"
                         type="file"
-                        id="cover-image" 
+                        id="cover-image"
                       />
                     </div>
                     <div class="field">
@@ -152,7 +158,9 @@
                         style="color: #ffffff"
                       ></textarea>
                     </div>
-                    <button type="submit" class="submit-btn">Update Blog</button>
+                    <button type="submit" class="submit-btn">
+                      Update Blog
+                    </button>
                   </form>
                 </div>
               </div>
