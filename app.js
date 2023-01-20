@@ -1,14 +1,13 @@
-const LoggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+const theLoggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
-if (LoggedInUser) {
+if (theLoggedInUser) {
   document.getElementById("login-btn").style.display = "none";
   document.getElementById("logout-btn").style.display = "inline";
 }
 
 document.getElementById("logout-btn").addEventListener("click", (e) => {
   JSON.parse(localStorage.removeItem("loggedInUser"));
-//   window.location.href = document.referrer;
-//   window.history.back();
+  window.location.href = "index.html"; 
    
 });
 

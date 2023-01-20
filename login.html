@@ -49,7 +49,7 @@
                 ><span class="link-label">Blogs</span></a
               >
             </li>
-            <li >
+            <li>
               <a href="/my_brand/#contact" class="active nav-link"
                 ><span class="numbering">05. </span
                 ><span class="link-label">Contact</span></a
@@ -81,6 +81,11 @@
         </div>
       </div>
       <div class="content-container">
+        <div id="already-logged-in"> 
+            
+          <p>Already Logged in</p>
+          <i class="fa-solid fa-circle-xmark" id="close-pop-up" onClick="closePopup()"></i> 
+        </div>
         <div class="social-links">
           <i class="fa-brands fa-github"></i>
           <i class="fa-brands fa-linkedin"></i>
@@ -101,16 +106,27 @@
               <div class="section-content">
                 <!-- <div > -->
                 <form action="" id="login-form">
-                  <div id="errors-success" style="width: 90%; padding: 0; margin-top: 20px;" ></div>
+                  <div
+                    id="errors-success"
+                    style="width: 90%; padding: 0; margin-top: 20px"
+                  ></div>
                   <div class="field">
                     <label for="email">Email:</label>
-                    <input id="email" placeholder="Enter your name" type="email" />
+                    <input
+                      id="email"
+                      placeholder="Enter your name"
+                      type="email"
+                    />
                   </div>
                   <div class="field">
                     <label for="password">Password:</label>
-                    <input id="password" placeholder="Enter your password" type="password" />
+                    <input
+                      id="password"
+                      placeholder="Enter your password"
+                      type="password"
+                    />
                   </div>
-                  <button class="submit-btn">Login </button>
+                  <button class="submit-btn">Login</button>
                   <p>
                     Don't have an account?<a id="signup-link" href="signup.html"
                       >Sign Up</a

@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adrine UWERA</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
@@ -12,11 +13,9 @@
       referrerpolicy="no-referrer"
     />
     <link rel="icon" href="assets/Logo.png" type="image/png" />
-    <link rel="stylesheet" href="css/ad-messages.css" />
-    <title>Adrine UWERA</title>
+    <link rel="stylesheet" href="css/denied-access.css" />
   </head>
   <body>
-    <script src="js/admin-dashboard.js"></script>
     <div class="container">
       <div class="navbar-container">
         <div class="logo-container">
@@ -68,13 +67,13 @@
               <a class="log-btn" href="login.html">Login</a>
             </li>
             <li class="nav-btn" id="logout-btn">
-              <a class="log-btn" href="index.html" >Logout</a>
+              <a class="log-btn" href="index.html">Logout</a>
             </li>
           </ol>
         </div>
         <!-- <div class="mobile-menu">
-          <i class="fa-solid fa-bars"></i>
-        </div> -->
+            <i class="fa-solid fa-bars"></i>
+          </div> -->
         <div class="navbar_toggle" id="mobile_menu">
           <span class="bar"></span>
           <span class="bar"></span>
@@ -82,48 +81,13 @@
         </div>
       </div>
       <div class="content-container">
-        <!-- <div class="social-links">
-          <i class="fa-brands fa-github"></i>
-          <i class="fa-brands fa-linkedin"></i>
-          <i class="fa-brands fa-instagram"></i>
-          <i class="fa-brands fa-twitter"></i>
-          <i class="fa-brands fa-codepen"></i>
-          <img class="line1" src="assets/Line 1.png" alt="" /> 
-        </div>  -->
-        <div class="main-content">
-          <div class="scrollable-content">
-            <div class="dashboard">
-              <div class="sidebar">
-                <ul>
-                  <li><a href="admin-dashboard.html">Home</a></li>
-                  <li>
-                    <a href="ad-view-blogs.html">View blogs</a>
-                  </li>
-                  <li><a href="ad-add-blog.html">Add a blog</a></li>
-                  <li class="active">
-                    <a href="ad-messages.html">Messages</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="dashboard-content">
-                <div class="section-title">
-                  <span class="title">Messages</span>
-                  <div><img src="assets/Line 3.png" alt="" /></div>
-                </div>
-                <div class="all-messages" id="all-messages"></div>
-              </div>
-            </div>
-          </div>
+        <div class="main-content">  
+            <i class="fa-solid fa-circle-minus"></i>
+            <p>Denied Access</p> 
+            <a href="index.html"><button>Go Home</button></a>
         </div>
-        <!-- <div class="email-address">
-          <a href="mailto:a.uwera@alustudent.com"
-            ><p>a.uwera@alustudent.com</p></a
-          >
-          <img class="line1" src="assets/Line 1.png" alt="" />
-        </div> -->
       </div>
     </div>
     <script src="app.js"></script>
-    <script src="js/ad-messages.js"></script>
   </body>
 </html>

@@ -1,102 +1,114 @@
+function closePopup() { 
+  let popUp = document.getElementById("already-logged-in");
+  popUp.style.visibility = "hidden";
+}
+
 var form = document
   .getElementById("signup-form")
   .addEventListener("submit", (e) => {
     e.preventDefault();
-
-    //gets each user input
-    var fullName = document.getElementById("full-name").value;
-    var email = document.getElementById("email").value;
-    var password = document.getElementById("password").value;
-    var confirmPassword = document.getElementById("confirm-password").value;
-    var submitMessage = document.getElementById("errors-success");
-
-    var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    //   var regex = new RegExp(expression);
-    var regexSpaceInputs = /^\S\S*/g;
-
-    let found = false; 
-    var users = JSON.parse(localStorage.getItem("users"));
-    for (let i = 0; i < users.length; i++) {
-      if (users[i].email === email) {
-        found = true;
-      }
-    }
-    // checks if all fields are filled. If not, it i will fire an alert to tell the user to fill all fields
-    if (!fullName || !email || !password || !confirmPassword) {
-      //   alert("Please fill all fields!");
-      submitMessage.innerHTML =
-        '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
-        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Fill all fields! </p> </div>';
-    } else if (!regexSpaceInputs.test(fullName)) {
-      submitMessage.innerHTML =
-        '<div id="errors" style="width: 100%; height: 50px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); padding: 5px 15px; display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
-        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The name should not have spaces at the beginning and end, and not be just spaces. </p> </div>';
-    } else if (!email.match(regex)) {
-      //   alert("Please provide a valid email!");
-      submitMessage.innerHTML =
-        '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
-        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Invalid email! </p> </div>';
-    } else if (found) {
-      submitMessage.innerHTML =
-        '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
-        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The user with this email already exists! </p> </div>';
-    
-    } else if (
-      !regexSpaceInputs.test(password) &&
-      !regexSpaceInputs.test(confirmPassword)
-    ) {
-      submitMessage.innerHTML =
-        '<div id="errors" style="width: 100%; height: 50px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); padding: 5px 15px; display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
-        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The passwords should not have spaces at the beginning and end, and not be just spaces. </p> </div>';
-    } 
-    else if (password.length < 6) {
-      submitMessage.innerHTML =
-        '<div id="errors" style="width: 100%; height: 50px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); padding: 5px 15px; display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
-        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The password should be at least 6 characters. </p> </div>';
-    }
-    // checks if the email has a correct format i.e valid
-    else if (password !== confirmPassword) {
-      submitMessage.innerHTML =
-        '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
-        '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Passwords do not match! </p> </div>';
+    const LoggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    console.log(LoggedInUser);
+    if (LoggedInUser) {
+      let popUp = document.getElementById("already-logged-in");
+      popUp.style.visibility = "visible";
+      setTimeout(() => {
+        popUp.style.visibility = "hidden";
+      }, 5000);
     } else {
-      // otherwise, user input for each field will be stored in an object
-      //generated a unique id using date.now() because it will always be unique
-      var uniqueId = Date.now().toString();
-      var newUser = {
-        id: uniqueId,
-        fullName: fullName,
-        email: email,
-        password: password,
-        confirmPassword: confirmPassword,
-      };
+      //gets each user input
+      var fullName = document.getElementById("full-name").value;
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      var confirmPassword = document.getElementById("confirm-password").value;
+      var submitMessage = document.getElementById("errors-success");
 
-      // checks if there are some messages stored previously in the local storage and retrieve them if any
-      //If there no previously added messages, the newly added message will be added to the local storage
-      if (localStorage.getItem("users") == null) {
-        var users = [];
-        users.push(newUser);
-        localStorage.setItem("users", JSON.stringify(users));
+      var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      //   var regex = new RegExp(expression);
+      var regexSpaceInputs = /^\S\S*/g;
+
+      let found = false;
+      var users = JSON.parse(localStorage.getItem("users"));
+      for (let i = 0; i < users.length; i++) {
+        if (users[i].email === email) {
+          found = true;
+        }
+      }
+      // checks if all fields are filled. If not, it i will fire an alert to tell the user to fill all fields
+      if (!fullName || !email || !password || !confirmPassword) {
+        //   alert("Please fill all fields!");
         submitMessage.innerHTML =
-          '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(130, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #1eb136;; >' +
-          '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> User created! </p> </div>';
-
-        console.log(JSON.parse(localStorage.getItem("users")));
-        clearForm();
+          '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+          '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Fill all fields! </p> </div>';
+      } else if (!regexSpaceInputs.test(fullName)) {
+        submitMessage.innerHTML =
+          '<div id="errors" style="width: 100%; height: 50px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); padding: 5px 15px; display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+          '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The name should not have spaces at the beginning and end, and not be just spaces. </p> </div>';
+      } else if (!email.match(regex)) {
+        //   alert("Please provide a valid email!");
+        submitMessage.innerHTML =
+          '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+          '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Invalid email! </p> </div>';
+      } else if (found) {
+        submitMessage.innerHTML =
+          '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+          '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The user with this email already exists! </p> </div>';
+      } else if (
+        !regexSpaceInputs.test(password) &&
+        !regexSpaceInputs.test(confirmPassword)
+      ) {
+        submitMessage.innerHTML =
+          '<div id="errors" style="width: 100%; height: 50px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); padding: 5px 15px; display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+          '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The passwords should not have spaces at the beginning and end, and not be just spaces. </p> </div>';
+      } else if (password.length < 6) {
+        submitMessage.innerHTML =
+          '<div id="errors" style="width: 100%; height: 50px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); padding: 5px 15px; display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+          '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The password should be at least 6 characters. </p> </div>';
+      }
+      // checks if the email has a correct format i.e valid
+      else if (password !== confirmPassword) {
+        submitMessage.innerHTML =
+          '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+          '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Passwords do not match! </p> </div>';
       } else {
-        // localStorage.removeItem("messages");
-        // if there are some previously stored bookmarks, then they wil be retrieved, and the newly added
-        // bookmark will be pushed to the bookmarks in the local storage
-        var users = JSON.parse(localStorage.getItem("users"));
+        // otherwise, user input for each field will be stored in an object
+        //generated a unique id using date.now() because it will always be unique
+        var uniqueId = Date.now().toString();
+        var newUser = {
+          id: uniqueId,
+          fullName: fullName,
+          email: email,
+          password: password,
+          confirmPassword: confirmPassword,
+        };
 
-        users.push(newUser);
-        localStorage.setItem("users", JSON.stringify(users));
-        submitMessage.innerHTML =
-          '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(130, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #1eb136;; >' +
-          '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> User created! </p> </div>';
+        // checks if there are some messages stored previously in the local storage and retrieve them if any
+        //If there no previously added messages, the newly added message will be added to the local storage
+        if (localStorage.getItem("users") == null) {
+          var users = [];
+          users.push(newUser);
+          localStorage.setItem("users", JSON.stringify(users));
+          submitMessage.innerHTML =
+            '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(130, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #1eb136;; >' +
+            '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> User created! </p> </div>';
 
-        console.log(JSON.parse(localStorage.getItem("users")));
-        clearForm();
+          console.log(JSON.parse(localStorage.getItem("users")));
+          clearForm();
+        } else {
+          // localStorage.removeItem("messages");
+          // if there are some previously stored bookmarks, then they wil be retrieved, and the newly added
+          // bookmark will be pushed to the bookmarks in the local storage
+          var users = JSON.parse(localStorage.getItem("users"));
+
+          users.push(newUser);
+          localStorage.setItem("users", JSON.stringify(users));
+          submitMessage.innerHTML =
+            '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(130, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #1eb136;; >' +
+            '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> User created! </p> </div>';
+
+          console.log(JSON.parse(localStorage.getItem("users")));
+          clearForm();
+        }
       }
     }
   });

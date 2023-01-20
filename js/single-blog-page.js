@@ -1,14 +1,40 @@
 const getBlogId = JSON.parse(localStorage.getItem("selectedBlog"));
-
+const ALoggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+console.log(ALoggedInUser);
 
 console.log("fromurl", getBlogId);
 let allBlogs = [];
+
 const retrieving = async () => {
   allBlogs = await JSON.parse(localStorage.getItem("blogs"));
   console.log(allBlogs);
   let thisBlog = allBlogs.filter((blog) => blog.id === getBlogId);
   let blogDetails = thisBlog[0];
   console.log("this blog", blogDetails);
+
+  let likeBtn = document.getElementById("like-btn").addEventListener("click", e=>{
+    if (!ALoggedInUser) {
+      let popUp = document.getElementById("pop-up-container");
+      popUp.classList.add("show-pop-up");
+      // var rect = element.getBoundingClientRect();
+      if (y < 400) {
+        popUp.style.top = `${2350}px`;
+      }
+      if (y >= 400 && y<600) {
+        popUp.style.top = `${1800 + y}px`;
+      }
+      if ( y >= 500 && y<650) {
+        popUp.style.top = `${1500  + y}px`;
+      }
+      if (y >= 650) {
+        popUp.style.top = `${1250 + y}px`;
+      }
+
+      if (y >= 800) {
+        popUp.style.top = `${950 + y}px`;
+      }
+    }  
+  })
 
   const coverImg = new Image();
   coverImg.src = blogDetails.coverImage;
@@ -106,9 +132,10 @@ var form = document
   .getElementById("comment-form")
   .addEventListener("submit", (e) => {
     e.preventDefault();
-    if (!LoggedInUser) {
+    if (!ALoggedInUser) {
       let popUp = document.getElementById("pop-up-container");
       popUp.classList.add("show-pop-up");
+      // var rect = element.getBoundingClientRect();
       if (y < 400) {
         popUp.style.top = `${2350}px`;
       }
@@ -154,7 +181,7 @@ var form = document
 
         var newComment = {
           id: uniqueId,
-          user: LoggedInUser.fullName,
+          user: ALoggedInUser.fullName,
           dateAdded: formattedDate,
           comment: comment,
         };

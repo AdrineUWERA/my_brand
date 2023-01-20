@@ -126,6 +126,34 @@ body {
   width: 3px;
 }
 
+#already-logged-in{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  flex-direction: row;
+  background-color: #b1361e;
+  border-radius: 5px;
+  box-shadow: 0 2px 2px 2px rgba(177, 54, 30, 0.5);
+  position: absolute;
+  z-index: 2;
+  right: 50px;  
+  width: 20%;
+  visibility: hidden;
+  top: 120px;
+  height: 60px; 
+}
+
+#already-logged-in i{  
+  font-size: 25px;
+}
+
+
+#already-logged-in p{  
+  font-size: 16px;
+  width: 80%;
+  text-align: center;
+}
+
 .main-content {
   /* border: 1px solid red; */
   display: flex;
@@ -321,6 +349,10 @@ body {
 }
 
 @media (max-width: 1230px) and (min-width: 800px) {
+  #already-logged-in{   
+    width: 30%; 
+  }
+  
   .nav-links li {
     font-size: 12px;
     padding-left: 20px;
@@ -376,6 +408,18 @@ body {
 }
 
 @media (max-width: 800px) {
+  #already-logged-in{   
+    width: 40%; 
+  }
+  
+  #already-logged-in i{  
+    font-size: 20px;
+  }
+  
+  
+  #already-logged-in p{  
+    font-size: 14px; 
+  }
   .section-title div {
     display: flex;
     justify-content: center;
@@ -531,6 +575,22 @@ body {
 }
 
 @media (max-width: 620px) {
+  #already-logged-in{   
+    width: 50%; 
+    top: 130px
+  }
+  
+  #already-logged-in i{  
+    font-size: 20px;
+  }
+  
+  
+  #already-logged-in p{  
+    font-size: 14px;
+    width: 80%;
+    text-align: center;
+  }
+
   #form-container {
     padding: 0 5%;
     padding-top: 50px;
