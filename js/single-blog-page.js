@@ -16,23 +16,27 @@ const retrieving = async () => {
     if (!ALoggedInUser) {
       let popUp = document.getElementById("pop-up-container");
       popUp.classList.add("show-pop-up");
+      
+      setTimeout(()=>{
+        popUp.classList.remove("show-pop-up");
+      }, 5000);
       // var rect = element.getBoundingClientRect();
-      if (y < 400) {
-        popUp.style.top = `${2350}px`;
-      }
-      if (y >= 400 && y<600) {
-        popUp.style.top = `${1800 + y}px`;
-      }
-      if ( y >= 500 && y<650) {
-        popUp.style.top = `${1500  + y}px`;
-      }
-      if (y >= 650) {
-        popUp.style.top = `${1250 + y}px`;
-      }
+      // if (y < 400) {
+      //   popUp.style.top = `${2350}px`;
+      // }
+      // if (y >= 400 && y<600) {
+      //   popUp.style.top = `${1800 + y}px`;
+      // }
+      // if ( y >= 500 && y<650) {
+      //   popUp.style.top = `${1500  + y}px`;
+      // }
+      // if (y >= 650) {
+      //   popUp.style.top = `${1250 + y}px`;
+      // }
 
-      if (y >= 800) {
-        popUp.style.top = `${950 + y}px`;
-      }
+      // if (y >= 800) {
+      //   popUp.style.top = `${950 + y}px`;
+      // }
     }  
   })
 

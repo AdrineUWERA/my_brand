@@ -308,27 +308,22 @@ body {
 
 .pop-up-container {
   z-index: 2;
-  width: 72%;
+  width: 100%;
   /* display: none; ? */
   position: absolute;
   z-index: 2;
-  /* top: 1820px; */
   /* background-color: #fff; */
   display: flex;
   justify-content: center;
   align-items: center;
   visibility: hidden;
-  transition: top 0.5s;
+  transition: 0.5s; 
 }
 
 .show-pop-up {
   visibility: visible;
   /* top: 1820px; */
 }
-
-/* .pop-up-container::backdrop{ 
-  background-color: rgba(0, 0, 0, 0.5);
-} */
 
 #pop-up {
   display: flex;
@@ -339,7 +334,8 @@ body {
   border-radius: 5px;
   box-shadow: 0 2px 2px 2px rgba(177, 54, 30, 0.5);
   color: #fff; 
-  /* transform: translate(-50%, -50%) scale(0.5); */
+  top: 45%;
+  left: 15%; 
   padding: 30px;
   gap: 15px;
   width: 300px;
@@ -369,6 +365,11 @@ body {
   border-radius: 3px;
   color: #b1361e;
   cursor: pointer;
+}
+
+.pop-up-container::backdrop { 
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1.5;
 }
 
 .comment-form {
