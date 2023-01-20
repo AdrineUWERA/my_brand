@@ -44,14 +44,16 @@ var form = document
           '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> User logged in </p> </div>';
 
         window.location.href = "admin-dashboard.html";
-      } else if (
+      } 
+      else if (
         loginCredentials.email === "a.uwera@alustudent.com" &&
         loginCredentials.password !== "Aduwera"
       ) {
         submitMessage.innerHTML =
           '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
           '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Invalid credentials! </p> </div>';
-      } else {
+      } 
+      else {
         if (localStorage.getItem("users") == null) {
           submitMessage.innerHTML =
             '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
@@ -73,18 +75,20 @@ var form = document
                   '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(130, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #1eb136; >' +
                   '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> User logged in </p> </div>';
                                 
-                isAuth = true;
+                
                 let loggedInUser = {role: 'user', ...users[i]};
                 localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
                 window.location.href = "index.html";
+                isAuth = true;
 
                 clearForm();
               }
-            } else {
-              submitMessage.innerHTML =
-                '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
-                '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Invalid credentials! </p> </div>';
-            }
+            } 
+            // else {
+            //   submitMessage.innerHTML =
+            //     '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
+            //     '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Invalid credentials! </p> </div>';
+            // }
           }
 
           if (found === true && !isAuth) {
