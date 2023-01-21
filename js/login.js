@@ -1,4 +1,4 @@
-function closePopup() { 
+function closePopup() {
   let popUp = document.getElementById("already-logged-in");
   popUp.style.visibility = "hidden";
 }
@@ -10,10 +10,9 @@ var form = document
     const LoggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
     console.log(LoggedInUser);
     if (LoggedInUser) {
-      
       let popUp = document.getElementById("already-logged-in");
       popUp.style.visibility = "visible";
-      setTimeout(()=>{
+      setTimeout(() => {
         popUp.style.visibility = "hidden";
       }, 5000);
     } else {
@@ -57,7 +56,7 @@ var form = document
             role: "admin",
             fullName: "Adrine UWERA",
             email: "a.uwera@alustudent.com",
-            password: "Aduwera",
+            password: "Aduwera", 
           };
           localStorage.setItem("loggedInUser", JSON.stringify(admin));
           submitMessage.innerHTML =
@@ -99,11 +98,28 @@ var form = document
                     "loggedInUser",
                     JSON.stringify(loggedInUser)
                   );
-                  // window.location.href = "index.html";
-                  window.history.go(-1);
-                  isAuth = true;
 
-                  clearForm();
+                  isAuth = true;
+                  // let admin = {
+                  //   role: "admin",
+                  //   fullName: "Adrine UWERA",
+                  //   email: "a.uwera@alustudent.com",
+                  //   password: "Aduwera",
+                  //   likedBlogs: [],
+                  // };
+
+                  // localStorage.setItem("admin", JSON.stringify(admin));
+                  // console.log(
+                  //   localStorage.getItem("admin", JSON.stringify(admin))
+                  // );
+                  // clearForm();
+
+                  // window.location.href = "index.html";
+                  if (window.history.go(-1) === "blog-page.html") {
+                    window.history.go(-1);
+                  } else {
+                    window.location.href = "index.html";
+                  }
                 }
               }
               // else {

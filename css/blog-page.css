@@ -5,6 +5,10 @@
   text-decoration: none;
 }
 
+.pop-up-container { 
+  visibility: hidden; 
+}
+
 body {
   font-family: "Calibre", "Inter", "San Francisco", "SF Pro Text", sans-serif;
   background-color: #1b1616;
@@ -316,10 +320,10 @@ body {
   width: 100%;  
   display: flex;  
   justify-content: center;
-  align-items: center;
-  visibility: hidden;
+  align-items: center; 
   transition: 0.5s;   
-  top: 0; 
+  top: -1000px;  
+  transition: 0.5sec;
 }
 
 .show-pop-up {
@@ -340,7 +344,7 @@ body {
   padding: 30px;
   gap: 15px;
   width: 300px;
-  right:40%;
+  right:50%-width;
   z-index: 2;
   top:30%;
 }
@@ -373,7 +377,7 @@ body {
 
 .pop-up-container::backdrop {
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1.5;
+  /* z-index: 1.5; */
 }
 
 .comment-form {

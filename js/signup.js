@@ -1,4 +1,4 @@
-function closePopup() { 
+function closePopup() {
   let popUp = document.getElementById("already-logged-in");
   popUp.style.visibility = "hidden";
 }
@@ -28,12 +28,16 @@ var form = document
       var regexSpaceInputs = /^\S\S*/g;
 
       let found = false;
+      var users = [];
       var users = JSON.parse(localStorage.getItem("users"));
-      for (let i = 0; i < users.length; i++) {
-        if (users[i].email === email) {
-          found = true;
+      if (users) {
+        for (let i = 0; i < users.length; i++) {
+          if (users[i].email === email) {
+            found = true;
+          }
         }
       }
+
       // checks if all fields are filled. If not, it i will fire an alert to tell the user to fill all fields
       if (!fullName || !email || !password || !confirmPassword) {
         //   alert("Please fill all fields!");
@@ -76,10 +80,12 @@ var form = document
         var uniqueId = Date.now().toString();
         var newUser = {
           id: uniqueId,
+          role: "user",
           fullName: fullName,
           email: email,
           password: password,
           confirmPassword: confirmPassword,
+          likedBlogs: [],
         };
 
         // checks if there are some messages stored previously in the local storage and retrieve them if any
