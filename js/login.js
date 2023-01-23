@@ -152,3 +152,21 @@ function clearForm() {
   document.getElementById("email").value = "";
   document.getElementById("password").value = "";
 }
+
+document.getElementById("show-password").addEventListener("click", (e)=>{
+  var passwordInput = document.getElementById("password");
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    document.getElementById("hide-password").style.display = "inline";
+    document.getElementById("show-password").style.display = "none";
+  } 
+})
+
+document.getElementById("hide-password").addEventListener("click", (e)=>{
+  var passwordInput = document.getElementById("password");
+  if (passwordInput.type === "text") {
+    passwordInput.type = "password";
+    document.getElementById("show-password").style.display = "inline";
+    document.getElementById("hide-password").style.display = "none";
+  }
+})

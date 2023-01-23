@@ -90,7 +90,7 @@ body {
   transition: 0.3s;
 }
 
-#logout-btn{
+#logout-btn {
   display: none;
 }
 
@@ -126,9 +126,9 @@ body {
   width: 3px;
 }
 
-#already-logged-in{
+#already-logged-in {
   display: flex;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
   flex-direction: row;
   background-color: #b1361e;
@@ -136,19 +136,19 @@ body {
   box-shadow: 0 2px 2px 2px rgba(177, 54, 30, 0.5);
   position: fixed;
   z-index: 0;
-  right: 50px;  
+  right: 50px;
   width: 20%;
   visibility: hidden;
   top: 120px;
-  height: 60px; 
+  height: 60px;
 }
 
-#already-logged-in i{  
+#already-logged-in i {
   font-size: 25px;
   padding-left: 10px;
 }
 
-#already-logged-in p{  
+#already-logged-in p {
   font-size: 16px;
   width: 80%;
   text-align: center;
@@ -260,6 +260,8 @@ body {
   width: 90%;
   display: flex;
   flex-direction: column;
+justify-content: center;
+align-items: flex-start;
   gap: 20px;
 }
 
@@ -279,10 +281,36 @@ body {
   color: hsla(0, 0%, 100%, 0.7);
 }
 
-/* .toggle-password{
-  position: absolute; 
-  
-} */
+.toggle-password {
+  /* position: absolute; */
+  color: #b1361e;
+  margin-top: -75px;
+  margin-right: 20px 
+}
+
+.toggle-container{
+  width: 100%;
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#hide-password{
+  cursor: pointer;
+  display: none;
+}
+#show-password{ 
+  cursor: pointer;
+}
+
+#hide-confirm-password{
+  cursor: pointer;
+  display: none;
+}
+#show-confirm-password{ 
+  cursor: pointer;
+}
 
 .submit-btn {
   width: 90%;
@@ -354,10 +382,10 @@ body {
 }
 
 @media (max-width: 1230px) and (min-width: 800px) {
-  #already-logged-in{   
-    width: 30%; 
+  #already-logged-in {
+    width: 30%;
   }
-  
+
   .nav-links li {
     font-size: 12px;
     padding-left: 20px;
@@ -413,25 +441,24 @@ body {
 }
 
 @media (max-width: 800px) {
-  #already-logged-in{   
-    width: 40%; 
+  #already-logged-in {
+    width: 40%;
   }
-  
-  #already-logged-in i{  
+
+  #already-logged-in i {
     font-size: 20px;
   }
-  
-  
-  #already-logged-in p{  
-    font-size: 14px; 
+
+  #already-logged-in p {
+    font-size: 14px;
   }
   .section-title div {
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     width: 60%;
   }
-  .section-title .title {  
+  .section-title .title {
     font-size: 14px;
   }
 
@@ -580,17 +607,16 @@ body {
 }
 
 @media (max-width: 620px) {
-  #already-logged-in{   
-    width: 50%; 
-    top: 130px
+  #already-logged-in {
+    width: 50%;
+    top: 130px;
   }
-  
-  #already-logged-in i{  
+
+  #already-logged-in i {
     font-size: 20px;
   }
-  
-  
-  #already-logged-in p{  
+
+  #already-logged-in p {
     font-size: 14px;
     width: 80%;
     text-align: center;

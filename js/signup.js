@@ -127,3 +127,40 @@ function clearForm() {
   document.getElementById("password").value = "";
   document.getElementById("confirm-password").value = "";
 }
+
+document.getElementById("show-password").addEventListener("click", (e) => {
+  var passwordInput = document.getElementById("password");
+  var confrirmpasswordInput = document.getElementById("confirm-password");
+  if (passwordInput.type === "password" || confrirmpasswordInput.type === "password") {
+    passwordInput.type = "text";
+    document.getElementById("hide-password").style.display = "inline";
+    document.getElementById("show-password").style.display = "none";
+  }
+});
+
+document.getElementById("hide-password").addEventListener("click", (e) => {
+  var passwordInput = document.getElementById("password");
+  if (passwordInput.type === "text") {
+    passwordInput.type = "password";
+    document.getElementById("show-password").style.display = "inline";
+    document.getElementById("hide-password").style.display = "none";
+  }
+});
+
+document.getElementById("show-confirm-password").addEventListener("click", (e) => { 
+  var confirmpasswordInput = document.getElementById("confirm-password");
+  if (confirmpasswordInput.type === "password") {
+    confirmpasswordInput.type = "text";
+    document.getElementById("hide-confirm-password").style.display = "inline";
+    document.getElementById("show-confirm-password").style.display = "none";
+  }
+});
+
+document.getElementById("hide-confirm-password").addEventListener("click", (e) => {
+  var confirmpasswordInput = document.getElementById("confirm-password");
+  if (confirmpasswordInput.type === "text") {
+    confirmpasswordInput.type = "password";
+    document.getElementById("show-confirm-password").style.display = "inline";
+    document.getElementById("hide-confirm-password").style.display = "none";
+  }
+});
