@@ -134,8 +134,8 @@ body {
   background-color: #b1361e;
   border-radius: 5px;
   box-shadow: 0 2px 2px 2px rgba(177, 54, 30, 0.5);
-  position: absolute;
-  z-index: 2;
+  position: fixed;
+  z-index: 0;
   right: 50px;  
   width: 20%;
   visibility: hidden;
@@ -145,8 +145,8 @@ body {
 
 #already-logged-in i{  
   font-size: 25px;
+  padding-left: 10px;
 }
-
 
 #already-logged-in p{  
   font-size: 16px;
@@ -278,6 +278,11 @@ body {
   padding-top: 20px;
   color: hsla(0, 0%, 100%, 0.7);
 }
+
+/* .toggle-password{
+  position: absolute; 
+  
+} */
 
 .submit-btn {
   width: 90%;

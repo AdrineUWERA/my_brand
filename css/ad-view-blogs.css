@@ -268,10 +268,17 @@ body {
 }
 
 .card-links {
-  display: flex;justify-content: space-between;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
   align-items: flex-start; 
   gap: 0px;
   width: 100%;
+}
+
+.card-links i {
+ font-size: 20px;
+ color: #b1361e;
 }
 
 .card a {
