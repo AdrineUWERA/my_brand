@@ -3,19 +3,33 @@ function closePopup() {
   popUp.style.visibility = "hidden";
 }
 
+const LoggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+console.log(LoggedInUser);
+if (LoggedInUser) {
+  // let popUp = document.getElementById("already-logged-in");
+  // popUp.style.visibility = "visible";
+  // setTimeout(() => {
+  //   popUp.style.visibility = "hidden";
+  // }, 5000);
+  // window.location.href = "index.html";
+  window.history.go(-1);
+} 
+
 var form = document
   .getElementById("signup-form")
   .addEventListener("submit", (e) => {
     e.preventDefault();
     const LoggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
     console.log(LoggedInUser);
-    if (LoggedInUser) {
-      let popUp = document.getElementById("already-logged-in");
-      popUp.style.visibility = "visible";
-      setTimeout(() => {
-        popUp.style.visibility = "hidden";
-      }, 5000);
-    } else {
+    // if (LoggedInUser) {
+    //   // let popUp = document.getElementById("already-logged-in");
+    //   // popUp.style.visibility = "visible";
+    //   // setTimeout(() => {
+    //   //   popUp.style.visibility = "hidden";
+    //   // }, 5000);
+    //   // window.location.href = "index.html";
+    //   window.history.go(-1);
+    // } else {
       //gets each user input
       var fullName = document.getElementById("full-name").value;
       var email = document.getElementById("email").value;
@@ -116,7 +130,7 @@ var form = document
           clearForm();
         }
       }
-    }
+    // }
   });
 
 // a function to clear the form

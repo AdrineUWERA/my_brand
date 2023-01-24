@@ -379,6 +379,13 @@ align-items: flex-start;
   #signup-link {
     font-size: 18px;
   }
+
+  .toggle-password {
+    /* position: absolute; */
+    color: #b1361e;
+    margin-top: -85px;
+    margin-right: 20px 
+  }
 }
 
 @media (max-width: 1230px) and (min-width: 800px) {
@@ -437,6 +444,12 @@ align-items: flex-start;
 
   #signup-link {
     font-size: 18px;
+  }
+  .toggle-password {
+    /* position: absolute; */
+    color: #b1361e;
+    margin-top: -85px;
+    margin-right: 20px 
   }
 }
 
@@ -573,6 +586,13 @@ align-items: flex-start;
   #form-container .field input {
     font-size: 14px;
     height: 40px;
+  }
+
+  .toggle-password {
+    /* position: absolute; */
+    color: #b1361e;
+    margin-top: -60px;
+    margin-right: 20px 
   }
 
   .section-title {

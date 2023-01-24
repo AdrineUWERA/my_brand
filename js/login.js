@@ -3,19 +3,33 @@ function closePopup() {
   popUp.style.visibility = "hidden";
 }
 
+const LoggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+console.log(LoggedInUser);
+if (LoggedInUser) {
+  // let popUp = document.getElementById("already-logged-in");
+  // popUp.style.visibility = "visible";
+  // setTimeout(() => {
+  //   popUp.style.visibility = "hidden";
+  // }, 5000);
+  // window.location.href = "index.html";
+  window.history.go(-1);
+}
+
 var form = document
   .getElementById("login-form")
   .addEventListener("submit", (e) => {
     e.preventDefault();
     const LoggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
     console.log(LoggedInUser);
-    if (LoggedInUser) {
-      let popUp = document.getElementById("already-logged-in");
-      popUp.style.visibility = "visible";
-      setTimeout(() => {
-        popUp.style.visibility = "hidden";
-      }, 5000);
-    } else {
+    // if (LoggedInUser) {
+    //   // let popUp = document.getElementById("already-logged-in");
+    //   // popUp.style.visibility = "visible";
+    //   // setTimeout(() => {
+    //   //   popUp.style.visibility = "hidden";
+    //   // }, 5000);
+    //   window.location.href = "index.html";
+    //   // window.history.go(-1);
+    // } else {
       //gets each user input
       var email = document.getElementById("email").value;
       var password = document.getElementById("password").value;
@@ -56,7 +70,7 @@ var form = document
             role: "admin",
             fullName: "Adrine UWERA",
             email: "a.uwera@alustudent.com",
-            password: "Aduwera", 
+            password: "Aduwera",
           };
           localStorage.setItem("loggedInUser", JSON.stringify(admin));
           submitMessage.innerHTML =
@@ -115,11 +129,11 @@ var form = document
                   // clearForm();
 
                   // window.location.href = "index.html";
-                  if (window.history.go(-1) === "blog-page.html") {
-                    window.history.go(-1);
-                  } else {
-                    window.location.href = "index.html";
-                  }
+                  // if (window.history.go(-1) === "blog-page.html") {
+                  window.history.go(-1);
+                  // } else {
+                  //   window.location.href = "index.html";
+                  // }
                 }
               }
               // else {
@@ -143,7 +157,7 @@ var form = document
           }
         }
       }
-    }
+    // }
   });
 
 // a function to clear the form
@@ -153,20 +167,20 @@ function clearForm() {
   document.getElementById("password").value = "";
 }
 
-document.getElementById("show-password").addEventListener("click", (e)=>{
+document.getElementById("show-password").addEventListener("click", (e) => {
   var passwordInput = document.getElementById("password");
   if (passwordInput.type === "password") {
     passwordInput.type = "text";
     document.getElementById("hide-password").style.display = "inline";
     document.getElementById("show-password").style.display = "none";
-  } 
-})
+  }
+});
 
-document.getElementById("hide-password").addEventListener("click", (e)=>{
+document.getElementById("hide-password").addEventListener("click", (e) => {
   var passwordInput = document.getElementById("password");
   if (passwordInput.type === "text") {
     passwordInput.type = "password";
     document.getElementById("show-password").style.display = "inline";
     document.getElementById("hide-password").style.display = "none";
   }
-})
+});
