@@ -103,6 +103,7 @@ const retrieving = async () => {
 
             console.log(admin);
             localStorage.setItem("admin", JSON.stringify(admin));
+
             const likesNumber = document.getElementById("likes-nbr");
             likesNumber.innerHTML = `${blogDetails.likes} Likes`;
           } else {
@@ -121,6 +122,7 @@ const retrieving = async () => {
             localStorage.setItem("admin", JSON.stringify(admin));
             // console.log(admin);
             localStorage.setItem("admin", JSON.stringify(admin));
+            
             const likesNumber = document.getElementById("likes-nbr");
             likesNumber.innerHTML = `${blogDetails.likes} Likes`;
           }
