@@ -85,6 +85,17 @@ body {
   display: none;
 }
 
+/* .navigation{ 
+  width: 50%;
+  border: 1px solid red;
+}
+
+.ad-dropdown{
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+} */
+
 /* CONTENT */
 .content-container {
   display: flex;
@@ -369,7 +380,7 @@ body {
   }
 
   .navigation {
-    width: 100%;
+    width: 60%;
     display: flex;
     justify-content: flex-end;
     align-items: center;

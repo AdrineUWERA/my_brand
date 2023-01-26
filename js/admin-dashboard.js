@@ -4,3 +4,4 @@ console.log(loggedin);
 if (loggedin.role !== "admin") {
   window.location.href = "denied-access.html";
 } 
+
