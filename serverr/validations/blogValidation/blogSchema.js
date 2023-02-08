@@ -11,8 +11,8 @@ const blogSchema = joi.object({
   }),
   category: joi.string().required(),
   references: joi.string().required(), 
-//   coverImage: joi.string().required(), 
+  coverImage: joi.string().required(), 
 });
 
-
+ 
 export default blogSchema;

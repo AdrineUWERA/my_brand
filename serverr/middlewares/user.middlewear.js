@@ -28,6 +28,21 @@ const userLoggedIn = async (req, res, next) => {
     return next()
 }
 
+const userEngagingLoggedIn = async (req, res, next) => {
+    const header = req.headers.authorization
+    if (!header) {
+        return res.status(403).json({
+            message: "Not logged in"
+        })
+    }
+    const token = header.split(" ")[1]
+    const userInfo = decodeToken(token)
+    const user = await UserService.userExist(userInfo)
+    req.body.userId = user.id 
+
+    return next()
+}
+
 const isAdminLoggedIn = async (req, res, next) => {
     const header = req.headers.authorization
     if (!header) {
@@ -48,4 +63,4 @@ const isAdminLoggedIn = async (req, res, next) => {
     return next()
 }
 
-export { userVerified, userLoggedIn, isAdminLoggedIn }
+export { userVerified, userLoggedIn, userEngagingLoggedIn, isAdminLoggedIn }

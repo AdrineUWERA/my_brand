@@ -6,12 +6,13 @@ import {
   deleteUser,
   updateUser
 } from "../../controllers/UserControllers.js";
+ import { userValidator, userloginValidator } from "../../validations/userValidation/userValidator.js"
 
 const userRouter = express.Router();
 
-userRouter.post("/register", SignUp);
+userRouter.post("/register", userValidator, SignUp);
 userRouter.get("/", getAllusers);
-userRouter.post("/login", UserLogin);
+userRouter.post("/login", userloginValidator, UserLogin);
 userRouter.delete("/:id", deleteUser);
 userRouter.patch("/:id", updateUser); 
 

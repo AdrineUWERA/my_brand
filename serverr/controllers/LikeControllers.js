@@ -21,7 +21,7 @@ const getOneLike = async (req, res) =>{
   try{
     const blogId = req.baseUrl.split("/")[2];
     const user = req.user;
-    console.log(user.id, blogId);
+    // console.log(user.id, blogId);
     const like = await Like.find({ userId: user.id.toString(), blogId: blogId });
     return res.status(200).json({
       message: "one like",
@@ -36,12 +36,10 @@ const getOneLike = async (req, res) =>{
 }
 
 const LikeAndUnlike = async (req, res) => {
-  try {
-    const user = req.user;
-    const blogId = req.baseUrl.split("/")[2];
-    const blogliked = await LikeService(blogId, user.id);
+  try { 
+    const blogliked = await LikeService(req.body.blogId, req.body.userId);
 
-    res.status(201).json({
+    return res.status(201).json({
       message: "liked/unliked",
       data: blogliked,
     });

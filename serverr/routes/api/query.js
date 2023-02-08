@@ -5,10 +5,11 @@ import {
 
 import express from "express";
 import { isAdminLoggedIn } from "../../middlewares/user.middlewear.js";
+import queryValidator from "../../validations/queryValidation/queryValidator.js"
 
 const queryRouter = express.Router();
 
-queryRouter.post("/", CreateQuery);
+queryRouter.post("/",queryValidator, CreateQuery);
 queryRouter.get("/", isAdminLoggedIn, GetAllQueries);
 
 export default queryRouter;

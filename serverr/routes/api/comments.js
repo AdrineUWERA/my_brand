@@ -1,17 +1,16 @@
 import express from "express";
 import {
-  CreateComment,
-  UpdateComment,
-  DeleteComment,
-  GetAllComments,
-  GetOneComment,
+  CreateComment, 
+  GetAllComments, 
 } from "../../controllers/CommentControllers.js";
 
-import { userLoggedIn } from "../../middlewares/user.middlewear.js";
+import { userEngagingLoggedIn } from "../../middlewares/user.middlewear.js";
+import validatePostId from "../../middlewares/blog.middlewear.js"
+import commentValidator from "../../validations/commentValidation/commentValidator.js"
 
 const commentRouter = express.Router();
  
-commentRouter.post("/", userLoggedIn, CreateComment);
+commentRouter.post("/", userEngagingLoggedIn, validatePostId, commentValidator, CreateComment);
 // commentRouter.patch("/:id", UpdateComment);
 // commentRouter.delete("/:id", DeleteComment);
 commentRouter.get("/", GetAllComments);

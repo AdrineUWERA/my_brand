@@ -1,17 +1,15 @@
 import express from "express";
 import {
   LikeAndUnlike,
-  GetAllLikes,
-  getOneLike
+  GetAllLikes
 } from "../../controllers/LikeControllers.js";
-import { userLoggedIn } from "../../middlewares/user.middlewear.js";
+import validatePostId from "../../middlewares/blog.middlewear.js"
+import { userEngagingLoggedIn } from "../../middlewares/user.middlewear.js";
+import likeValidator from "../../validations/likeValidation/likeValidator.js"
 
 const likesRouter = express.Router();
 
-likesRouter.post("/", userLoggedIn, LikeAndUnlike);
-// commentRouter.patch("/:id", UpdateComment);
-// commentRouter.delete("/:id", DeleteComment);
-likesRouter.get("/", GetAllLikes); 
-// commentRouter.get("/:id", GetOneComment);
+likesRouter.post("/", userEngagingLoggedIn, validatePostId, likeValidator, LikeAndUnlike); 
+likesRouter.get("/", GetAllLikes);  
 
-export default likesRouter;
+export default likesRouter; 

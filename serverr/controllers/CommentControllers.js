@@ -39,15 +39,17 @@ const GetOneComment = async (req, res) => {
 
 const CreateComment = async (req, res) => {
   try {
-    const user = req.user 
-    const blogId  = req.baseUrl.split("/")[2];
+    // const user = req.user 
+    // const blogId  = req.baseUrl.split("/")[2];  
+    const { blogId, userId, comment } = req.body;
     const blog = await BlogService.findbyId(blogId);
-    const { comment } = req.body;
+  
     const newcomment = await Comment.create({
-      userId: user.id,
-      blogId: blog.id,
+      userId: userId,
+      blogId: blogId,
       comment: comment,
     });
+    
     blog.comments.push(newcomment);
     await blog.save();
 

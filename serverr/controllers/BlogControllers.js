@@ -33,21 +33,22 @@ const GetOneBlog = async (req, res) => {
 
 const CreateBlog = async (req, res) => {
   try {
-    const { title, content, category, references } = req.body;
+    const { title, content, category, coverImage, references } = req.body;
     
-    const imageURL = await imageUpload(req.file.path);
+    // const imageURL = await imageUpload(req.file.path);
+    // console.log(req.body)
 
     const blog = await BlogService.createBlog({
       title: title,
       content: content,
       category: category,
-      coverImage: imageURL,
+      coverImage: coverImage,
       references: references,
     });
 
     // console.log("blog created");
     const BlogAdded = await blog.save();
-    // console.log("blog saved");
+    // console.log("blog saved"); 
 
     return res.status(201).json({
       message: "New Blog added successfully!",
