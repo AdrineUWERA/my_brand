@@ -10,7 +10,7 @@ import {
 
 const userRouter = express.Router();
 
-userRouter.post("/register", userValidator, SignUp);
+userRouter.post("/signup", userValidator, SignUp);
 userRouter.get("/", getAllusers);
 userRouter.post("/login", userloginValidator, UserLogin);
 userRouter.delete("/:id", deleteUser);

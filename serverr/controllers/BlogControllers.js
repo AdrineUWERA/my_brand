@@ -20,7 +20,7 @@ const GetOneBlog = async (req, res) => {
     const blog = await BlogService.findbyId(blogId);
 
     if (!blog) {
-      return res.status(404).json({ error: "There is no blog with that id" });
+      return res.status(404).json({ message: "There is no blog with that id" });
     }
     return res.status(200).json({ message: "One blog", data: blog });
   } catch (err) {
@@ -71,9 +71,9 @@ const UpdateBlog = async (req, res) => {
       if (title) blog.title = title;
       if (content) blog.content = content;
       if (category) blog.category = category;
-      if (req.file.path) {
-        const imageURL = await imageUpload(req.file.path);
-        blog.coverImage = imageURL;
+
+      if (req.file) { 
+        blog.coverImage = req.body.coverImage;
       }
       if (references) blog.references = references;
 

@@ -6,13 +6,16 @@
   "type": "module",
   "scripts": {
     "start": "nodemon index.js",
-    "test": "mocha tests"
+    "test": "mocha tests --timeout 10000",
+    "coverage": "nyc npm run test",
+    "coveraget": " c8 --all --reporter=html mocha --require tests/blog.test.js --recursive --exit --timeout 80000 "
   },
   "keywords": [],
   "author": "Adrine UWERA",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "c8": "^7.12.0",
     "chai": "^4.3.7",
     "chai-http": "^4.3.0",
     "cloudinary": "^1.33.0",
