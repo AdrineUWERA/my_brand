@@ -490,7 +490,7 @@ describe("blogs API", () => {
     });
   });
 
-  describe("GET all queries", () => {
+  describe("GET /queries", () => {
     it("It should GET all the queries", (done) => {
       const user = {
         email: "a.UWERA@alustudent.com",
@@ -538,4 +538,123 @@ describe("blogs API", () => {
         });
     });
   });
+
+  /**
+   * Test the Comment route
+   */
+
+  describe("POST /blogs/:id/comments", () => {
+    it("It should add a comment to an existing blog", (done) => {
+      const user = {
+        email: "a.UWERA@alustudent.com",
+        password: "password",
+      };
+      chai
+        .request(app)
+        .post("/users/login")
+        .send(user)
+        .end((err, response) => {
+          response.should.have.status(200);
+          const token = response.header.authenticate;
+          chai
+            .request(app)
+            .post("/blogs")
+            .set({ Authorization: `Bearer ${token}` })
+            .attach(
+              "coverImage",
+              fs.readFileSync(path.join(__dirname, "../assets/test_image.png")),
+              "test_image.png"
+            )
+            .field("title", "Test title")
+            .field(
+              "content",
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            )
+            .field("category", "category")
+            .field("references", "references")
+            .end((err, response) => {
+              response.should.have.status(201);
+              // console.log(response);
+              const blog = response.body.data;
+              const comment = { comment: "Insightful" };
+              chai
+                .request(app)
+                .post("/blogs/" + blog._id + "/comments/")
+                .set({ Authorization: `Bearer ${token}` })
+                .send(comment)
+                .end((err, response) => {
+                  response.should.have.status(201);
+                  response.body.should.be.a("object");
+                  response.body.should.have.property("data");
+                  done();
+                });
+            });
+        });
+    });
+  });
+
+    describe("GET /blogs/:id/comments", () => {
+    it("It should get all comment on an existing blog", (done) => {
+      const user = {
+        email: "a.UWERA@alustudent.com",
+        password: "password",
+      };
+      chai
+        .request(app)
+        .post("/users/login")
+        .send(user)
+        .end((err, response) => {
+          response.should.have.status(200);
+          const token = response.header.authenticate;
+          chai
+            .request(app)
+            .post("/blogs")
+            .set({ Authorization: `Bearer ${token}` })
+            .attach(
+              "coverImage",
+              fs.readFileSync(path.join(__dirname, "../assets/test_image.png")),
+              "test_image.png"
+            )
+            .field("title", "Test title")
+            .field(
+              "content",
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            )
+            .field("category", "category")
+            .field("references", "references")
+            .end((err, response) => {
+              response.should.have.status(201);
+              // console.log(response);
+              const blog = response.body.data;
+              const comment = { comment: "Insightful" };
+              chai
+                .request(app)
+                .post("/blogs/" + blog._id + "/comments/")
+                .set({ Authorization: `Bearer ${token}` })
+                .send(comment)
+                .end((err, response) => {
+                  response.should.have.status(201);
+                  chai
+                      .request(app)
+                      .get("/blogs/" + blog._id + "/comments/") 
+                      .end((err, response) => {
+                        response.should.have.status(200);
+                        response.body.should.be.a("object");
+                        response.body.should.have
+                          .property("blogId")
+                          .eql(blog._id);
+                        response.body.should.have.property("comments");
+                        done();
+                      });
+                });
+            });
+        });
+    });
+  });
+
+  /**
+   * Test the LIKE route
+   */
+
+
 });
