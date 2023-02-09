@@ -64,16 +64,16 @@ const getAllusers = async (req, res) => {
   }
 };
 
-const deleteUser = async (req, res) => {
-  const user = await User.findOneAndDelete(req.params.id);
-  return res.send({ message: "user deleted", user: user });
-};
+// const deleteUser = async (req, res) => {
+//   const user = await User.findOneAndDelete(req.params.id);
+//   return res.send({ message: "user deleted", user: user });
+// };
 
-const updateUser = async (req, res) => {
-  const user = await User.findOneAndUpdate(req.params.id, req.body);
-  const updated = await User.findById(req.params.id);
-  return res.send({ user: updated, message: "user updated" });
-};
+// const updateUser = async (req, res) => {
+//   const user = await User.findOneAndUpdate(req.params.id, req.body);
+//   const updated = await User.findById(req.params.id);
+//   return res.send({ user: updated, message: "user updated" });
+// };
 
 const UserLogin = async (req, res) => {
   try {
@@ -100,4 +100,9 @@ const UserLogin = async (req, res) => {
   }
 };
 
-export { SignUp, getAllusers, UserLogin, deleteUser, updateUser };
+export {
+  SignUp,
+  getAllusers,
+  UserLogin,
+  // deleteUser, updateUser
+};

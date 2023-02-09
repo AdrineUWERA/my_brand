@@ -20,11 +20,12 @@ const userLoggedIn = async (req, res, next) => {
             message: "Not logged in"
         })
     }
+    
     const token = header.split(" ")[1]
     const userInfo = decodeToken(token)
     const user = await UserService.userExist(userInfo)
     req.user = user 
-
+ 
     return next()
 }
 
