@@ -6,9 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "nodemon index.js",
-    "test": "mocha tests --timeout 30000",
-    "coverage": "nyc npm run test",
-    "coveraget": " c8 --all --reporter=text mocha --require tests/tests.test.js --recursive --exit --timeout 80000 "
+    "test": "mocha tests --timeout 30000", 
+    "coverage": "c8 --all --reporter=text mocha tests/tests.test.js --recursive --exit --timeout 80000 "
   },
   "keywords": [],
   "author": "Adrine UWERA",

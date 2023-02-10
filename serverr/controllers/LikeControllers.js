@@ -6,7 +6,7 @@ const GetAllLikes = async (req, res) => {
     const blogId = req.baseUrl.split("/")[2];
     const likes = await Like.find({ blogId: blogId });
     res.status(200).json({
-      message: "successful",
+      message: "All likes",
       data: likes,
     });
   } catch (err) {
@@ -24,7 +24,7 @@ const getOneLike = async (req, res) =>{
     // console.log(user.id, blogId);
     const like = await Like.find({ userId: user.id.toString(), blogId: blogId });
     return res.status(200).json({
-      message: "one like",
+      message: "One like",
       data: like
     })
   } catch (err) {
