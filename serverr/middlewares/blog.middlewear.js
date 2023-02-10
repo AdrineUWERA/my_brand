@@ -8,8 +8,7 @@ const validatePostId = async (req, res, next) => {
         return res.status(404).json({ message: "Blog not found"});
     }
 
-    req.body.blogId = blogId;
-    // console.log(req.body);
+    req.body.blogId = blogId; 
     next();
 }
 

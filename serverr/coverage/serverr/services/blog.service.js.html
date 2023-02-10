@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60.86% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/23</span>
+                <span class='fraction'>23/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60.86% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/23</span>
+                <span class='fraction'>23/23</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -89,43 +89,43 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import Blog from "../models/Blog.js";
 &nbsp;
 class BlogService {
-    static createBlog =  <span class="fstat-no" title="function not covered" >async (data) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        const blogCreated = await Blog.create(data);</span>
-<span class="cstat-no" title="statement not covered" >        return await blogCreated.save()</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+    static createBlog =  async (data) =&gt; {
+        const blogCreated = await Blog.create(data);
+        return await blogCreated.save()
+    }
 &nbsp;
-    static findbyId = <span class="fstat-no" title="function not covered" >async (id) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        return await Blog.findById(id)</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+    static findbyId = async (id) =&gt; {
+        return await Blog.findById(id)
+    }
 &nbsp;
-    static findAll = <span class="fstat-no" title="function not covered" >async () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        return await Blog.find()</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+    static findAll = async () =&gt; {
+        return await Blog.find()
+    }
 &nbsp;
-    static deleteOne = <span class="fstat-no" title="function not covered" >async (id) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        return await Blog.deleteOne({id: id})</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+    static deleteOne = async (id) =&gt; {
+        return await Blog.deleteOne({id: id})
+    }
 }
 &nbsp;
 &nbsp;
@@ -136,7 +136,7 @@ export default BlogService</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-02-09T19:51:32.921Z
+                at 2023-02-10T08:50:16.990Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

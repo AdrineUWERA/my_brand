@@ -20,9 +20,8 @@ const GetAllLikes = async (req, res) => {
 const getOneLike = async (req, res) =>{
   try{
     const blogId = req.baseUrl.split("/")[2];
-    const user = req.user;
-    // console.log(user.id, blogId);
-    const like = await Like.find({ userId: user.id.toString(), blogId: blogId });
+    const userId = req.body.userId; 
+    const like = await Like.find({ userId: userId, blogId: blogId });
     return res.status(200).json({
       message: "One like",
       data: like
