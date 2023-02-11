@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "nodemon index.js",
-    "test": "mocha tests --timeout 30000", 
+    "test": "mocha tests --timeout 30000",
     "coverage": "c8 --all --reporter=text mocha tests/tests.test.js --recursive --exit --timeout 80000 "
   },
   "keywords": [],
@@ -26,7 +26,9 @@
     "mocha": "^10.2.0",
     "mongoose": "^6.9.0",
     "multer": "^1.4.5-lts.1",
-    "nyc": "^15.1.0"
+    "nyc": "^15.1.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^4.6.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

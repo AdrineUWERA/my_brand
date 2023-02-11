@@ -1,7 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./configs/db.config.js";   
-import router from './routes/routes.js'; 
+import router from './routes/routes.js';  
+import swaggerJsdoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
 
 dotenv.config();
 
@@ -10,6 +12,46 @@ const app = express();
 
 //connect to the mongodb
 connectDB;
+
+const options = {
+  definition: {
+    openapi: "3.0.0",
+    // securityDefinitions: {
+    //   "bearerAuth": {
+    //     "type": "apiKey",
+    //     "name": "Authorization",
+    //     "in": "header"
+    //   }
+    // },
+    info: {
+      title: "My brand API",
+      version: "0.1.0",
+      description:
+        "My brand API using express js and documented using SWAGGER",
+      license: {
+        name: "MIT",
+        url: "https://spdx.org/licenses/MIT.html",
+      },
+      contact: {
+        name: "Adrine UWERA", 
+        email: "a.uwera@alustudent.com",
+      },
+    },
+    servers: [
+      {
+        url: "http://localhost:5000",
+      },
+    ],
+  },
+  apis: ["./routes/api/*.js"],
+};
+
+const specs = swaggerJsdoc(options);
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(specs, { explorer: true })
+);
 
 // parse the request body
 app.use(express.json());
