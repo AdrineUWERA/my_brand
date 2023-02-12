@@ -6,12 +6,7 @@ const GetAllBlogs = async (req, res) => {
   const blogs = await BlogService.findAll();
   try {
     return res.status(200).json({ message: "All blogs", data: blogs });
-  } catch (err) {
-    return res.status(500).json({
-      message: "Something went wrong!",
-      error: `Error: ${err}`,
-    });
-  }
+  } catch (err) { return res.status(500).json({  message: "Something went wrong!",  error: `Error: ${err}`, }); }
 };
 
 const GetOneBlog = async (req, res) => {
@@ -23,21 +18,13 @@ const GetOneBlog = async (req, res) => {
       return res.status(404).json({ message: "There is no blog with that id" });
     }
     return res.status(200).json({ message: "One blog", data: blog });
-  } catch (err) {
-    return res.status(500).json({
-      message: "Something went wrong",
-      error: `Error: ${err}`,
-    });
-  }
+  } catch (err) { return res.status(500).json({ message: "Something went wrong", error: `Error: ${err}` });  }
 };
 
 const CreateBlog = async (req, res) => {
   try {
     const { title, content, category, coverImage, references } = req.body;
     
-    // const imageURL = await imageUpload(req.file.path);
-    // console.log(req.body)
-
     const blog = await BlogService.createBlog({
       title: title,
       content: content,
@@ -54,14 +41,8 @@ const CreateBlog = async (req, res) => {
       message: "New Blog added successfully!",
       data: BlogAdded,
     });
-  } catch (err) {
-    return res.status(500).json({
-      message: "Something went wrong",
-      error: `Error: ${err}`,
-    });
-  }
+  } catch (err) { return res.status(500).json({ message: "Something went wrong", error: `Error: ${err}`, });}
 };
-
 const UpdateBlog = async (req, res) => {
   try {
     const { title, content, category, references } = req.body;
@@ -82,26 +63,14 @@ const UpdateBlog = async (req, res) => {
 
       return res.send(blogupdated);
     } else {
-      return res.status(404).json({ error: "Blog doesn't exist" });
+      return res.status(404).json({ message: "Blog doesn't exist" });
     }
-  } catch (err) {
-    return res.status(500).json({
-      message: "Something went wrong",
-      error: `Error: ${err}`,
-    });
-  }
+  } catch (err) { return res.status(500).json({ message: "Something went wrong", error: `Error: ${err}`, });  }
 };
-
 const DeleteBlog = async (req, res) => {
   try {
     const deletedBlog = await BlogService.deleteOne(req.params.id);
     return res.send({ message: "Blog deleted", data: deletedBlog });
-  } catch (err) {
-    return res.status(500).json({
-      message: "Something went wrong",
-      error: `Error: ${err}`,
-    });
-  }
+  } catch (err) { return res.status(500).json({ message: "Something went wrong",  error: `Error: ${err}`, });  }
 };
-
 export { CreateBlog, UpdateBlog, DeleteBlog, GetAllBlogs, GetOneBlog };

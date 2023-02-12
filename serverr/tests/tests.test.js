@@ -87,6 +87,68 @@ describe("blogs API", () => {
           done();
         });
     });
+
+    it("It should POST a new admin", (done) => {
+      const number = Math.floor(Math.random() * 10000);
+      const user = {
+        fullName: "Test User",
+        email: `test${number}@mail.com`,
+        password: "password",
+        role: "admin",
+      };
+
+      chai
+        .request(app)
+        .post("/users/signup")
+        .send(user)
+        .end((err, response) => {
+          response.should.have.status(201);
+          response.body.should.be.a("object");
+          response.body.should.have
+            .property("message")
+            .eql("User registered successfully");
+          response.body.should.have.property("data").should.be.a("object");
+          response.body.should.have
+            .property("data")
+            .have.nested.property("fullName");
+          response.body.should.have
+            .property("data")
+            .have.nested.property("email");
+          response.body.should.have
+            .property("data")
+            .have.nested.property("password");
+          done();
+        });
+    });
+
+    it("It should NOT POST a new user because the user already exists", (done) => {
+      const number = Math.floor(Math.random() * 10000);
+      const user = {
+        fullName: "Test User",
+        email: `test${number}@mail.com`,
+        password: "password",
+      };
+
+      chai
+        .request(app)
+        .post("/users/signup")
+        .send(user)
+        .end((err, response) => {
+          response.should.have.status(201);
+          chai
+            .request(app)
+            .post("/users/signup")
+            .send(user)
+            .end((err, response) => {
+              response.should.have.status(400);
+              response.body.should.be.a("object");
+              response.body.should.have
+                .property("message")
+                .eql("User arleady exists");
+              done();
+            });
+        });
+    });
   });
 
   describe("POST /users/login", () => {
@@ -231,6 +293,7 @@ describe("blogs API", () => {
         email: "a.UWERA@alustudent.com",
         password: "password",
       };
+
       chai
         .request(app)
         .post("/users/login")
@@ -285,6 +348,69 @@ describe("blogs API", () => {
         });
     });
 
+    it("It should NOT POST a new blog when the logged in user is not an admin", (done) => {
+      const user = {
+        email: "u.adrinx8e@alustudent.com",
+        password: "password",
+      };
+
+      chai
+        .request(app)
+        .post("/users/login")
+        .send(user)
+        .end((err, response) => {
+          response.should.have.status(200);
+          const token = response.header.authenticate;
+
+          chai
+            .request(app)
+            .post("/blogs")
+            .set({ Authorization: `Bearer ${token}` })
+            .attach(
+              "coverImage",
+              fs.readFileSync(path.join(__dirname, "../assets/test_image.png")),
+              "test_image.png"
+            )
+            .field("title", "Test title")
+            .field(
+              "content",
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            )
+            .field("category", "category")
+            .field("references", "references")
+            .end((err, response) => {
+              response.should.have.status(401);
+              response.body.should.have
+                .property("message")
+                .eql("Request denied. Only for admin");
+              done();
+            });
+        });
+    });
+
+    it("It should NOT POST a new blog when not logged in", (done) => {
+      chai
+        .request(app)
+        .post("/blogs")
+        .attach(
+          "coverImage",
+          fs.readFileSync(path.join(__dirname, "../assets/test_image.png")),
+          "test_image.png"
+        )
+        .field("title", "Test title")
+        .field(
+          "content",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        )
+        .field("category", "category")
+        .field("references", "references")
+        .end((err, response) => {
+          response.should.have.status(403);
+          response.body.should.have.property("message").eql("Not logged in");
+          done();
+        });
+    });
+
     it("It should NOT POST a new blog without the title property", (done) => {
       const user = {
         email: "a.UWERA@alustudent.com",
@@ -331,11 +457,7 @@ describe("blogs API", () => {
   });
 
   describe("PATCH /blogs/:id", () => {
-    it("It should PATCH an existing blog", (done) => {
-      // const blogId = "63e4c94eff1d354e96ac98c7";
-      const blogUpdates = {
-        title: "Test update title",
-      };
+    it("It should update an image of an existing blog", (done) => {
       const user = {
         email: "a.UWERA@alustudent.com",
         password: "password",
@@ -371,15 +493,117 @@ describe("blogs API", () => {
                 .request(app)
                 .patch("/blogs/" + blog._id)
                 .set({ Authorization: `Bearer ${token}` })
+                .attach(
+                  "coverImage",
+                  fs.readFileSync(
+                    path.join(__dirname, "../assets/test_image.png")
+                  ),
+                  "test_image.png"
+                )
+                .end((err, response) => {
+                  response.should.have.status(200);
+                  response.body.should.be.a("object");
+                  response.body.should.have
+                    .property("coverImage")
+                    .not.equal(blog.coverImage);
+                  done();
+                });
+            });
+        });
+    });
+
+    it("It should update the category, references, and content of an existing blog", (done) => {
+      // const blogId = "63e4c94eff1d354e96ac98c7";
+      const blogUpdates = {
+        category: "Updated category",
+        references: "Updated references",
+        content: "Updated content",
+        title: "Updated Title",
+      };
+      const user = {
+        email: "a.UWERA@alustudent.com",
+        password: "password",
+      };
+      chai
+        .request(app)
+        .post("/users/login")
+        .send(user)
+        .end((err, response) => {
+          response.should.have.status(200);
+          const token = response.header.authenticate;
+          chai
+            .request(app)
+            .post("/blogs")
+            .set({ Authorization: `Bearer ${token}` })
+            .attach(
+              "coverImage",
+              fs.readFileSync(path.join(__dirname, "../assets/test_image.png")),
+              "test_image.png"
+            )
+            .field("title", "Test title")
+            .field(
+              "content",
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            )
+            .field("category", "category")
+            .field("references", "references")
+            .end((err, response) => {
+              response.should.have.status(201);
+              const blog = response.body.data;
+              chai
+                .request(app)
+                .patch("/blogs/" + blog._id)
+                .set({ Authorization: `Bearer ${token}` })
                 .send(blogUpdates)
                 .end((err, response) => {
                   response.should.have.status(200);
                   response.body.should.be.a("object");
                   response.body.should.have
+                    .property("category")
+                    .not.equal(blog.category);
+                  response.body.should.have
                     .property("title")
-                    .eq(blogUpdates.title);
+                    .not.equal(blog.title);
+                  response.body.should.have
+                    .property("references")
+                    .not.equal(blog.references);
+                  response.body.should.have
+                    .property("content")
+                    .not.equal(blog.content);
                   done();
                 });
+            });
+        });
+    });
+
+    it("It should NOT update a non-existing blog", (done) => {
+      const blogId = "63e4c94eff1d354e96ac98c7";
+      const blogUpdates = {
+        category: "updated category",
+      };
+      const user = {
+        email: "a.UWERA@alustudent.com",
+        password: "password",
+      };
+      chai
+        .request(app)
+        .post("/users/login")
+        .send(user)
+        .end((err, response) => {
+          response.should.have.status(200);
+          const token = response.header.authenticate;
+          chai
+            .request(app)
+            .patch("/blogs/" + blogId)
+            .set({ Authorization: `Bearer ${token}` })
+            .send(blogUpdates)
+            .end((err, response) => {
+              response.should.have.status(404);
+              response.body.should.be.a("object");
+              response.body.should.have
+                .property("message")
+                .equal("Blog doesn't exist");
+              done();
             });
         });
     });
@@ -593,7 +817,7 @@ describe("blogs API", () => {
     });
   });
 
-    describe("GET /blogs/:id/comments", () => {
+  describe("GET /blogs/:id/comments", () => {
     it("It should get all comment on an existing blog", (done) => {
       const user = {
         email: "a.UWERA@alustudent.com",
@@ -635,17 +859,17 @@ describe("blogs API", () => {
                 .end((err, response) => {
                   response.should.have.status(201);
                   chai
-                      .request(app)
-                      .get("/blogs/" + blog._id + "/comments/")
-                      .end((err, response) => {
-                        response.should.have.status(200);
-                        response.body.should.be.a("object");
-                        response.body.should.have
-                          .property("blogId")
-                          .eql(blog._id);
-                        response.body.should.have.property("comments");
-                        done();
-                      });
+                    .request(app)
+                    .get("/blogs/" + blog._id + "/comments/")
+                    .end((err, response) => {
+                      response.should.have.status(200);
+                      response.body.should.be.a("object");
+                      response.body.should.have
+                        .property("blogId")
+                        .eql(blog._id);
+                      response.body.should.have.property("comments");
+                      done();
+                    });
                 });
             });
         });
@@ -677,7 +901,7 @@ describe("blogs API", () => {
               fs.readFileSync(path.join(__dirname, "../assets/test_image.png")),
               "test_image.png"
             )
-            .field("title", "Test title")
+            .field("title", "Test like functionality")
             .field(
               "content",
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -700,6 +924,64 @@ describe("blogs API", () => {
                     .eql("liked/unliked");
                   response.body.should.have.property("data");
                   done();
+                });
+            });
+        });
+    });
+  });
+
+  describe("POST /blogs/:id/likes", () => {
+    it("It should like/unlike an existing blog", (done) => {
+      const user = {
+        email: "a.UWERA@alustudent.com",
+        password: "password",
+      };
+      chai
+        .request(app)
+        .post("/users/login")
+        .send(user)
+        .end((err, response) => {
+          response.should.have.status(200);
+          const token = response.header.authenticate;
+          chai
+            .request(app)
+            .post("/blogs")
+            .set({ Authorization: `Bearer ${token}` })
+            .attach(
+              "coverImage",
+              fs.readFileSync(path.join(__dirname, "../assets/test_image.png")),
+              "test_image.png"
+            )
+            .field("title", "Test Unlike blog")
+            .field(
+              "content",
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            )
+            .field("category", "category")
+            .field("references", "references")
+            .end((err, response) => {
+              response.should.have.status(201);
+              // console.log(response);
+              const blog = response.body.data;
+              chai
+                .request(app)
+                .post("/blogs/" + blog._id + "/likes/")
+                .set({ Authorization: `Bearer ${token}` })
+                .end((err, response) => {
+                  response.should.have.status(201);
+                  response.body.should.be.a("object");
+                  chai
+                    .request(app)
+                    .post("/blogs/" + blog._id + "/likes/")
+                    .set({ Authorization: `Bearer ${token}` })
+                    .end((err, response) => {
+                      response.should.have.status(201);
+                      response.body.should.be.a("object");
+                      response.body.should.have
+                        .property("message")
+                        .eql("liked/unliked");
+                      done();
+                    });
                 });
             });
         });

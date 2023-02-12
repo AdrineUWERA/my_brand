@@ -13,6 +13,10 @@ const userSchema = joi.object({
     "string.empty": "password is required.",
     "any.required": "password is required",
   }),
+  role: joi.string().default("user").messages({
+    "string.empty": "role is required.",
+    "any.required": "role is required",
+  }),
 });
 
 const userLoginSchema = joi.object({
