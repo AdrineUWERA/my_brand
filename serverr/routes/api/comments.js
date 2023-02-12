@@ -47,6 +47,8 @@ import commentValidator from "../../validations/commentValidation/commentValidat
  *   description: The comments managing API
  * /blogs/{id}/comments:
  *   post:
+ *     security:
+ *        - bearerAuth: []
  *     summary: Create a new comment
  *     tags: [Comments]
  *     parameters:

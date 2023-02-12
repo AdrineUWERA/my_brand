@@ -11,7 +11,7 @@ import {
 
 /**
  * @swagger
- * components:
+ * components: 
  *   schemas:
  *     User:
  *       type: object
@@ -53,7 +53,7 @@ import {
  *       required: true
  *       content:
  *         application/json:
- *           schema:
+ *           schema: 
  *             $ref: '#/components/schemas/User'
  *     responses:
  *       201:

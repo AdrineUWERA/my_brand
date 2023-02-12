@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
-import connectDB from "./configs/db.config.js";   
-import router from './routes/routes.js';  
+import connectDB from "./configs/db.config.js";
+import router from "./routes/routes.js";
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 
@@ -16,24 +16,25 @@ connectDB;
 const options = {
   definition: {
     openapi: "3.0.0",
-    // securityDefinitions: {
-    //   "bearerAuth": {
-    //     "type": "apiKey",
-    //     "name": "Authorization",
-    //     "in": "header"
-    //   }
-    // },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
     info: {
       title: "My brand API",
       version: "0.1.0",
-      description:
-        "My brand API using express js and documented using SWAGGER",
+      description: "My brand API using express js and documented using SWAGGER",
       license: {
         name: "MIT",
         url: "https://spdx.org/licenses/MIT.html",
       },
       contact: {
-        name: "Adrine UWERA", 
+        name: "Adrine UWERA",
         email: "a.uwera@alustudent.com",
       },
     },
@@ -59,12 +60,11 @@ app.use(express.json());
 // registers the routes
 app.use(router);
 
-const port = process.env.PORT; 
+const port = process.env.PORT;
 
 // listens to the server and the port it is running on
 app.listen(port, () => {
   console.log(`Server is running on port ${5000}`);
 });
-
 
 export default app;

@@ -46,6 +46,8 @@ import likeValidator from "../../validations/likeValidation/likeValidator.js"
  *   description: The comments managing API
  * /blogs/{id}/likes:
  *   post:
+ *     security:
+ *        - bearerAuth: []
  *     summary: Add a like on an existing blog
  *     tags: [Likes]
  *     parameters:
@@ -88,6 +90,8 @@ import likeValidator from "../../validations/likeValidation/likeValidator.js"
  *    
  * /blogs/{id}/like:
  *   get:
+ *     security:
+ *        - bearerAuth: []
  *     summary: gets all blog likes
  *     tags: [Likes] 
  *     parameters:

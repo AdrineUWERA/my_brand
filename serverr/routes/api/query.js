@@ -64,6 +64,8 @@ import queryValidator from "../../validations/queryValidation/queryValidator.js"
  *       500:
  *         description: Some server error
  *   get:
+ *     security:
+ *        - bearerAuth: []
  *     summary: gets all queries
  *     tags: [Queries] 
  *     responses:

@@ -69,6 +69,8 @@ import imageUpload from "../../middlewares/image.middlewear.js";
  *   description: The blogs managing API
  * /blogs:
  *   post:
+ *     security:
+ *        - bearerAuth: []
  *     summary: Create a new blog
  *     tags: [Blogs]
  *     requestBody:
@@ -132,6 +134,8 @@ import imageUpload from "../../middlewares/image.middlewear.js";
  *         description: Some server error
  * 
  *   delete:
+ *     security:
+ *        - bearerAuth: []
  *     summary: Remove the blog by id
  *     tags: [Blogs]
  *     parameters:
@@ -149,6 +153,8 @@ import imageUpload from "../../middlewares/image.middlewear.js";
  *         description: The blog was not found 
  * 
  *   patch:
+ *    security:
+ *        - bearerAuth: []
  *    summary: Update the blog by the id
  *    tags: [Blogs]
  *    parameters:
