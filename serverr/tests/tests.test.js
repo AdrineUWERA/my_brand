@@ -2,8 +2,7 @@ import app from "../index.js";
 import dotenv from "dotenv";
 import chai from "chai";
 import chaiHttp from "chai-http";
-import mongoose from "mongoose";
-// import Blog from "../models/Blog.js"
+import mongoose from "mongoose"; 
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -15,9 +14,9 @@ dotenv.config();
 chai.should();
 
 chai.use(chaiHttp);
-chai.config.includeStack = true; // turn on stack trace
-chai.config.showDiff = false;
-chai.config.truncateThreshold = 0;
+// chai.config.includeStack = true; // turn on stack trace
+// chai.config.showDiff = false;
+// chai.config.truncateThreshold = 0;
 
 describe("blogs API", () => {
   /**
