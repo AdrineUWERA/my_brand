@@ -201,8 +201,7 @@ describe("blogs API", () => {
   });
 
   describe("GET blogs/:id", () => {
-    it("It should GET a blog by ID", (done) => {
-      const blogId = "63e4ce32a98cd09056ff7439";
+    it("It should GET a blog by ID", (done) => { 
       const user = {
         email: "a.UWERA@alustudent.com",
         password: "password",
@@ -211,10 +210,10 @@ describe("blogs API", () => {
         .request(app)
         .post("/users/login")
         .send(user)
-        .end((err, response) => {
+        .end(async (err, response) => {
           response.should.have.status(200);
           const token = response.header.authenticate;
-          chai
+          await chai
             .request(app)
             .post("/blogs")
             .set({ Authorization: `Bearer ${token}` })
@@ -230,7 +229,7 @@ describe("blogs API", () => {
             )
             .field("category", "category")
             .field("references", "references")
-            .end((err, response) => {
+            .then((response) => {
               response.should.have.status(201);
               // console.log(response);
               const blog = response.body.data;
