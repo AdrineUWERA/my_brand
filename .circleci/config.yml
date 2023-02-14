@@ -14,9 +14,6 @@ jobs:
       - run:
           name: Run Unit Tests
           command: cd serverr && npm run coverage
-      - run:
-          name: Upload coverage to Coveralls
-          command: cd serverr && npx coveralls < coverage/lcov.info
 workflows:
   build_tests:
     jobs:
