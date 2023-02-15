@@ -46,6 +46,9 @@ const options = {
       {
         url: "http://localhost:5000",
       },
+      {
+        url: "https://mybrand-production.up.railway.app"
+      }
     ],
   },
   apis: ["./routes/api/*.js"],
