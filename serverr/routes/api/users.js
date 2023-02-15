@@ -35,7 +35,7 @@ import {
  *       example:
  *         id: 63e53d00d2961c2e1779f715
  *         fullName: Adrine UWERA
- *         email: a.uwera898@alustudent.com
+ *         email: a.uwer2122271a@alustudent.com
  *         password: password
  */
 
@@ -64,6 +64,8 @@ import {
  *               $ref: '#/components/schemas/User'
  *       500:
  *         description: Some server error
+ *       400:
+ *         description: User already exists
  * /users/login:
  *   post:
  *     summary: Log a user in
@@ -83,6 +85,10 @@ import {
  *               $ref: '#/components/schemas/User'
  *       500:
  *         description: Some server error
+ *       400:
+ *         description: Invalid password
+ *       404:
+ *         description: User doesn't exist
  * /users:
  *   get:
  *     summary: gets all users

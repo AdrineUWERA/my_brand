@@ -2,7 +2,7 @@ import app from "../index.js";
 import dotenv from "dotenv";
 import chai from "chai";
 import chaiHttp from "chai-http";
-import mongoose from "mongoose"; 
+import mongoose from "mongoose";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -23,7 +23,7 @@ describe("blogs API", () => {
    * Test the USER route
    */
   before(() => {
-    mongoose.connect(process.env.MONGO_URI);
+    mongoose.connect(process.env.TEST_MONGO_URI);
     const db = mongoose.connection;
     db.on("error", console.error.bind(console, "Database connection failed"));
     db.once("open", () => {
@@ -152,8 +152,47 @@ describe("blogs API", () => {
 
   describe("POST /users/login", () => {
     it("It should log the user in", (done) => {
+      // const user = {
+      //   email: "a.UWERA@alustudent.com",
+      //   password: "password",
+      // };
+
+      const number = Math.floor(Math.random() * 10000);
       const user = {
-        email: "a.UWERA@alustudent.com",
+        fullName: "Test User",
+        email: `test${number}@mail.com`,
+        password: "password",
+      };
+
+      chai
+        .request(app)
+        .post("/users/signup")
+        .send(user)
+        .end((err, response) => {
+          response.should.have.status(201); 
+          const loguser = {
+            email: user.email,
+            password: user.password
+          }
+          chai
+            .request(app)
+            .post("/users/login")
+            .send(loguser)
+            .end((err, response) => {
+              response.should.have.status(200);
+              response.body.should.be.a("object");
+              response.body.should.have
+                .property("message")
+                .eql("User successfully logged in");
+              response.body.should.have.property("token");
+              done();
+            });
+        });
+    });
+
+    it("It should NOT log the user in because user doesn't exist", (done) => {
+      const user = {
+        email: "doesn'texist@alustudent.com",
         password: "password",
       };
 
@@ -162,12 +201,11 @@ describe("blogs API", () => {
         .post("/users/login")
         .send(user)
         .end((err, response) => {
-          response.should.have.status(200);
+          response.should.have.status(404);
           response.body.should.be.a("object");
           response.body.should.have
             .property("message")
-            .eql("User successfully logged in");
-          response.body.should.have.property("token");
+            .eql("User doesn't exist");
           done();
         });
     });
@@ -201,7 +239,7 @@ describe("blogs API", () => {
   });
 
   describe("GET blogs/:id", () => {
-    it("It should GET a blog by ID", (done) => { 
+    it("It should GET a blog by ID", (done) => {
       const user = {
         email: "a.UWERA@alustudent.com",
         password: "password",

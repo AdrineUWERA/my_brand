@@ -79,6 +79,9 @@ const UserLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
     const userExists = await UserService.userExist({ email: email });
+    if (!userExists) {
+      return res.status(404).json({ message: "User doesn't exist"})
+    }
     const validPassword = comparePassword(password, userExists.password);
     if (!validPassword) {
       return res.status(400).json({ message: "Invalid password" });

@@ -4,11 +4,15 @@ import connectDB from "./configs/db.config.js";
 import router from "./routes/routes.js";
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
+import cors from 'cors'
+import morgan from 'morgan';
 
 dotenv.config();
 
 // initialize the express server
 const app = express();
+app.use(cors())
+app.use(morgan("tiny"))
 
 //connect to the mongodb
 connectDB;
@@ -25,7 +29,7 @@ const options = {
         },
       },
     },
-    info: {
+    info: { 
       title: "My brand API",
       version: "0.1.0",
       description: "My brand API using express js and documented using SWAGGER",

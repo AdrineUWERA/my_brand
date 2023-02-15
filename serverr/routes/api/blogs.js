@@ -70,12 +70,27 @@ import imageUpload from "../../middlewares/image.middlewear.js";
  * /blogs:
  *   post:
  *     security:
- *        - bearerAuth: []
+ *        - bearerAuth: [] 
  *     summary: Create a new blog
  *     tags: [Blogs]
  *     requestBody:
  *       required: true
  *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               coverImage:
+ *                 type: string
+ *                 format: binary
+ *               content:
+ *                 type: string
+ *               category:
+ *                 type: string
+ *               references:
+ *                 type: string
  *         application/json:
  *           schema:
  *             $ref: '#/components/schemas/Blog'
@@ -132,6 +147,8 @@ import imageUpload from "../../middlewares/image.middlewear.js";
  *               $ref: '#/components/schemas/Blog' 
  *       500:
  *         description: Some server error
+ *       404:
+ *         description: Blog doesn't exist
  * 
  *   delete:
  *     security:
@@ -165,11 +182,26 @@ import imageUpload from "../../middlewares/image.middlewear.js";
  *        required: true
  *        description: The blog id
  *    requestBody:
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *            $ref: '#/components/schemas/Blog'
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               coverImage:
+ *                 type: string
+ *                 format: binary
+ *               content:
+ *                 type: string
+ *               category:
+ *                 type: string
+ *               references:
+ *                 type: string
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Blog'
  *    responses:
  *      200:
  *        description: The blog was updated
