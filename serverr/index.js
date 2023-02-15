@@ -58,7 +58,7 @@ app.use(
   swaggerUi.setup(specs, { explorer: true })
 );
 
-app.use("/", (req,res) => {res.send("API endpoints")})
+app.get("/", (req,res) => {res.send("API endpoints")})
 
 // parse the request body
 app.use(express.json());
