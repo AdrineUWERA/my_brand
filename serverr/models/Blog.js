@@ -7,7 +7,7 @@ const BlogSchema = new mongoose.Schema({
   },
   datePublished:{
     type: Date,
-    value: new Date(),
+    default: new Date(),
   },
   title: {
     type: String,

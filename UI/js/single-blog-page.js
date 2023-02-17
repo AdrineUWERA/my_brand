@@ -1,19 +1,24 @@
-const getBlogId = JSON.parse(localStorage.getItem("selectedBlog"));
+const dynamicId = JSON.parse(localStorage.getItem("selectedBlog"));
+console.log("fromurl", dynamicId);
 const ALoggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 const allUsers = JSON.parse(localStorage.getItem("users"));
 
 // console.log(ALoggedInUser, allUsers);
 // console.log("this user", thisUser[0]);
 
-// console.log("fromurl", getBlogId);
-let allBlogs = [];
 
-const retrieving = async () => {
-  allBlogs = await JSON.parse(localStorage.getItem("blogs"));
-  // console.log(allBlogs);
-  let thisBlog = allBlogs.filter((blog) => blog.id === getBlogId);
-  let blogDetails = thisBlog[0];
-  // console.log("this blog", blogDetails);
+let allBlogs = []; 
+
+const retrieving = async () => { 
+  const thisBlog = await fetch(
+    `https://mybrand-production.up.railway.app/blogs/${dynamicId}`,
+    {
+      method: "GET",
+    }
+  );
+  const thisBlogJson = await thisBlog.json();
+  const blogDetails = thisBlogJson.data;
+  console.log(blogDetails)
 
   let likeBtn = document
     .getElementById("like-btn")
@@ -34,7 +39,7 @@ const retrieving = async () => {
           if (thisUser[0].likedBlogs.includes(blogDetails.id)) {
             document.getElementById("like-btn").style.color = "#fff";
             for (let i = 0; i < allBlogs.length; i++) {
-              if (allBlogs[i].id === getBlogId) {
+              if (allBlogs[i].id === dynamicId) {
                 // allBlogs[i].id = blogDetails.id;
                 // allBlogs[i].datePublished= blogDetails.datePublished;
                 allBlogs[i].likes -= 1;
@@ -63,7 +68,7 @@ const retrieving = async () => {
             document.getElementById("like-btn").style.color = "#b1361e";
 
             for (let i = 0; i < allBlogs.length; i++) {
-              if (allBlogs[i].id === getBlogId) {
+              if (allBlogs[i].id === dynamicId) {
                 // allBlogs[i].id = blogDetails.id;
                 // allBlogs[i].datePublished= blogDetails.datePublished;
                 allBlogs[i].likes += 1;
@@ -88,7 +93,7 @@ const retrieving = async () => {
           if (admin.likedBlogs.includes(blogDetails.id)) {
             document.getElementById("like-btn").style.color = "#fff";
             for (let i = 0; i < allBlogs.length; i++) {
-              if (allBlogs[i].id === getBlogId) {
+              if (allBlogs[i].id === dynamicId) {
                 // allBlogs[i].id = blogDetails.id;
                 // allBlogs[i].datePublished= blogDetails.datePublished;
                 allBlogs[i].likes -= 1;
@@ -110,7 +115,7 @@ const retrieving = async () => {
             document.getElementById("like-btn").style.color = "#b1361e";
 
             for (let i = 0; i < allBlogs.length; i++) {
-              if (allBlogs[i].id === getBlogId) {
+              if (allBlogs[i].id === dynamicId) {
                 // allBlogs[i].id = blogDetails.id;
                 // allBlogs[i].datePublished= blogDetails.datePublished;
                 allBlogs[i].likes += 1;
@@ -122,7 +127,7 @@ const retrieving = async () => {
             localStorage.setItem("admin", JSON.stringify(admin));
             // console.log(admin);
             localStorage.setItem("admin", JSON.stringify(admin));
-            
+
             const likesNumber = document.getElementById("likes-nbr");
             likesNumber.innerHTML = `${blogDetails.likes} Likes`;
           }
@@ -132,8 +137,9 @@ const retrieving = async () => {
       }
     });
 
-  const coverImg = new Image();
-  coverImg.src = blogDetails.coverImage;
+  // const coverImg = new Image();
+  coverImg = blogDetails.coverImage;
+  console.log(coverImg);
   let date = new Date(blogDetails.datePublished);
   // console.log(date);
 
@@ -141,7 +147,7 @@ const retrieving = async () => {
     date.getMonth() + 1
   }-${date.getDate()}`;
 
-  const references = blogDetails.references.split("");
+  if (blogDetails.references) {const references = blogDetails.references.split("");}
   const container = document.getElementById("section-title");
   const titleContainer = document.getElementById("section-title");
   titleContainer.innerHTML += ` 
@@ -156,7 +162,7 @@ const retrieving = async () => {
     <div class="blog-content">
       <img
           class="blog-cover"
-          src=${coverImg.src}
+          src=${coverImg}
           alt="cover image" 
       />
       <p class="long-description">${blogDetails.content} </p>
@@ -305,7 +311,7 @@ var form = document
         // console.log(allBlogs);
 
         for (let i = 0; i < allBlogs.length; i++) {
-          if (allBlogs[i].id === getBlogId) {
+          if (allBlogs[i].id === dynamicId) {
             allBlogs[i].comments.push(newComment);
             // console.log(allBlogs[i]);
           }

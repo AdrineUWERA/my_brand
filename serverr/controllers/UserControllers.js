@@ -94,6 +94,7 @@ const UserLogin = async (req, res) => {
     return res.status(200).header("authenticate", token).json({
       message: "User successfully logged in",
       token: token,
+      role: userExists.role
     });
   } catch (err) {
     return res.status(500).json({

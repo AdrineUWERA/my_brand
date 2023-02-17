@@ -10,7 +10,7 @@ const blogSchema = joi.object({
     "any.required": "Blog content required",
   }),
   category: joi.string().required(),
-  references: joi.string().required(), 
+  references: joi.string(), 
   coverImage: joi.string().required(), 
 });
 
