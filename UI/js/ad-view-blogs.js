@@ -2,8 +2,19 @@ let allBlogs = [];
 const getBlogId = JSON.parse(localStorage.getItem("selectedBlog"));
 
 const retrieving = async () => {
-  allBlogs = await JSON.parse(localStorage.getItem("blogs"));
-  console.log(allBlogs);
+  // allBlogs = await JSON.parse(localStorage.getItem("blogs"));
+  const fetchedBlogs = await fetch(
+    "https://mybrand-production.up.railway.app/blogs",
+    {
+      method: "GET",
+    }
+  );
+
+  const allBlogsJSON = await fetchedBlogs.json();
+
+  const allBlogs = allBlogsJSON.data;
+  console.log(allBlogs); 
+  
   allBlogs.sort((a, b) => a.id - b.id).reverse();
   allBlogs.map((blog) => {
     const container = document.getElementById("all-blogs");
@@ -84,13 +95,6 @@ const retrieving = async () => {
   }
 };
 
-// if (allBlogs.length > 0) {
-// document.getElementById("delete-btn").addEventListener("click", () => {
-//   const idOfblogToDelete = JSON.parse(localStorage.getItem("selectedBlogToDelete"));
-
-//   // window.location.href = "ad-view-blogs.html";
-// });
-// }
 window.onload = () => {
   retrieving();
 };

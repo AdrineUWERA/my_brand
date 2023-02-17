@@ -241,8 +241,8 @@ describe("blogs API", () => {
   describe("GET blogs/:id", () => {
     it("It should GET a blog by ID", (done) => {
       const user = {
-        email: "a.UWERA@alustudent.com",
-        password: "password",
+        email: "a.uwera@alustudent.com",
+        password: "Aduwera",
       };
       chai
         .request(app)
@@ -326,8 +326,8 @@ describe("blogs API", () => {
   describe("POST /blogs", () => {
     it("It should POST a new blog", (done) => {
       const user = {
-        email: "a.UWERA@alustudent.com",
-        password: "password",
+        email: "a.uwera@alustudent.com",
+        password: "Aduwera",
       };
 
       chai
@@ -386,7 +386,7 @@ describe("blogs API", () => {
 
     it("It should NOT POST a new blog when the logged in user is not an admin", (done) => {
       const user = {
-        email: "u.adrinx8e@alustudent.com",
+        email: "melissa@gmail.com",
         password: "password",
       };
 
@@ -449,8 +449,8 @@ describe("blogs API", () => {
 
     it("It should NOT POST a new blog without the title property", (done) => {
       const user = {
-        email: "a.UWERA@alustudent.com",
-        password: "password",
+        email: "a.uwera@alustudent.com",
+        password: "Aduwera",
       };
       chai
         .request(app)
@@ -495,8 +495,8 @@ describe("blogs API", () => {
   describe("PATCH /blogs/:id", () => {
     it("It should update an image of an existing blog", (done) => {
       const user = {
-        email: "a.UWERA@alustudent.com",
-        password: "password",
+        email: "a.uwera@alustudent.com",
+        password: "Aduwera",
       };
       chai
         .request(app)
@@ -557,8 +557,8 @@ describe("blogs API", () => {
         title: "Updated Title",
       };
       const user = {
-        email: "a.UWERA@alustudent.com",
-        password: "password",
+        email: "a.uwera@alustudent.com",
+        password: "Aduwera",
       };
       chai
         .request(app)
@@ -618,8 +618,8 @@ describe("blogs API", () => {
         category: "updated category",
       };
       const user = {
-        email: "a.UWERA@alustudent.com",
-        password: "password",
+        email: "a.uwera@alustudent.com",
+        password: "Aduwera",
       };
       chai
         .request(app)
@@ -648,8 +648,8 @@ describe("blogs API", () => {
   describe("DELETE /blogs/:id", () => {
     it("It should DELETE an existing blog", (done) => {
       const user = {
-        email: "a.UWERA@alustudent.com",
-        password: "password",
+        email: "a.uwera@alustudent.com",
+        password: "Aduwera",
       };
       chai
         .request(app)
@@ -753,8 +753,8 @@ describe("blogs API", () => {
   describe("GET /queries", () => {
     it("It should GET all the queries", (done) => {
       const user = {
-        email: "a.UWERA@alustudent.com",
-        password: "password",
+        email: "a.uwera@alustudent.com",
+        password: "Aduwera",
       };
       chai
         .request(app)
@@ -777,7 +777,7 @@ describe("blogs API", () => {
 
     it("It should NOT GET all the queries", (done) => {
       const user = {
-        email: "u.adrine@alustudent.com",
+        email: "melissa@gmail.com",
         password: "password",
       };
       chai
@@ -806,8 +806,8 @@ describe("blogs API", () => {
   describe("POST /blogs/:id/comments", () => {
     it("It should add a comment to an existing blog", (done) => {
       const user = {
-        email: "a.UWERA@alustudent.com",
-        password: "password",
+        email: "a.uwera@alustudent.com",
+        password: "Aduwera",
       };
       chai
         .request(app)
@@ -856,8 +856,8 @@ describe("blogs API", () => {
   describe("GET /blogs/:id/comments", () => {
     it("It should get all comment on an existing blog", (done) => {
       const user = {
-        email: "a.UWERA@alustudent.com",
-        password: "password",
+        email: "a.uwera@alustudent.com",
+        password: "Aduwera",
       };
       chai
         .request(app)
@@ -918,8 +918,8 @@ describe("blogs API", () => {
   describe("POST /blogs/:id/likes", () => {
     it("It should like/unlike an existing blog", (done) => {
       const user = {
-        email: "a.UWERA@alustudent.com",
-        password: "password",
+        email: "a.uwera@alustudent.com",
+        password: "Aduwera",
       };
       chai
         .request(app)
@@ -969,8 +969,8 @@ describe("blogs API", () => {
   describe("POST /blogs/:id/likes", () => {
     it("It should like/unlike an existing blog", (done) => {
       const user = {
-        email: "a.UWERA@alustudent.com",
-        password: "password",
+        email: "a.uwera@alustudent.com",
+        password: "Aduwera",
       };
       chai
         .request(app)
@@ -1027,8 +1027,8 @@ describe("blogs API", () => {
   describe("GET /blogs/:id/likes", () => {
     it("It should get all likes on an existing blog", (done) => {
       const user = {
-        email: "a.UWERA@alustudent.com",
-        password: "password",
+        email: "a.uwera@alustudent.com",
+        password: "Aduwera",
       };
       chai
         .request(app)
@@ -1078,8 +1078,8 @@ describe("blogs API", () => {
   describe("GET /blogs/:id/like", () => {
     it("It should get one like on an existing blog", (done) => {
       const user = {
-        email: "a.UWERA@alustudent.com",
-        password: "password",
+        email: "a.uwera@alustudent.com",
+        password: "Aduwera",
       };
       chai
         .request(app)

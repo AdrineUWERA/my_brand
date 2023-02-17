@@ -1,23 +1,40 @@
-let allBlogs = JSON.parse(localStorage.getItem("blogs"));
-console.log(allBlogs)
+// let allBlogs = JSON.parse(localStorage.getItem("blogs"));
+// console.log(allBlogs);
 let stats = document.getElementById("statistics");
+let nbOfBlogs = 0;
 let totalLikes = 0;
 let totalComments = 0;
 
-for(let i = 0; i < allBlogs.length; i++) {
-    totalLikes+=allBlogs[i].likes;
-    totalComments+=allBlogs[i].comments.length;
-}
+const calculateStats = async () => {
+  const fetchedBlogs = await fetch(
+    "https://mybrand-production.up.railway.app/blogs",
+    {
+      method: "GET",
+    }
+  );
 
-console.log(totalLikes);
+  const allBlogsJSON = await fetchedBlogs.json();
 
-stats.innerHTML += `
+  const allBlogs = allBlogsJSON.data;
+  console.log(allBlogs);
+
+  if (allBlogs) {
+    for (let i = 0; i < allBlogs.length; i++) {
+      totalLikes += allBlogs[i].likes;
+      totalComments += allBlogs[i].comments.length;
+    }
+    nbOfBlogs = allBlogs.length;
+  }
+
+  console.log(totalLikes);
+
+  stats.innerHTML += `
     <div class="card">
         <div>
             <i class="fa-solid fa-newspaper"></i>
         </div>
         <div class="card-stats">
-            <p class="number">${allBlogs.length}</p>
+            <p class="number">${nbOfBlogs}</p>
             <p class="stat-subject">Blogs published</p>
         </div>
     </div>
@@ -40,3 +57,6 @@ stats.innerHTML += `
         </div>
     </div>
 `;
+};
+
+calculateStats();
