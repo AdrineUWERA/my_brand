@@ -10,6 +10,7 @@ imageInput.addEventListener("change", () => {
 });
 
 const LoggedInUser = JSON.parse(localStorage.getItem("userloggedin"));
+console.log(LoggedInUser);
 
 var form = document
   .getElementById("add-blog-form")
@@ -77,7 +78,7 @@ var form = document
         data.append("content", content);
         data.append("references", references);
 
-        const query = await fetch(
+        const addedBlog = await fetch(
           "https://mybrand-production.up.railway.app/blogs",
           {
             method: "POST",
@@ -88,11 +89,15 @@ var form = document
           }
         );
 
+        if (addedBlog.error){
+          console.log(addedBlog.error);
+        }
+
         submitMessage.innerHTML =
           '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(130, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #1eb136;; >' +
           '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> Blog added! </p> </div>';
 
-        console.log(JSON.parse(localStorage.getItem("blogs")));
+
         clearForm();
 
         // checks if there are some messages stored previously in the local storage and retrieve them if any

@@ -83,6 +83,8 @@ var form = document
             role: userloggedInJSON.role,
           })
         );
+
+        console.log(localStorage.getItem("userloggedin"));
         submitMessage.innerHTML =
           '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(130, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #1eb136; >' +
           '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> User logged in </p> </div>';
