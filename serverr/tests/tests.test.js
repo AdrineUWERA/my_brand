@@ -169,11 +169,11 @@ describe("blogs API", () => {
         .post("/users/signup")
         .send(user)
         .end((err, response) => {
-          response.should.have.status(201); 
+          response.should.have.status(201);
           const loguser = {
             email: user.email,
-            password: user.password
-          }
+            password: user.password,
+          };
           chai
             .request(app)
             .post("/users/login")
@@ -300,7 +300,17 @@ describe("blogs API", () => {
                     .property("data")
                     .have.nested.property("_id")
                     .eq(blog._id);
-                  done();
+                  chai
+                    .request(app)
+                    .delete("/blogs/" + blog._id)
+                    .set({ Authorization: `Bearer ${token}` })
+                    .end((err, response) => {
+                      response.should.have.status(200);
+                      response.body.should.have
+                        .property("message")
+                        .eql("Blog deleted");
+                      done();
+                    });
                 });
             });
         });
@@ -355,6 +365,7 @@ describe("blogs API", () => {
             .field("category", "category")
             .field("references", "references")
             .end((err, response) => {
+              const blog = response.body.data;
               response.should.have.status(201);
               response.body.should.be.a("object");
               response.body.should.have
@@ -379,7 +390,17 @@ describe("blogs API", () => {
               response.body.should.have
                 .property("data")
                 .have.nested.property("_id");
-              done();
+              chai
+                .request(app)
+                .delete("/blogs/" + blog._id)
+                .set({ Authorization: `Bearer ${token}` })
+                .end((err, response) => {
+                  response.should.have.status(200);
+                  response.body.should.have
+                    .property("message")
+                    .eql("Blog deleted");
+                  done();
+                });
             });
         });
     });
@@ -542,7 +563,17 @@ describe("blogs API", () => {
                   response.body.should.have
                     .property("coverImage")
                     .not.equal(blog.coverImage);
-                  done();
+                  chai
+                    .request(app)
+                    .delete("/blogs/" + blog._id)
+                    .set({ Authorization: `Bearer ${token}` })
+                    .end((err, response) => {
+                      response.should.have.status(200);
+                      response.body.should.have
+                        .property("message")
+                        .eql("Blog deleted");
+                      done();
+                    });
                 });
             });
         });
@@ -606,14 +637,24 @@ describe("blogs API", () => {
                   response.body.should.have
                     .property("content")
                     .not.equal(blog.content);
-                  done();
+                  chai
+                    .request(app)
+                    .delete("/blogs/" + blog._id)
+                    .set({ Authorization: `Bearer ${token}` })
+                    .end((err, response) => {
+                      response.should.have.status(200);
+                      response.body.should.have
+                        .property("message")
+                        .eql("Blog deleted");
+                      done();
+                    });
                 });
             });
         });
     });
 
     it("It should NOT update a non-existing blog", (done) => {
-      const blogId = "63e4c94eff1d354e96ac98c7";
+      const blogId = "638e4167c2ded750f8ef9408";
       const blogUpdates = {
         category: "updated category",
       };
@@ -846,7 +887,17 @@ describe("blogs API", () => {
                   response.should.have.status(201);
                   response.body.should.be.a("object");
                   response.body.should.have.property("data");
-                  done();
+                  chai
+                    .request(app)
+                    .delete("/blogs/" + blog._id)
+                    .set({ Authorization: `Bearer ${token}` })
+                    .end((err, response) => {
+                      response.should.have.status(200);
+                      response.body.should.have
+                        .property("message")
+                        .eql("Blog deleted");
+                      done();
+                    });
                 });
             });
         });
@@ -904,7 +955,17 @@ describe("blogs API", () => {
                         .property("blogId")
                         .eql(blog._id);
                       response.body.should.have.property("comments");
-                      done();
+                      chai
+                        .request(app)
+                        .delete("/blogs/" + blog._id)
+                        .set({ Authorization: `Bearer ${token}` })
+                        .end((err, response) => {
+                          response.should.have.status(200);
+                          response.body.should.have
+                            .property("message")
+                            .eql("Blog deleted");
+                          done();
+                        });
                     });
                 });
             });
@@ -959,7 +1020,17 @@ describe("blogs API", () => {
                     .property("message")
                     .eql("liked/unliked");
                   response.body.should.have.property("data");
-                  done();
+                  chai
+                    .request(app)
+                    .delete("/blogs/" + blog._id)
+                    .set({ Authorization: `Bearer ${token}` })
+                    .end((err, response) => {
+                      response.should.have.status(200);
+                      response.body.should.have
+                        .property("message")
+                        .eql("Blog deleted");
+                      done();
+                    });
                 });
             });
         });
@@ -1016,7 +1087,17 @@ describe("blogs API", () => {
                       response.body.should.have
                         .property("message")
                         .eql("liked/unliked");
-                      done();
+                      chai
+                        .request(app)
+                        .delete("/blogs/" + blog._id)
+                        .set({ Authorization: `Bearer ${token}` })
+                        .end((err, response) => {
+                          response.should.have.status(200);
+                          response.body.should.have
+                            .property("message")
+                            .eql("Blog deleted");
+                          done();
+                        });
                     });
                 });
             });
@@ -1068,7 +1149,17 @@ describe("blogs API", () => {
                     .property("message")
                     .eql("All likes");
                   response.body.should.have.property("data");
-                  done();
+                  chai
+                    .request(app)
+                    .delete("/blogs/" + blog._id)
+                    .set({ Authorization: `Bearer ${token}` })
+                    .end((err, response) => {
+                      response.should.have.status(200);
+                      response.body.should.have
+                        .property("message")
+                        .eql("Blog deleted");
+                      done();
+                    });
                 });
             });
         });
@@ -1131,7 +1222,17 @@ describe("blogs API", () => {
                         .property("message")
                         .eql("One like");
                       response.body.should.have.property("data");
-                      done();
+                      chai
+                        .request(app)
+                        .delete("/blogs/" + blog._id)
+                        .set({ Authorization: `Bearer ${token}` })
+                        .end((err, response) => {
+                          response.should.have.status(200);
+                          response.body.should.have
+                            .property("message")
+                            .eql("Blog deleted");
+                          done();
+                        });
                     });
                 });
             });
