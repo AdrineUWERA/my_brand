@@ -9,9 +9,15 @@ const blogSchema = joi.object({
     "string.empty": "Blog content required.", 
     "any.required": "Blog content required",
   }),
-  category: joi.string().required(),
-  references: joi.string(), 
-  coverImage: joi.string().required(), 
+  category: joi.string().required().messages({
+    "string.empty": "Category required.", 
+    "any.required": "Category required",
+  }),
+  references: joi.string(),
+  coverImage: joi.string().required().messages({
+    "string.empty": "Cover Image required.", 
+    "any.required": "Cover Image required",
+  }), 
 });
 
  

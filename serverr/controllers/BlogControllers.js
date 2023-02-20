@@ -75,7 +75,7 @@ const UpdateBlog = async (req, res) => {
       const updatedBlog = await blog.save();
       const blogupdated = await Blog.findById(blogId);
 
-      return res.send(blogupdated);
+      return res.status(200).json(blogupdated);
     } else {
       return res.status(404).json({ message: "Blog doesn't exist" });
     }

@@ -1,6 +1,3 @@
-let allBlogs = [];
-const getBlogId = JSON.parse(localStorage.getItem("selectedBlog"));
-
 const retrieving = async () => {
   // allBlogs = await JSON.parse(localStorage.getItem("blogs"));
   const fetchedBlogs = await fetch(
@@ -13,8 +10,8 @@ const retrieving = async () => {
   const allBlogsJSON = await fetchedBlogs.json();
 
   const allBlogs = allBlogsJSON.data;
-  console.log(allBlogs); 
-  
+  console.log(allBlogs);
+
   allBlogs.sort((a, b) => a.id - b.id).reverse();
   allBlogs.map((blog) => {
     const container = document.getElementById("all-blogs");
@@ -46,7 +43,7 @@ const retrieving = async () => {
       e.preventDefault();
       for (let j = 0; j < allBlogs.length; j++) {
         if (i == j) {
-          let blogId = allBlogs[j].id;
+          let blogId = allBlogs[j]._id;
           console.log(blogId);
           localStorage.setItem("selectedBlog", JSON.stringify(blogId));
           window.location.href = "blog-page.html";
@@ -61,7 +58,7 @@ const retrieving = async () => {
       e.preventDefault();
       for (let j = 0; j < allBlogs.length; j++) {
         if (i == j) {
-          let blogId = allBlogs[j].id;
+          let blogId = allBlogs[j]._id;
           console.log(blogId);
           localStorage.setItem("selectedBlogtoEdit", JSON.stringify(blogId));
           window.location.href = "ad-update-blog.html";
@@ -72,22 +69,24 @@ const retrieving = async () => {
 
   const selectedBlog2 = document.querySelectorAll(".deleteBtn");
   for (let i = 0; i < selectedBlog2.length; i++) {
-    selectedBlog2[i].addEventListener("click", (e) => {
+    selectedBlog2[i].addEventListener("click", async (e) => {
       e.preventDefault();
       for (let j = 0; j < allBlogs.length; j++) {
         if (i == j) {
-          let blogId = allBlogs[j].id;
-          console.log(blogId);
-          localStorage.setItem("selectedBlogToDelete", JSON.stringify(blogId));
-          const blogToDelete = allBlogs.filter(
-            (blog) => blog.id === allBlogs[j].id
+          const blogId = allBlogs[j]._id;
+          const LoggedInUser = JSON.parse(localStorage.getItem("userloggedin"));
+          console.log(LoggedInUser);
+          // console.log(blogId);
+          const deletedBlog = await fetch(
+            `https://mybrand-production.up.railway.app/blogs/${blogId}`,
+            {
+              method: "DELETE",
+              headers: {
+                Authorization: `Bearer ${LoggedInUser.token}`,
+              },
+            }
           );
-          let blogDetails = blogToDelete[0];
-          // console.log(blogToDelete);
 
-          allBlogs.splice(allBlogs.indexOf(blogDetails), 1);
-          localStorage.setItem("blogs", JSON.stringify(allBlogs));
-          console.log(allBlogs);
           window.location.href = "ad-view-blogs.html";
         }
       }

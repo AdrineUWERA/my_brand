@@ -1,7 +1,7 @@
-let allBlogs = [];
+
 const retrieving = async () => {
   // https://mybrand-production.up.railway.app/
-  allBlogs = await fetch("https://mybrand-production.up.railway.app/blogs", {
+  let allBlogs = await fetch("https://mybrand-production.up.railway.app/blogs", {
     method: "GET",
   })
     .then((res) => {
