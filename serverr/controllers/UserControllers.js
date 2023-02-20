@@ -64,6 +64,8 @@ const getAllusers = async (req, res) => {
   }
 };
 
+
+
 // const deleteUser = async (req, res) => {
 //   const user = await User.findOneAndDelete(req.params.id);
 //   return res.send({ message: "user deleted", user: user });

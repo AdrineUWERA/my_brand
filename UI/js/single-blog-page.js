@@ -3,10 +3,6 @@ console.log("fromurl", dynamicId);
 const ALoggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 const allUsers = JSON.parse(localStorage.getItem("users"));
 
-// console.log(ALoggedInUser, allUsers);
-// console.log("this user", thisUser[0]);
-
-
 let allBlogs = []; 
 
 const retrieving = async () => { 
@@ -228,22 +224,7 @@ const retrieving = async () => {
  `;
   });
 };
-var x;
-var y;
-// var z;
-// var w;
-// document.addEventListener("click", e=>{
-//   z = e.clientX;
-//   w = e.clientY;
-//   console.log("z: " + z + " w: " + w);
-// })
-
-// document.getElementById("submit-btn").addEventListener("click", (e) => {
-//   x = e.clientX;
-//   y = e.clientY;
-//   // console.log("X: " + x + " Y: " + y);
-// });
-// // console.log("X: " + x + " Y: " + y);
+ 
 var form = document
   .getElementById("comment-form")
   .addEventListener("submit", (e) => {
@@ -255,23 +236,7 @@ var form = document
       setTimeout(() => {
         popUp.classList.remove("show-pop-up");
       }, 5000);
-      // var rect = element.getBoundingClientRect();
-      // if (y < 400) {
-      //   popUp.style.top = `${2350}px`;
-      // }
-      // if (y >= 400 && y<600) {
-      //   popUp.style.top = `${1800 + y}px`;
-      // }
-      // if ( y >= 500 && y<650) {
-      //   popUp.style.top = `${1500  + y}px`;
-      // }
-      // if (y >= 650) {
-      //   popUp.style.top = `${1250 + y}px`;
-      // }
-
-      // if (y >= 800) {
-      //   popUp.style.top = `${950 + y}px`;
-      // }
+       
     } else {
       //gets each user input
       var comment = document.getElementById("comment-message").value;
@@ -290,19 +255,10 @@ var form = document
           '<div id="errors" style="width: 100%; height: 50px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); padding: 5px 15px; display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
           '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The comment should not be just spaces. </p> </div>';
       } else {
-        // otherwise, user input for each field will be stored in an object
-        //generated a unique id using date.now() because it will always be unique
-        const uniqueId = Date.now().toString();
-        //   let url="";
-        const date = new Date();
-        const formattedDate = `${date.getFullYear()}-${
-          date.getMonth() + 1
-        }-${date.getDate()}`;
+         
 
-        var newComment = {
-          id: uniqueId,
-          user: ALoggedInUser.fullName,
-          dateAdded: formattedDate,
+        var newComment = { 
+          user: ALoggedInUser.fullName, 
           comment: comment,
         };
 
