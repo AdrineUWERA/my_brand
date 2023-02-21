@@ -15,7 +15,7 @@ class BlogService {
     }
 
     static deleteOne = async (id) => {
-        return await Blog.deleteById(id) 
+        return await Blog.deleteOne({ _id: id })
         // ({id: id})
     }
 }
