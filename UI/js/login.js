@@ -12,7 +12,7 @@ if (LoggedInUser) {
   //   popUp.style.visibility = "hidden";
   // }, 5000);
   // window.location.href = "index.html";
-  window.history.go(-1);
+  window.history.back();
 }
 
 var form = document
@@ -91,13 +91,8 @@ var form = document
 
         if (userloggedInJSON.role === "admin") {
           window.location.href = "admin-dashboard.html";
-        } else {
-          console.log(window);
-          if (window.history.go(-1) == "blog-page.html") {
-            window.history.go(-1);
-          } else {
-            window.location.href = "index.html";
-          }
+        } else { 
+            window.history.back(); 
         }
       } else if (userloggedInJSON.error) {
         console.log(userloggedIn.error);

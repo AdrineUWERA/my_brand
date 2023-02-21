@@ -68,6 +68,7 @@ const retrieving = async () => {
   }
 
   const selectedBlog2 = document.querySelectorAll(".deleteBtn");
+  // selectedBlog2.sort((a, b) => a.id - b.id).reverse();
   for (let i = 0; i < selectedBlog2.length; i++) {
     selectedBlog2[i].addEventListener("click", async (e) => {
       e.preventDefault();
@@ -76,6 +77,7 @@ const retrieving = async () => {
           const blogId = allBlogs[j]._id;
           const LoggedInUser = JSON.parse(localStorage.getItem("userloggedin"));
           console.log(LoggedInUser);
+          
           // console.log(blogId);
           const deletedBlog = await fetch(
             `https://mybrand-production.up.railway.app/blogs/${blogId}`,
