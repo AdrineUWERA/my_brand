@@ -1,11 +1,11 @@
 const dynamicId = JSON.parse(localStorage.getItem("selectedBlog"));
 console.log("fromurl", dynamicId);
-const ALoggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+const ALoggedInUser = JSON.parse(localStorage.getItem("userloggedin"));
 const allUsers = JSON.parse(localStorage.getItem("users"));
 
-let allBlogs = []; 
+let allBlogs = [];
 
-const retrieving = async () => { 
+const retrieving = async () => {
   const thisBlog = await fetch(
     `https://mybrand-production.up.railway.app/blogs/${dynamicId}`,
     {
@@ -14,8 +14,9 @@ const retrieving = async () => {
   );
   const thisBlogJson = await thisBlog.json();
   const blogDetails = thisBlogJson.data;
-  console.log(blogDetails)
+  console.log(blogDetails);
 
+  // like functionality
   let likeBtn = document
     .getElementById("like-btn")
     .addEventListener("click", (e) => {
@@ -28,7 +29,7 @@ const retrieving = async () => {
         }, 5000);
       } else {
         // console.log(thisUser[0].likedBlogs);
-        if (ALoggedInUser.role === "user") {
+        if (parseJwt(ALoggedInUser.token).role === "user") {
           let thisUser = allUsers.filter(
             (user) => user.id === ALoggedInUser.id
           );
@@ -84,7 +85,7 @@ const retrieving = async () => {
             const likesNumber = document.getElementById("likes-nbr");
             likesNumber.innerHTML = `${blogDetails.likes} Likes`;
           }
-        } else if (ALoggedInUser.role === "admin") {
+        } else if (parseJwt(ALoggedInUser.token).role === "admin") {
           const admin = JSON.parse(localStorage.getItem("admin"));
           if (admin.likedBlogs.includes(blogDetails.id)) {
             document.getElementById("like-btn").style.color = "#fff";
@@ -133,7 +134,7 @@ const retrieving = async () => {
       }
     });
 
-  // const coverImg = new Image();
+  // diplating blog details
   coverImg = blogDetails.coverImage;
   console.log(coverImg);
   let date = new Date(blogDetails.datePublished);
@@ -143,7 +144,9 @@ const retrieving = async () => {
     date.getMonth() + 1
   }-${date.getDate()}`;
 
-  if (blogDetails.references) {const references = blogDetails.references.split("");}
+  if (blogDetails.references) {
+    const references = blogDetails.references.split("");
+  }
   const container = document.getElementById("section-title");
   const titleContainer = document.getElementById("section-title");
   titleContainer.innerHTML += ` 
@@ -164,14 +167,16 @@ const retrieving = async () => {
       <p class="long-description">${blogDetails.content} </p>
     </div>
   `;
+
+  // retrieving one like
   if (ALoggedInUser) {
-    if (ALoggedInUser.role === "user") {
+    if (parseJwt(ALoggedInUser.token).role === "user") {
       let thisUser = allUsers.filter((user) => user.id === ALoggedInUser.id);
       if (thisUser[0].likedBlogs.includes(blogDetails.id)) {
         document.getElementById("like-btn").style.color = "#b1361e";
       }
     }
-    if (ALoggedInUser.role === "admin") {
+    if (parseJwt(ALoggedInUser.token).role === "admin") {
       const admin = JSON.parse(localStorage.getItem("admin"));
       if (admin.likedBlogs.includes(blogDetails.id)) {
         document.getElementById("like-btn").style.color = "#b1361e";
@@ -179,12 +184,15 @@ const retrieving = async () => {
     }
   }
 
+  // displaying likes and comments
+
   const likesNumber = document.getElementById("likes-nbr");
   likesNumber.innerHTML = `${blogDetails.likes} Likes`;
 
   const commentsNumber = document.getElementById("comments-nbr");
   commentsNumber.innerHTML = `${blogDetails.comments.length} Comments`;
 
+  //reference list
   let linksList = blogDetails.references.split(/\n+/g);
   // let linksList = blogDetails.references.split(/\d.\s|\d.|\n+/g);
   // console.log(linksList);
@@ -202,6 +210,8 @@ const retrieving = async () => {
     <li>${link}</li>
  `;
   });
+
+  // displaying comments
 
   const commentsContainer = document.getElementById("all-comments");
   if (blogDetails.comments.length != 0) {
@@ -224,10 +234,11 @@ const retrieving = async () => {
  `;
   });
 };
- 
+
+// commenting
 var form = document
   .getElementById("comment-form")
-  .addEventListener("submit", (e) => {
+  .addEventListener("submit", async (e) => {
     e.preventDefault();
     if (!ALoggedInUser) {
       let popUp = document.getElementById("pop-up-container");
@@ -236,7 +247,6 @@ var form = document
       setTimeout(() => {
         popUp.classList.remove("show-pop-up");
       }, 5000);
-       
     } else {
       //gets each user input
       var comment = document.getElementById("comment-message").value;
@@ -255,10 +265,10 @@ var form = document
           '<div id="errors" style="width: 100%; height: 50px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); padding: 5px 15px; display: flex; justify-content: center; align-items: center; background-color: hsla(10, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #b1361e; >' +
           '<p style="width: 100%; margin:0; padding: 0; text-align: center;"> The comment should not be just spaces. </p> </div>';
       } else {
-         
-
-        var newComment = { 
-          user: ALoggedInUser.fullName, 
+        const userID = parseJwt(ALoggedInUser.token).id
+        const userDet = fetch(`https://mybrand-production.up.railway.app/users/${userID}`, {method: "GET"})
+        var newComment = {
+          user: ALoggedInUser.fullName,
           comment: comment,
         };
 
@@ -285,6 +295,24 @@ var form = document
       }
     }
   });
+
+function parseJwt(token) {
+  var base64Url = token.split(".")[1];
+  var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+  var jsonPayload = decodeURIComponent(
+    window
+      .atob(base64)
+      .split("")
+      .map(function (c) {
+        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+      })
+      .join("")
+  );
+
+  return JSON.parse(jsonPayload);
+}
+
+console.log(parseJwt(ALoggedInUser.token));
 
 // a function to clear the form
 function clearForm() {

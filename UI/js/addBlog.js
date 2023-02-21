@@ -1,5 +1,15 @@
-const LoggedInUser = JSON.parse(localStorage.getItem("userloggedin"));
-console.log(LoggedInUser);
+const LoggedInUser = JSON.parse(localStorage.getItem("userloggedin")); 
+// console.log(loggedin);
+
+function parseJwt (token) {
+  var base64Url = token.split('.')[1];
+  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
+
+  return JSON.parse(jsonPayload);
+}
 
 var form = document
   .getElementById("add-blog-form")
@@ -19,7 +29,7 @@ var form = document
     //   var regex = new RegExp(expression);
     var regexSpaceInputs = /\S/g;
 
-    if (LoggedInUser && LoggedInUser.role === "admin") {
+    if (LoggedInUser && parseJwt(LoggedInUser.token).role === "admin") {
       console.log("in");
       // checks if all fields are filled. If not, it i will fire an alert to tell the user to fill all fields
       if (!title || !category || !coverImage || !content || !references) {

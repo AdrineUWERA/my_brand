@@ -3,6 +3,7 @@ import {
   SignUp,
   getAllusers,
   UserLogin,
+  getOneUser
   // deleteUser,
   // updateUser
 } from "../../controllers/UserControllers.js";
@@ -109,7 +110,9 @@ const userRouter = express.Router();
 
 userRouter.post("/signup", userValidator, SignUp);
 userRouter.get("/", getAllusers);
+userRouter.get("/:id", getOneUser);
 userRouter.post("/login", userloginValidator, UserLogin);
+
 // userRouter.delete("/:id", deleteUser);
 // userRouter.patch("/:id", updateUser); 
 

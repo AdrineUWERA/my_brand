@@ -64,7 +64,11 @@ const getAllusers = async (req, res) => {
   }
 };
 
-
+const getOneUser = async (req, res) => {
+  const userId = req.params.id;
+  const user = await User.findById(userId);
+  return res.status(200).json({ message: "One User", data: user });
+};
 
 // const deleteUser = async (req, res) => {
 //   const user = await User.findOneAndDelete(req.params.id);
@@ -82,7 +86,7 @@ const UserLogin = async (req, res) => {
     const { email, password } = req.body;
     const userExists = await UserService.userExist({ email: email });
     if (!userExists) {
-      return res.status(404).json({ message: "User doesn't exist"})
+      return res.status(404).json({ message: "User doesn't exist" });
     }
     const validPassword = comparePassword(password, userExists.password);
     if (!validPassword) {
@@ -96,7 +100,7 @@ const UserLogin = async (req, res) => {
     return res.status(200).header("authenticate", token).json({
       message: "User successfully logged in",
       token: token,
-      role: userExists.role
+      role: userExists.role,
     });
   } catch (err) {
     return res.status(500).json({
@@ -110,5 +114,6 @@ export {
   SignUp,
   getAllusers,
   UserLogin,
+  getOneUser
   // deleteUser, updateUser
 };
