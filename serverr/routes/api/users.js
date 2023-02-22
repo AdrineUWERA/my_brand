@@ -3,8 +3,8 @@ import {
   SignUp,
   getAllusers,
   UserLogin,
-  getOneUser
-  // deleteUser,
+  getOneUser,
+  deleteUser,
   // updateUser
 } from "../../controllers/UserControllers.js";
  import { userValidator, userloginValidator } from "../../validations/userValidation/userValidator.js"
@@ -113,7 +113,7 @@ userRouter.get("/", getAllusers);
 userRouter.get("/:id", getOneUser);
 userRouter.post("/login", userloginValidator, UserLogin);
 
-// userRouter.delete("/:id", deleteUser);
+userRouter.delete("/:id", deleteUser);
 // userRouter.patch("/:id", updateUser); 
 
 export default userRouter;

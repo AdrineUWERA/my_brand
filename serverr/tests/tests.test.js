@@ -59,7 +59,7 @@ describe("blogs API", () => {
       const number = Math.floor(Math.random() * 10000);
       const user = {
         fullName: "Test User",
-        email: `test${number}@mail.com`,
+        email: `test${number}@mail.com`, 
         password: "password",
       };
 
@@ -68,6 +68,7 @@ describe("blogs API", () => {
         .post("/users/signup")
         .send(user)
         .end((err, response) => {
+          const newuser = response.body.data;
           response.should.have.status(201);
           response.body.should.be.a("object");
           response.body.should.have
@@ -83,7 +84,14 @@ describe("blogs API", () => {
           response.body.should.have
             .property("data")
             .have.nested.property("password");
-          done();
+          // chai
+          //   .request(app)
+          //   .delete("/users/" + newuser._id)
+          //   .end((err, response) => {
+          //     response.should.have.status(200);
+          //     response.body.should.have.property("message").eql("User deleted");
+              done();
+          //   });
         });
     });
 
@@ -101,6 +109,7 @@ describe("blogs API", () => {
         .post("/users/signup")
         .send(user)
         .end((err, response) => {
+          const newuser = response.body.data;
           response.should.have.status(201);
           response.body.should.be.a("object");
           response.body.should.have
@@ -116,7 +125,14 @@ describe("blogs API", () => {
           response.body.should.have
             .property("data")
             .have.nested.property("password");
-          done();
+          // chai
+          //   .request(app)
+          //   .delete("/users/" + newuser._id)
+          //   .end((err, response) => {
+          //     response.should.have.status(200);
+          //     response.body.should.have.property("message").eql("User deleted");
+              done();
+          //   });
         });
     });
 
@@ -771,12 +787,12 @@ describe("blogs API", () => {
             .have.nested.property("message");
           chai
             .request(app)
-            .delete("/queries/" + newquery._id) 
+            .delete("/queries/" + newquery._id)
             .end((err, response) => {
               response.should.have.status(200);
               response.body.should.have
-              .property("message")
-              .eql("Query deleted!");
+                .property("message")
+                .eql("Query deleted!");
               done();
             });
         });
@@ -826,7 +842,7 @@ describe("blogs API", () => {
         });
     });
 
-    it("It should NOT GET all the queries", (done) => {
+    it("It should NOT GET all the queries because the user is not admin", (done) => {
       const user = {
         email: "melissa@gmail.com",
         password: "password",

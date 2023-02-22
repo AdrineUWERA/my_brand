@@ -70,10 +70,10 @@ const getOneUser = async (req, res) => {
   return res.status(200).json({ message: "One User", data: user });
 };
 
-// const deleteUser = async (req, res) => {
-//   const user = await User.findOneAndDelete(req.params.id);
-//   return res.send({ message: "user deleted", user: user });
-// };
+const deleteUser = async (req, res) => {
+  const user = await User.findOneAndDelete(req.params.id);
+  return res.send({ message: "User deleted", user: user });
+};
 
 // const updateUser = async (req, res) => {
 //   const user = await User.findOneAndUpdate(req.params.id, req.body);
@@ -114,6 +114,7 @@ export {
   SignUp,
   getAllusers,
   UserLogin,
-  getOneUser
-  // deleteUser, updateUser
+  getOneUser,
+  deleteUser 
+  // updateUser
 };
