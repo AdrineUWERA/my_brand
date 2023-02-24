@@ -85,9 +85,9 @@ const retrieving = async () => {
             }
           )
             .then(() => {
-              console.log("hi1");
+              // console.log("hi1");
               document.getElementById("like-btn").style.color = "#fff";
-              console.log("hi2");
+              // console.log("hi2");
             })
             .then(() => {
               fetchLikes();
@@ -212,7 +212,7 @@ const displayComment = async () => {
   const commentsOnBlogJSON = await blogComments.json();
 
   const commentsOnBlog = commentsOnBlogJSON.comments;
-  console.log(commentsOnBlog);
+  // console.log(commentsOnBlog);
 
   const commentsNumber = document.getElementById("comments-nbr");
   commentsNumber.innerHTML = `${commentsOnBlog.length} Comments`;
@@ -243,7 +243,7 @@ const displayComment = async () => {
 
     const userDetJSON = await userDet.json();
     const userInfo = userDetJSON.data;
-    console.log("comment user", userDetJSON);
+    // console.log("comment user", userDetJSON);
 
     commentsContainer.innerHTML += ` 
       <div class="comment-content">
@@ -308,7 +308,7 @@ var form = document
         );
 
         const commentJSON = commentAdded.json();
-        console.log(commentJSON.comment);
+        // console.log(commentJSON.comment);
 
         submitMessage.innerHTML =
           '<div id="errors" style="width: 100%; height: 40px; padding: 0px 0; margin: 0px 0; font-size: 14px; color: hsla(0, 0%, 100%, 0.7); display: flex; justify-content: center; align-items: center; background-color: hsla(130, 71%, 41%, 10%); border-radius: 3px; border: 1px solid #1eb136;; >' +
