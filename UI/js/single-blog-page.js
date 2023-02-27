@@ -177,27 +177,27 @@ const retrieving = async () => {
 
   const commentsNumber = document.getElementById("comments-nbr");
   commentsNumber.innerHTML = `${blogDetails.comments.length} Comments`;
-
+  displayComment();
   //reference list
-  let linksList = blogDetails.references.split(/\n+/g);
-  // let linksList = blogDetails.references.split(/\d.\s|\d.|\n+/g);
-  // console.log(linksList);
+  
+  if (blogDetails.references) {
+    let linksList = blogDetails.references.split(/\n+/g);
+    // let linksList = blogDetails.references.split(/\d.\s|\d.|\n+/g);
+    // console.log(linksList);
 
-  if (blogDetails.references.length != 0) {
-    const linksTitleContainer = document.getElementById(
-      "reference-links-title"
-    );
-    linksTitleContainer.innerHTML += `Links:`;
-  }
-
-  const linksContainer = document.getElementById("links-list");
-  linksList.map((link) => {
-    linksContainer.innerHTML += ` 
+    if (blogDetails.references.length != 0) {
+      const linksTitleContainer = document.getElementById(
+        "reference-links-title"
+      );
+      linksTitleContainer.innerHTML += `Links:`;
+      const linksContainer = document.getElementById("links-list");
+      linksList.map((link) => {
+        linksContainer.innerHTML += ` 
     <li>${link}</li>
  `;
-  });
-
-  displayComment();
+      });
+    }
+  }
 };
 
 const displayComment = async () => {
@@ -292,7 +292,7 @@ var form = document
         var newComment = {
           comment: comment,
         };
-       
+
         // console.log(parseJwt(ALoggedInUser));
         const commentAdded = await fetch(
           `https://mybrand-production.up.railway.app/blogs/${dynamicId}/comments`,
