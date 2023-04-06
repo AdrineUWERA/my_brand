@@ -168,11 +168,6 @@ describe("blogs API", () => {
 
   describe("POST /users/login", () => {
     it("It should log the user in", (done) => {
-      // const user = {
-      //   email: "a.UWERA@alustudent.com",
-      //   password: "password",
-      // };
-
       const number = Math.floor(Math.random() * 10000);
       const user = {
         fullName: "Test User",
