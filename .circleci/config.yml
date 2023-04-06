@@ -1,15 +1,17 @@
 version: 2.1
-jobs: 
+jobs:
   run_tests:
-    docker: 
+    docker:
       - image: circleci/node:16
-    environment: 
+    environment:
       repo_token: Y8lZ2oyyFrJWAzG0MDTnBdrAj3I0nQWuY
+      CC_TEST_REPORTER_ID: f9b4a729716222ef0a20d8782c3a11e6a3e14e2daaf0b86cc9adc5a75eb81abd  
+
     steps:
       - checkout
       - run:
           name: Install npm dependencies
-          command: cd serverr && npm install 
+          command: cd serverr && npm install
       - run:
           name: Install npm dev dependencies
           command: cd serverr && npm install mocha c8 chai-http chai
@@ -19,6 +21,14 @@ jobs:
       - run:
           name: Upload coverage to Coveralls
           command: cd serverr && npx coveralls < coverage/lcov.info
+      - run:
+          name: Upload Coverage to CodeClimate
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+            ./cc-test-reporter before-build
+            ./cc-test-reporter after-build --exit-code $? -t lcov --prefix ../serverr/coverage
+
 workflows:
   build_tests:
     jobs:

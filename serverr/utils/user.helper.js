@@ -19,9 +19,7 @@ function generateToken(payload, expiresIn) {
 }
 
 function decodeToken(token) {
-    // console.log('decodeToken', token);
     const verify = jwt.verify(token, process.env.TOKEN_SECRET);
-    // console.log(verify);
     return verify;
 }
  
